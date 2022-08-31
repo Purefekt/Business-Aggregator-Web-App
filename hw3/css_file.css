@@ -1,0 +1,53 @@
+.container {
+    width: 785px;
+    height: 1000px;
+    border: dashed 1px;
+    margin: auto;
+    text-align: center;
+}
+
+.paul_james_box {
+    position: absolute;
+    width: 552px;
+    height: 108px;
+    border: solid 1.5px black;
+    margin-left: 119px;
+    margin-right: 112px;
+    margin-top: 33px;
+}
+
+.paul_james_text {
+    /* increase margin left by 2 */
+    position: relative;
+    display: inline-block;
+    width: 233px;
+    height: 37px;
+    margin-top: 56px;
+    border: solid 1px black;
+    font-size: 40px;
+    margin-left: 277px;
+    margin-right: 273px;
+    align-items: center;
+}
+
+.image_pier {
+    position: relative;
+    width: 628px;
+    height: 629px;
+    object-fit: cover;
+    object-position: -242px;
+    margin-left: 81px;
+    margin-right: 76px;
+    margin-top: 76px;
+}
+
+.image_road {
+    position: relative;
+    width: 628px;
+    height: 619px;
+    object-fit: cover;
+    object-position: -242px;
+    margin-left: 81px;
+    margin-right: 76px;
+    margin-top: 5px;
+}
