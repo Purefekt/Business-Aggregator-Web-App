@@ -7,27 +7,99 @@
 }
 
 .paul_james_box {
-    position: absolute;
+    position: relative;
     width: 552px;
     height: 108px;
     border: solid 1.5px black;
     margin-left: 119px;
     margin-right: 112px;
     margin-top: 33px;
+    top: 0px;
 }
 
-.paul_james_text {
-    /* increase margin left by 2 */
-    position: relative;
+/* This box is there to help set the text */
+.paul_james_text_box {
+    position: fixed;
     display: inline-block;
     width: 233px;
     height: 37px;
-    margin-top: 56px;
+    top: 56px;
+    margin-top: 0px;
     border: solid 1px black;
-    font-size: 40px;
     margin-left: 277px;
     margin-right: 273px;
+    left: 124px;
+    right: 123px;
+}
+
+.paul_james_text {
+    position: relative;
+    display: inline-block;
+    font-size: 46.2px;
+    margin-left: 279px;
+    margin-right: 273px;
+    top: -145px;
     align-items: center;
+    font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+/* This box is there to help set the links text */
+.links_box {
+    position: fixed;
+    display: inline-block;
+    width: 163px;
+    height: 11px;
+    top: 110px;
+    margin-top: 0px;
+    border: solid 1px black;
+    margin-left: 310px;
+    margin-right: 310px;
+    left: 124px;
+    right: 123px;
+}
+/* 
+
+
+THISISISISISIS
+*/
+.links {
+    position: relative;
+    display: inline-block;
+    font-size: 11px;
+    margin-left: 311px;
+    margin-right: 311px;
+    top: -196px;
+    font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+.home_link {
+    margin-left: 0px;
+    text-decoration: none;
+    color: black;
+}
+.nature_link {
+    margin-left: 13.5px;
+    text-decoration: none;
+    color: #898888;
+}
+.nature_link:hover {
+    color: black;
+}
+.urban_link {
+    margin-left: 14px;
+    text-decoration: none;
+    color: #898888;
+}
+.urban_link:hover {
+    color: black;
+}
+.bio_link {
+    margin-left: 15px;
+    text-decoration: none;
+    color: #898888;
+}
+.bio_link:hover {
+    color: black;
 }
 
 .image_pier {
@@ -46,7 +118,7 @@
     width: 628px;
     height: 619px;
     object-fit: cover;
-    object-position: -242px;
+    object-position: -300px;
     margin-left: 81px;
     margin-right: 76px;
     margin-top: 5px;
