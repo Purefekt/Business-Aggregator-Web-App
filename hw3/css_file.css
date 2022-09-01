@@ -1,6 +1,6 @@
 .container {
     width: 785px;
-    height: 1000px;
+    height: 3000px;
     border: dashed 1px;
     margin: auto;
     text-align: center;
@@ -57,11 +57,7 @@
     left: 124px;
     right: 123px;
 }
-/* 
 
-
-THISISISISISIS
-*/
 .links {
     position: relative;
     display: inline-block;
@@ -110,7 +106,9 @@ THISISISISISIS
     object-position: -242px;
     margin-left: 81px;
     margin-right: 76px;
+    /* 76px from top */
     margin-top: 76px;
+    top: -185px;
 }
 
 .image_road {
@@ -121,5 +119,18 @@ THISISISISISIS
     object-position: -300px;
     margin-left: 81px;
     margin-right: 76px;
-    margin-top: 5px;
+    margin-top: 4px;
+    top: -185px;
+}
+
+.image_lake {
+    position: relative;
+    width: 628px;
+    height: 634px;
+    object-fit: cover;
+    object-position: -106px;
+    margin-left: 81px;
+    margin-right: 76px;
+    margin-top: 4px;
+    top: -185px;
 }
