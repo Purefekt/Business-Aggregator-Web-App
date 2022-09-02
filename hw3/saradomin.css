@@ -1,12 +1,14 @@
 body {
-    width: 785px;
-    height: 2220px;
+    margin-top: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
 }
 
 .container {
     width: 785px;
     height: 2220px;
-    /* border: dashed 1px; */
+    border: dashed 1px;
     margin: auto;
     text-align: center;
     margin-top: 0px;
