@@ -1,9 +1,12 @@
 .container {
     width: 785px;
-    height: 3000px;
-    border: dashed 1px;
+    height: 2220px;
+    /* border: dashed 1px; */
     margin: auto;
     text-align: center;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    overflow: hidden;
 }
 
 .paul_james_box {
@@ -133,4 +136,66 @@
     margin-right: 76px;
     margin-top: 4px;
     top: -185px;
+}
+
+.copyright_box {
+    position: relative;
+    display: inline-block;
+    width: 100px;
+    top: -190px;
+    bottom: 0px;
+    margin-top: 32px;
+    /* border: solid 1px black; */
+    margin-left: 340px;
+    margin-right: 345px;
+    margin-bottom: 0px;
+    font-family: Georgia, "Times New Roman", Times, serif;
+    color: #898888;
+    font-size: 9px;
+}
+
+.footer_box {
+    position: relative;
+    display: inline-block;
+    height: 18px;
+    width: 86px;
+    top: -190px;
+    bottom: 0px;
+    margin-top: 18px;
+    /* border: solid 1px black; */
+    margin-left: 340px;
+    margin-right: 345px;
+    margin-bottom: 0px;
+    font-family: Georgia, "Times New Roman", Times, serif;
+    color: #898888;
+    font-size: 9px;
+}
+
+.footer_box img {
+    height: 18px;
+    width: 18px;
+}
+
+.facebook {
+    position: relative;
+    left: -16px;
+}
+
+.instagram {
+    position: relative;
+    right: -16px;
+}
+
+.page_bottom {
+    position: relative;
+    display: inline-block;
+    height: 0px;
+    width: 100px;
+    top: -190px;
+    bottom: 0px;
+    margin-top: 28px;
+    border: solid 1px black;
+    margin-left: 340px;
+    margin-right: 345px;
+    margin-bottom: 0px;
 }
