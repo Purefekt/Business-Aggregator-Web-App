@@ -171,9 +171,10 @@
     font-size: 9px;
 }
 
-.footer_box img {
+.footer_box a {
     height: 18px;
     width: 18px;
+    text-decoration: none;
 }
 
 .facebook {
