@@ -1,0 +1,9 @@
+go to dir>> cd to dir
+
+create a new venv >> python3 -m venv env
+
+activate venv >> source env/bin/activate
+
+install all packages >> pip install -r requirements.txt
+
+deactivate >> deactivate

@@ -233,3 +233,7 @@ fabric.properties
 
 # MacOS
 .DS_Store
+
+# folders
+env/
+python-docs-samples/

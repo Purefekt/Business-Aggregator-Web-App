@@ -1,0 +1,127 @@
+body {
+    background-color: #d7d7d7;
+}
+
+.container {
+    width: 1000px;
+    height: 3000px;
+    margin: auto;
+    text-align: center;
+    overflow: hidden;
+    border: dashed 1px;
+}
+
+.search_box {
+    width: 598px;
+    height: 700px;
+    border: solid 1px black;
+    margin-left: 200px;
+    margin-right: 200px;
+    background-color: white;
+}
+
+.banner {
+    position: relative;
+    width: 598px;
+    height: 120px;
+    object-fit: cover;
+    object-position: 0px -207px;
+}
+
+.business_search {
+    color: white;
+    font-size: 26px;
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+        sans-serif;
+    font-weight: 600;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    position: relative;
+    top: -90px;
+    left: -170px;
+}
+
+.banner_subtext {
+    color: white;
+    font-size: 20px;
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+        sans-serif;
+    font-weight: 400;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    position: relative;
+    top: -75px;
+    left: -81px;
+}
+
+/* Astericks after required fiels in form except distance miles
+Placeholder text color to black
+*/
+.form label::after {
+    content: " *";
+    color: red;
+    font-size: 14px;
+}
+.form .label_distance::after {
+    content: "";
+}
+::placeholder {
+    color: black;
+    opacity: 1;
+}
+/* ###################################################### */
+
+.form label {
+    display: block;
+    color: #556fa8;
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+        sans-serif;
+    font-size: 17px;
+    font-weight: 350;
+    text-align: left;
+}
+
+/* KEYWORD */
+.form .label_keyword {
+    position: relative;
+    left: 45px;
+    top: -35px;
+}
+
+.form .input_keyword {
+    position: relative;
+    width: 500px;
+    height: 26px;
+    border: solid 1px #cecece;
+    top: -27px;
+}
+/* ###################################################### */
+
+/* DISTANCE */
+.form .label_distance {
+    position: relative;
+    left: 45px;
+    top: -10px;
+}
+
+.form .input_distance {
+    position: relative;
+    width: 149px;
+    height: 26px;
+    border: solid 1px #cecece;
+    left: -176px;
+    top: -2px;
+}
+/* ###################################################### */
+
+/* CATEGORY */
+.form .label_category {
+    position: relative;
+}
+
+.form .input_category {
+    position: relative;
+    width: 245px;
+    height: 26px;
+    border: solid 1px #cecece;
+}
