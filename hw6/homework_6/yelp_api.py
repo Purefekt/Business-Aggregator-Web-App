@@ -1,5 +1,5 @@
 import requests
-import json
+
 
 API_KEY = "H2ckcPhI3zXZ6rasK0NGHswOf9JCf6YDne7GetsqnPBVnri3uM2-ZsehURtPhvjbfT62o3wqQKlcJ2fsd1bm3pvpkfwkeGiDV34Db6kiV8UQRNSbdjVhF0DVxcgqY3Yx"
 headers = {'Authorization' : f'Bearer {API_KEY}'}
@@ -13,7 +13,6 @@ RAD = 16093 #meters
 
 # get data
 response = requests.get(f'https://api.yelp.com/v3/businesses/search?term={KEYWORD}&latitude={lat}&longitude={lng}&categories={CATEGORY}&radius={RAD}', headers=headers)
-
 # print(response.status_code)
 data = response.json()
 
