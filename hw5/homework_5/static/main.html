@@ -38,13 +38,27 @@
                     <label for="input_category" class="label_category"
                         >Category</label
                     >
-                    <input
+                    <!-- <input
                         class="input_category"
                         id="input_category"
                         type="text"
                         required
                         placeholder="Default"
-                    />
+                    /> -->
+                    <select class="select_category" required>
+                        <option value="Default">Default</option>
+                        <option value="Arts_&_Entertainment">
+                            Arts & Entertainment
+                        </option>
+                        <option value="Health_&_Medical">
+                            Health & Medical
+                        </option>
+                        <option value="Hotels_&_Travel">Hotels & Travel</option>
+                        <option value="Food">Food</option>
+                        <option value="Professional_Services">
+                            Professional Services
+                        </option>
+                    </select>
                     <label for="input_location" class="label_location"
                         >Location</label
                     >
@@ -64,6 +78,14 @@
                         class="input_checkbox"
                         id="input_checkbox"
                         type="checkbox"
+                    />
+
+                    <input class="input_submit" type="submit" value="SUBMIT" />
+
+                    <input
+                        class="input_btn_clear"
+                        type="button"
+                        value="CLEAR"
                     />
                 </form>
             </div>
