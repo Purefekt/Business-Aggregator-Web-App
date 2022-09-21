@@ -54,7 +54,7 @@ body {
     left: -81px;
 }
 
-/* Astericks after required fiels in form except distance miles
+/* Astericks after required fiels in form except distance miles and checkbox
 Placeholder text color to black
 */
 .form label::after {
@@ -68,6 +68,9 @@ Placeholder text color to black
 ::placeholder {
     color: black;
     opacity: 1;
+}
+.form .label_checkbox::after {
+    content: "";
 }
 /* ###################################################### */
 
@@ -117,6 +120,8 @@ Placeholder text color to black
 /* CATEGORY */
 .form .label_category {
     position: relative;
+    right: -300px;
+    top: -59px;
 }
 
 .form .input_category {
@@ -124,4 +129,48 @@ Placeholder text color to black
     width: 245px;
     height: 26px;
     border: solid 1px #cecece;
+    top: -51.5px;
+    right: -128px;
+}
+
+/* LOCATION */
+.form .label_location {
+    position: relative;
+    top: -32px;
+    left: 45px;
+}
+
+.form .input_location {
+    position: relative;
+    width: 500px;
+    height: 26px;
+    border: solid 1px #cecece;
+    top: -25px;
+}
+/* ###################################################### */
+
+/* Line in form */
+.form .form_line {
+    position: relative;
+    width: 502px;
+    height: 0px;
+    border: solid 1px #556fa8;
+    left: 47px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+/* ###################################################### */
+
+/* CHECKBOX */
+.form .label_checkbox {
+    display: inline;
+    position: relative;
+    font-size: 21px;
+    left: -24px;
+    top: 19px;
+}
+.form .input_checkbox {
+    position: relative;
+    left: -28px;
+    top: 19px;
 }
