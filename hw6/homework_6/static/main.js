@@ -4,17 +4,18 @@ function search_yelp(initial_form) {
     var form_category = initial_form.select_category.value;
     var form_location = initial_form.input_location.value;
 
-    console.log(form_keyword);
-    console.log(form_distance);
-    console.log(form_category);
-    console.log(form_location);
+    // console.log(form_keyword);
+    // console.log(form_distance);
+    // console.log(form_category);
+    // console.log(form_location);
 
     var request = new XMLHttpRequest();
-    // request.onreadystatechange = function () {
-    //     if (request.readyState == 4 && request.status == 200) {
-    //         response = request.responseText;
-    //     }
-    // };
+    request.onreadystatechange = function () {
+        if (request.readyState == 4 && request.status == 200) {
+            response = request.responseText;
+            console.log(response);
+        }
+    };
 
     api_string =
         "/search_yelp?form_keyword=" +

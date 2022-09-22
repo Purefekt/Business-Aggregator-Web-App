@@ -25,15 +25,20 @@ def search_yelp():
     location_data = requests.get(f"https://maps.googleapis.com/maps/api/geocode/json?address={form_location}&key={GOOGLE_API_KEY}")
     location_data = location_data.json()
 
+    # if location was invalid
+    if location_data['status'] != 'OK':
+        return jsonify({'no_result':1})
+
     lat = location_data['results'][0]['geometry']['location']['lat']
     lng = location_data['results'][0]['geometry']['location']['lng']
-    """
-    ADD CHECK FOR WHEN LOCATION DOESNT EXIST
-    """
 
     # get yelp data for the table
     yelp_data_table = requests.get(f'https://api.yelp.com/v3/businesses/search?term={form_keyword}&latitude={lat}&longitude={lng}&categories={form_category}&radius={form_distance}', headers=headers)
     yelp_data_table = yelp_data_table.json()
+    
+    # if yelp returned no data
+    if yelp_data_table['total'] < 1:
+        return jsonify({'no_result':1})
 
     image_url = yelp_data_table['businesses'][0]['image_url'] # Image
     name = yelp_data_table['businesses'][0]['name'] # Business Name
