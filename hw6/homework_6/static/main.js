@@ -8,4 +8,25 @@ function search_yelp(initial_form) {
     console.log(form_distance);
     console.log(form_category);
     console.log(form_location);
+
+    var request = new XMLHttpRequest();
+    // request.onreadystatechange = function () {
+    //     if (request.readyState == 4 && request.status == 200) {
+    //         response = request.responseText;
+    //     }
+    // };
+
+    api_string =
+        "/search_yelp?form_keyword=" +
+        form_keyword +
+        "&form_distance=" +
+        form_distance +
+        "&form_category=" +
+        form_category +
+        "&form_location=" +
+        form_location;
+    request.open("GET", api_string);
+    request.send();
+
+    return true;
 }
