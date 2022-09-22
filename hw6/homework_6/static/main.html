@@ -94,9 +94,31 @@
                 </form>
             </div>
 
+            <!-- No records found -->
             <div class="no_result" id="no_result">
                 <p>No record has been found</p>
             </div>
+
+            <!-- Table of output, max 20 rows -->
+            <table class="styled-table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Points</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Dom</td>
+                        <td>6000</td>
+                    </tr>
+                    <tr class="active-row">
+                        <td>Melissa</td>
+                        <td>5150</td>
+                    </tr>
+                    <!-- and so on... -->
+                </tbody>
+            </table>
         </div>
 
         <script type="text/javascript" src="/static/main.js"></script>

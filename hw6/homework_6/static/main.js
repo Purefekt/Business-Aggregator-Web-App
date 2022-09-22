@@ -45,5 +45,8 @@ function search_box_input(data) {
     // if no data, show no records found
     if ("no_result" in response) {
         div_no_result.style.display = "block";
+    } else {
+        // TEMPORARY
+        div_no_result.style.display = "none";
     }
 }
