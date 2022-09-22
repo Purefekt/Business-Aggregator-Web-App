@@ -209,3 +209,11 @@ Placeholder text color to black
     left: 156px;
     top: 5px;
 }
+
+/* No records found div */
+
+.no_result {
+    display: none;
+}
+
+/* ###################################################### */

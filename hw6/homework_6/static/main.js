@@ -9,14 +9,10 @@ function search_yelp(initial_form) {
     // console.log(form_category);
     // console.log(form_location);
 
+    // AJAX
     var request = new XMLHttpRequest();
-    request.onreadystatechange = function () {
-        if (request.readyState == 4 && request.status == 200) {
-            response = request.responseText;
-            console.log(response);
-        }
-    };
 
+    // Send data to flask
     api_string =
         "/search_yelp?form_keyword=" +
         form_keyword +
@@ -29,5 +25,25 @@ function search_yelp(initial_form) {
     request.open("GET", api_string);
     request.send();
 
+    // get data from flask as a JSON object
+    request.onreadystatechange = function () {
+        if (request.readyState == 4 && request.status == 200) {
+            response = request.responseText;
+            search_box_input(response);
+        }
+    };
+
     return true;
+}
+
+function search_box_input(data) {
+    var div_no_result = document.getElementById("no_result");
+    div_no_result.style.display = "none";
+
+    var response = JSON.parse(data);
+
+    // if no data, show no records found
+    if ("no_result" in response) {
+        div_no_result.style.display = "block";
+    }
 }

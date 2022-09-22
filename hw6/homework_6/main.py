@@ -55,6 +55,8 @@ def search_yelp():
 
         table_data[name] = {"image_url":image_url, "rating":rating, "distance":distance}
     
+    print(table_data)
+
     return jsonify(table_data)
     
 """Func to format the location input"""
