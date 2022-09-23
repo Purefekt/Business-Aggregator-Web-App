@@ -1,5 +1,7 @@
 body {
     background-color: #e6e6e6;
+    /* counter-reset for automatic numbering of table */
+    counter-reset: Serial;
 }
 
 .container {
@@ -191,6 +193,7 @@ Placeholder text color to black
     border-color: #556fa8;
     left: 46px;
     top: 46px;
+    cursor: pointer;
 }
 
 .form .input_btn_clear {
@@ -208,14 +211,13 @@ Placeholder text color to black
     box-shadow: 0px 3px 1px #eb8933;
     left: 156px;
     top: 5px;
+    cursor: pointer;
 }
 
 /* No records found div */
-
 .no_result {
     display: none;
 }
-
 /* ###################################################### */
 
 /* TABLE OF OUTPUT */
@@ -230,7 +232,6 @@ Placeholder text color to black
 }
 
 table,
-th,
 td {
     border: 1px solid #e6e6e6;
     border-collapse: collapse;
@@ -238,10 +239,12 @@ td {
     font-weight: 200;
 }
 
-.div_table table .table_header td {
+.div_table table .table_header th {
     background-color: #4f6fad;
     height: 39px;
     font-weight: 600;
+    border: 1px solid #e6e6e6;
+    border-collapse: collapse;
 }
 
 .table_business_img {
@@ -249,3 +252,15 @@ td {
     width: 100px;
     height: 100px;
 }
+
+.div_table table .table_header th.pointer {
+    cursor: pointer;
+}
+
+/* for automatic numbering */
+tr td:first-child:before {
+    counter-increment: Serial;
+    content: counter(Serial);
+}
+
+/* ###################################################### */

@@ -9,6 +9,7 @@
 
     <body>
         <div class="container">
+            <!-- Search box -->
             <div class="search_box">
                 <img class="banner" src="/static/banner.jpeg" />
                 <p class="business_search">Business Search</p>
@@ -102,17 +103,34 @@
             <!-- Table of output, max 20 rows -->
             <div class="div_table" id="div_table">
                 <table id="table">
-                    <tr class="table_header">
-                        <td width="50px" scope="col">No.</td>
-                        <td width="109px" scope="col">Image</td>
-                        <td width="543px" scope="col">Business Name</td>
-                        <td width="149px" scope="col">Rating</td>
-                        <td width="149px" scope="col">Distance (miles)</td>
-                    </tr>
+                    <!-- HAS BEEN ADDED AS A STRING IN build_table JS FUNC -->
+                    <!-- <tr class='table_header'>
+                        <th width='50px' scope='col'>No.</th>
+                        <th width='109px' scope='col'>Image</th>
+                        <th
+                            width='543px'
+                            onclick='sort_table(2)'
+                            class='pointer'
+                            scope='col'
+                        >
+                            Business Name
+                        </th>
+                        <th
+                            width='149px'
+                            onclick='sort_table(3)'
+                            class='pointer'
+                            scope='col'
+                        >
+                            Rating
+                        </th>
+                        <th width='149px' class='pointer' scope='col'>
+                            Distance (miles)
+                        </th>
+                    </tr> -->
 
-                    <!-- Sample -->
+                    <!-- Sample row -->
                     <!-- <tr>
-                        <td>1</td>
+                        <td></td>
                         <td>
                             <img
                                 class="table_business_img"
@@ -125,6 +143,7 @@
                         <td>4.5</td>
                         <td>10.1</td>
                     </tr> -->
+                    <!-- Sample Ends -->
                 </table>
             </div>
         </div>

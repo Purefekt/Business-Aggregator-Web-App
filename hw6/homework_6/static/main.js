@@ -4,11 +4,6 @@ function search_yelp(initial_form) {
     var form_category = initial_form.select_category.value;
     var form_location = initial_form.input_location.value;
 
-    // console.log(form_keyword);
-    // console.log(form_distance);
-    // console.log(form_category);
-    // console.log(form_location);
-
     // AJAX
     var request = new XMLHttpRequest();
 
@@ -50,7 +45,6 @@ function search_box_input(data) {
         // else hide no records found message and show and build the table
         div_no_result.style.display = "none";
         div_table.style.display = "block";
-        // console.log(response);
         build_table(response);
     }
 }
@@ -58,9 +52,12 @@ function search_box_input(data) {
 function build_table(data) {
     var table = document.getElementById("table");
 
+    // reset the table with just the header every time we build the table
+    table.innerHTML =
+        "<tr class='table_header'><th width='50px' scope='col'>No.</th><th width='109px' scope='col'>Image</th><th width='543px' onclick='sort_table(2)' class='pointer' scope='col'>Business Name</th><th width='149px' onclick='sort_table(3)' class='pointer' scope='col'>Rating</th><th width='149px' onclick='sort_table(4)' class='pointer' scope='col'>Distance (miles)</th></tr>";
+
     // build rows based on number of results
     num_results = Object.keys(data["data"]).length;
-    // console.log(num_results);
     for (var i = 0; i < num_results; i++) {
         var id = data["data"][i]["id"];
         var name = data["data"][i]["name"];
@@ -69,20 +66,15 @@ function build_table(data) {
         var distance = data["data"][i]["distance"];
         var count = i + 1;
 
-        console.log(image_url);
-
         // initialize the element
         var new_element = document.createElement("tr");
         // add data to the element
         new_element.innerHTML =
-            "<td>" +
-            count +
-            "</td>" +
-            "<td><img class='table_business_img' src='" +
+            "<td></td><td><img class='table_business_img' src='" +
             image_url +
             "'/></td>" +
             "<td><div id='result_id' value='" +
-            id +
+            name +
             "'>" +
             name +
             "</div></td>" +
@@ -94,5 +86,63 @@ function build_table(data) {
             "</td>";
         // add this data as the next child of the parent element, which is the table here
         table.appendChild(new_element);
+    }
+}
+
+// to sort the table according to headers. Inspirationg from w3schools https://www.w3schools.com/howto/howto_js_sort_table.asp
+function sort_table(n) {
+    var table,
+        rows,
+        switching,
+        i,
+        x,
+        y,
+        shouldSwitch,
+        dir,
+        switchcount = 0;
+    table = document.getElementById("table");
+    switching = true;
+    // Set the sorting direction to ascending:
+    dir = "asc";
+    /* Make a loop that will continue until no switching has been done: */
+    while (switching) {
+        // Start by saying: no switching is done:
+        switching = false;
+        rows = table.rows;
+        /* Loop through all table rows (except the first, which contains table headers): */
+        for (i = 1; i < rows.length - 1; i++) {
+            // Start by saying there should be no switching:
+            shouldSwitch = false;
+            /* Get the two elements you want to compare, one from current row and one from the next: */
+            x = rows[i].getElementsByTagName("TD")[n];
+            y = rows[i + 1].getElementsByTagName("TD")[n];
+            /* Check if the two rows should switch place, based on the direction, asc or desc: */
+            if (dir == "asc") {
+                if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                    // If so, mark as a switch and break the loop:
+                    shouldSwitch = true;
+                    break;
+                }
+            } else if (dir == "desc") {
+                if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                    // If so, mark as a switch and break the loop:
+                    shouldSwitch = true;
+                    break;
+                }
+            }
+        }
+        if (shouldSwitch) {
+            /* If a switch has been marked, make the switch and mark that a switch has been done: */
+            rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+            switching = true;
+            // Each time a switch is done, increase this count by 1:
+            switchcount++;
+        } else {
+            /* If no switching has been done AND the direction is "asc", set the direction to "desc" and run the while loop again. */
+            if (switchcount == 0 && dir == "asc") {
+                dir = "desc";
+                switching = true;
+            }
+        }
     }
 }
