@@ -5,8 +5,9 @@ API_TOKEN = "9b48ddcd3c58b2"
 
 
 # test data, get current ip
-response = requests.get('https://api64.ipify.org?format=json').json()
-ip_address = response['ip']
+# response = requests.get('https://api64.ipify.org?format=json').json()
+# ip_address = response['ip']
+ip_address = '104.32.184.23'
 
 # get data
 handler = ipinfo.getHandler(API_TOKEN)
