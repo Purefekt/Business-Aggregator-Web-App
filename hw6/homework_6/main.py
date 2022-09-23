@@ -46,14 +46,15 @@ def search_yelp():
     distance = round(yelp_data_table['businesses'][0]['distance']/1609.344, 2) # Distance (miles)
 
     # put all required data from yelp api into a dict
-    table_data = {}
+    table_data = {"data":[]}
     for i in range(len(yelp_data_table['businesses'])):
+        id = yelp_data_table['businesses'][i]['id']
         name = yelp_data_table['businesses'][i]['name']
         image_url = yelp_data_table['businesses'][i]['image_url']
         rating = yelp_data_table['businesses'][i]['rating'] 
         distance = round(yelp_data_table['businesses'][i]['distance']/1609.344, 2)
 
-        table_data[name] = {"image_url":image_url, "rating":rating, "distance":distance}
+        table_data["data"].append({"id":id, "name":name,"image_url":image_url, "rating":rating, "distance":distance})
     
     print(table_data)
 

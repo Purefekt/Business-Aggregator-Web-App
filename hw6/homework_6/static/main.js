@@ -50,13 +50,49 @@ function search_box_input(data) {
         // else hide no records found message and show and build the table
         div_no_result.style.display = "none";
         div_table.style.display = "block";
-
+        // console.log(response);
         build_table(response);
     }
 }
 
 function build_table(data) {
-    // get number of returned results
-    num_results = Object.keys(data).length;
-    for (var i = 0; i < num_results; i++) {}
+    var table = document.getElementById("table");
+
+    // build rows based on number of results
+    num_results = Object.keys(data["data"]).length;
+    // console.log(num_results);
+    for (var i = 0; i < num_results; i++) {
+        var id = data["data"][i]["id"];
+        var name = data["data"][i]["name"];
+        var image_url = data["data"][i]["image_url"];
+        var rating = data["data"][i]["rating"];
+        var distance = data["data"][i]["distance"];
+        var count = i + 1;
+
+        console.log(image_url);
+
+        // initialize the element
+        var new_element = document.createElement("tr");
+        // add data to the element
+        new_element.innerHTML =
+            "<td>" +
+            count +
+            "</td>" +
+            "<td><img class='table_business_img' src='" +
+            image_url +
+            "'/></td>" +
+            "<td><div id='result_id' value='" +
+            id +
+            "'>" +
+            name +
+            "</div></td>" +
+            "<td>" +
+            rating +
+            "</td>" +
+            "<td>" +
+            distance +
+            "</td>";
+        // add this data as the next child of the parent element, which is the table here
+        table.appendChild(new_element);
+    }
 }

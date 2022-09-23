@@ -50,7 +50,7 @@
                         id="select_category"
                         required
                     >
-                        <option value="Default">Default</option>
+                        <option value="all">Default</option>
                         <option value="Arts & Entertainment">
                             Arts & Entertainment
                         </option>
@@ -101,24 +101,30 @@
 
             <!-- Table of output, max 20 rows -->
             <div class="div_table" id="div_table">
-                <table class="sortable">
-                    <thead>
-                        <tr class="table_header">
-                            <th width="50px" scope="col">No.</th>
-                            <th width="109px" scope="col">Image</th>
-                            <th width="543px" scope="col">Business Name</th>
-                            <th width="149px" scope="col">Rating</th>
-                            <th width="149px" scope="col">Distance (miles)</th>
-                        </tr>
-                    </thead>
-
-                    <tr>
-                        <td>1</td>
-                        <td>Sample</td>
-                        <td>data</td>
-                        <td>in</td>
-                        <td>row</td>
+                <table id="table">
+                    <tr class="table_header">
+                        <td width="50px" scope="col">No.</td>
+                        <td width="109px" scope="col">Image</td>
+                        <td width="543px" scope="col">Business Name</td>
+                        <td width="149px" scope="col">Rating</td>
+                        <td width="149px" scope="col">Distance (miles)</td>
                     </tr>
+
+                    <!-- Sample -->
+                    <!-- <tr>
+                        <td>1</td>
+                        <td>
+                            <img
+                                class="table_business_img"
+                                src="https://s3-media1.fl.yelpcdn.com/bphoto/a4QvOX5HsN779CWJN4Slyw/o.jpg"
+                            />
+                        </td>
+                        <div id="result_id" value="id given by yelp">
+                            <td>business name</td>
+                        </div>
+                        <td>4.5</td>
+                        <td>10.1</td>
+                    </tr> -->
                 </table>
             </div>
         </div>

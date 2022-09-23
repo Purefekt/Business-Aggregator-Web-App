@@ -234,14 +234,18 @@ th,
 td {
     border: 1px solid #e6e6e6;
     border-collapse: collapse;
-}
-
-.div_table table .table_header {
-    background-color: #4f6fad;
-    height: 38px;
-    font-weight: 100;
-}
-
-td {
     height: 112px;
+    font-weight: 200;
+}
+
+.div_table table .table_header td {
+    background-color: #4f6fad;
+    height: 39px;
+    font-weight: 600;
+}
+
+.table_business_img {
+    position: relative;
+    width: 100px;
+    height: 100px;
 }
