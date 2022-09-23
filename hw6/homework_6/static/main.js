@@ -38,15 +38,25 @@ function search_yelp(initial_form) {
 
 function search_box_input(data) {
     var div_no_result = document.getElementById("no_result");
-    div_no_result.style.display = "none";
+    var div_table = document.getElementById("div_table");
 
     var response = JSON.parse(data);
 
-    // if no data, show no records found
+    // if no data, show no records found message and hide the table
     if ("no_result" in response) {
         div_no_result.style.display = "block";
+        div_table.style.display = "none";
     } else {
-        // TEMPORARY
+        // else hide no records found message and show and build the table
         div_no_result.style.display = "none";
+        div_table.style.display = "block";
+
+        build_table(response);
     }
+}
+
+function build_table(data) {
+    // get number of returned results
+    num_results = Object.keys(data).length;
+    for (var i = 0; i < num_results; i++) {}
 }

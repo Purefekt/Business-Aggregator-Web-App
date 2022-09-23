@@ -220,13 +220,13 @@ Placeholder text color to black
 
 /* TABLE OF OUTPUT */
 .div_table {
+    display: none;
     width: 1000px;
     position: relative;
     top: 129px;
     background-color: white;
     font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
         sans-serif;
-    font-weight: 100;
 }
 
 table,
@@ -236,8 +236,12 @@ td {
     border-collapse: collapse;
 }
 
-.div_table .table_header {
+.div_table table .table_header {
     background-color: #4f6fad;
     height: 38px;
     font-weight: 100;
+}
+
+td {
+    height: 112px;
 }
