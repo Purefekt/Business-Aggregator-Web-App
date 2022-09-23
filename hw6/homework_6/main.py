@@ -21,16 +21,29 @@ def search_yelp():
     form_category = data.get('form_category')
     form_location = data.get('form_location')
 
-    # get lat and lng using google api
-    location_data = requests.get(f"https://maps.googleapis.com/maps/api/geocode/json?address={form_location}&key={GOOGLE_API_KEY}")
-    location_data = location_data.json()
+    # make a list of the comma separated form location
+    form_location = form_location.split(',')
+    # if the form_location[0] = '0', then send this form_location[1] to google api to get lat lng. Else get lat lng from form_location[1] and form_location[1] given by ipinfo
+    if form_location[0] == '0':
+        # get lat and lng using google api
+        location_data = requests.get(f"https://maps.googleapis.com/maps/api/geocode/json?address={form_location[1]}&key={GOOGLE_API_KEY}")
+        location_data = location_data.json()
 
-    # if location was invalid
-    if location_data['status'] != 'OK':
-        return jsonify({'no_result':1})
+        print(location_data)
 
-    lat = location_data['results'][0]['geometry']['location']['lat']
-    lng = location_data['results'][0]['geometry']['location']['lng']
+        # if location was invalid
+        if location_data['status'] != 'OK':
+            return jsonify({'no_result':1})
+
+        lat = location_data['results'][0]['geometry']['location']['lat']
+        lng = location_data['results'][0]['geometry']['location']['lng']
+    
+    else:
+        # get lat lng from the api itself
+        lat = form_location[1]
+        lng = form_location[2]
+    
+    print(lat, lng)
 
     # get yelp data for the table
     yelp_data_table = requests.get(f'https://api.yelp.com/v3/businesses/search?term={form_keyword}&latitude={lat}&longitude={lng}&categories={form_category}&radius={form_distance}', headers=headers)
@@ -60,8 +73,6 @@ def search_yelp():
 
     return jsonify(table_data)
     
-"""Func to format the location input"""
-def format_loc(location: str):
     location = location.split(' ')
 
     # remove extra spaces

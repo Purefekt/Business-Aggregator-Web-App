@@ -1,8 +1,35 @@
+// function to disable/enable location input based on checkbox
+function disable_location_input() {
+    var input_checkbox = document.getElementById("input_checkbox");
+    var input_location = document.getElementById("input_location");
+
+    if (input_checkbox.checked) {
+        input_location.value = "";
+        input_location.disabled = true;
+    } else {
+        input_location.disabled = false;
+    }
+}
+
 function search_yelp(initial_form) {
     var form_keyword = initial_form.input_keyword.value;
     var form_distance = initial_form.input_distance.value;
     var form_category = initial_form.select_category.value;
     var form_location = initial_form.input_location.value;
+
+    // form_location can either be a string in english which will be sent to google api to get the lat lng or it will be the lat lng given by ipinfo if the auto detect checbox is on. This info will be sent to the backend as a comma separated string with the first token with either 0 or 1. If it is 0 then we need to send the next token to google api else if it is 1 then the 2nd token is the lat and 3rd token is the lng
+
+    // remove this dummy data
+    lat = 34.0224;
+    lng = -118.2851;
+
+    // if checkbox is checked, get lat lng using ipinfo
+    var input_checkbox = document.getElementById("input_checkbox");
+    if (input_checkbox.checked) {
+        form_location = [1, lat, lng];
+    } else {
+        form_location = [0, form_location];
+    }
 
     // AJAX
     var request = new XMLHttpRequest();

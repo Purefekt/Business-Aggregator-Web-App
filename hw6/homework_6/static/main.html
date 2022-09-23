@@ -52,15 +52,11 @@
                         required
                     >
                         <option value="all">Default</option>
-                        <option value="Arts & Entertainment">
-                            Arts & Entertainment
-                        </option>
-                        <option value="Health & Medical">
-                            Health & Medical
-                        </option>
-                        <option value="Hotels & Travel">Hotels & Travel</option>
-                        <option value="Food">Food</option>
-                        <option value="Professional Services">
+                        <option value="arts">Arts & Entertainment</option>
+                        <option value="health">Health & Medical</option>
+                        <option value="hotelstravel">Hotels & Travel</option>
+                        <option value="food">Food</option>
+                        <option value="professional">
                             Professional Services
                         </option>
                     </select>
@@ -83,6 +79,7 @@
                         class="input_checkbox"
                         id="input_checkbox"
                         type="checkbox"
+                        onclick="disable_location_input()"
                     />
 
                     <input class="input_submit" type="submit" value="SUBMIT" />
