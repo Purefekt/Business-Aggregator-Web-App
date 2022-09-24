@@ -75,26 +75,6 @@ def search_yelp():
     print(table_data)
 
     return jsonify(table_data)
-    
-    location = location.split(' ')
-
-    # remove extra spaces
-    location_counter = collections.Counter(location)
-    space_count = None
-    if '' in location_counter:
-        space_count = location_counter['']
-    if space_count:
-        for i in range(space_count):
-            location.remove('')
-
-    # format location with + between tokens
-    formatted_loc = location[0]
-    if len(location) < 2:
-        return formatted_loc
-
-    for i in range(1, len(location)):
-        formatted_loc = formatted_loc + '+' + location[i]
-    return formatted_loc
 
 if __name__ == '__main__':
     app.run(host='127.0.0.1', port=5000, debug=True)
