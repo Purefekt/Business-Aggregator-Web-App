@@ -1,12 +1,14 @@
 from flask import Flask, request, jsonify
 import requests
 import collections
+import ipinfo
 
 app = Flask(__name__)
 
 GOOGLE_API_KEY = "AIzaSyCJn6gE_Bu1c1hZ1CF7PDtijhqhKVpx33c"
 YELP_API_KEY = "H2ckcPhI3zXZ6rasK0NGHswOf9JCf6YDne7GetsqnPBVnri3uM2-ZsehURtPhvjbfT62o3wqQKlcJ2fsd1bm3pvpkfwkeGiDV34Db6kiV8UQRNSbdjVhF0DVxcgqY3Yx"
 headers = {'Authorization' : f'Bearer {YELP_API_KEY}'}
+IPINFO_TOKEN = "9b48ddcd3c58b2"
 
 @app.route('/', methods=['GET'])
 def index():
@@ -23,13 +25,12 @@ def search_yelp():
 
     # make a list of the comma separated form location
     form_location = form_location.split(',')
-    # if the form_location[0] = '0', then send this form_location[1] to google api to get lat lng. Else get lat lng from form_location[1] and form_location[1] given by ipinfo
+    # if the form_location[0] = '0', then send this form_location[1] to google api to get lat lng.
+    # Else the second token is the ip address. then we can use the ipinfo api to get the lat lng.
     if form_location[0] == '0':
         # get lat and lng using google api
         location_data = requests.get(f"https://maps.googleapis.com/maps/api/geocode/json?address={form_location[1]}&key={GOOGLE_API_KEY}")
         location_data = location_data.json()
-
-        print(location_data)
 
         # if location was invalid
         if location_data['status'] != 'OK':
@@ -40,10 +41,12 @@ def search_yelp():
     
     else:
         # get lat lng from the api itself
-        lat = form_location[1]
-        lng = form_location[2]
-    
-    print(lat, lng)
+        handler = ipinfo.getHandler(IPINFO_TOKEN)
+        location_data = handler.getDetails(form_location[1])
+        location_data = location_data.details
+
+        lat = location_data['loc'].split(',')[0]
+        lng = location_data['loc'].split(',')[1]
 
     # get yelp data for the table
     yelp_data_table = requests.get(f'https://api.yelp.com/v3/businesses/search?term={form_keyword}&latitude={lat}&longitude={lng}&categories={form_category}&radius={form_distance}', headers=headers)
