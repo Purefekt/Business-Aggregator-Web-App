@@ -1,6 +1,5 @@
 from flask import Flask, request, jsonify
 import requests
-import collections
 import ipinfo
 
 app = Flask(__name__)
