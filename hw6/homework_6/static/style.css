@@ -267,6 +267,7 @@ tr td:first-child:before {
 /* ###################################################### */
 
 /* business details */
+
 .business_details {
     width: 790px;
     height: 756px;
@@ -304,6 +305,7 @@ tr td:first-child:before {
     top: 57px;
     left: 14px;
     border: solid 1px black;
+    /* border: solid 1px white; */
 }
 
 .div_business_details_category {
@@ -313,6 +315,7 @@ tr td:first-child:before {
     top: -6px;
     left: 401px;
     border: solid 1px black;
+    /* border: solid 1px white; */
 }
 
 .div_business_details_address {
@@ -322,6 +325,7 @@ tr td:first-child:before {
     top: 3px;
     left: 14px;
     border: solid 1px black;
+    /* border: solid 1px white; */
 }
 
 .div_business_details_phone_number {
@@ -331,6 +335,7 @@ tr td:first-child:before {
     top: -60px;
     left: 401px;
     border: solid 1px black;
+    /* border: solid 1px white; */
 }
 
 .div_business_details_transactions_supported {
@@ -340,6 +345,7 @@ tr td:first-child:before {
     top: -51px;
     left: 14px;
     border: solid 1px black;
+    /* border: solid 1px white; */
 }
 
 .div_business_details_price {
@@ -349,6 +355,7 @@ tr td:first-child:before {
     top: -114px;
     left: 401px;
     border: solid 1px black;
+    /* border: solid 1px white; */
 }
 
 .div_business_details_more_info {
@@ -358,8 +365,10 @@ tr td:first-child:before {
     top: -105px;
     left: 14px;
     border: solid 1px black;
+    /* border: solid 1px white; */
 }
 
+/* text */
 .p_business_details_status {
     position: relative;
     font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
@@ -368,9 +377,98 @@ tr td:first-child:before {
     font-size: 20px;
     margin-top: 0px;
     margin-bottom: 0px;
-    top: 57px;
-    left: -350px;
+    top: -5px;
+    left: -159px;
 }
+
+.open_now_closed_box {
+    position: relative;
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+        sans-serif;
+    font-weight: 300;
+    width: 80px;
+    height: 25px;
+    border: solid 1px black;
+    text-align: center;
+    vertical-align: middle;
+    top: -4px;
+    left: 1px;
+    font-size: 15px;
+}
+
+.p_business_details_category {
+    position: relative;
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+        sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    top: -5px;
+    left: -146px;
+}
+
+.p_business_details_address {
+    position: relative;
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+        sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    top: -5px;
+    left: -150px;
+}
+
+.p_business_details_phone_number {
+    position: relative;
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+        sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    top: -5px;
+    left: -120px;
+}
+
+.p_business_details_transactions_supported {
+    position: relative;
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+        sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    top: -5px;
+    left: -82px;
+}
+
+.p_business_details_price {
+    position: relative;
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+        sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    top: -5px;
+    left: -165px;
+}
+
+.p_business_details_more_info {
+    position: relative;
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+        sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    top: -5px;
+    left: -145px;
+}
+
+/* photos */
 
 .div_photo_1 {
     position: relative;
