@@ -11,22 +11,35 @@ function disable_location_input() {
     }
 }
 
+async function getIpClient() {
+    try {
+        const response = await axios.get("https://ipinfo.io/json");
+        console.log(response);
+    } catch (error) {
+        console.error(error);
+    }
+}
+
 function search_yelp(initial_form) {
     var form_keyword = initial_form.input_keyword.value;
     var form_distance = initial_form.input_distance.value;
     var form_category = initial_form.select_category.value;
     var form_location = initial_form.input_location.value;
 
-    // form_location can either be a string in english which will be sent to google api to get the lat lng or it will be the lat lng given by ipinfo if the auto detect checbox is on. This info will be sent to the backend as a comma separated string with the first token with either 0 or 1. If it is 0 then we need to send the next token to google api else if it is 1 then the 2nd token is the lat and 3rd token is the lng
-
-    // remove this dummy data
-    lat = 34.0224;
-    lng = -118.2851;
+    // form_location can either be a string in english which will be sent to google api to get the lat lng or it will be the ip address which is sent to ipinfo api to get the lat lng if the auto detect checbox is on. This info will be sent to the backend as a comma separated string with the first token with either 0 or 1. If it is 0 then we need to send the next token to google api else if it is 1 then we sent the next token to the ipinfo api.
 
     // if checkbox is checked, get lat lng using ipinfo
     var input_checkbox = document.getElementById("input_checkbox");
     if (input_checkbox.checked) {
-        form_location = [1, lat, lng];
+        // var ip_add = getIpClient();
+        getIpClient();
+
+        // $.getJSON("https://api.ipify.org?format=json", function (data) {
+        //     ip_add = data["ip"];
+        // });
+        // console.log(ip_add);
+
+        form_location = [1, ip_add];
     } else {
         form_location = [0, form_location];
     }
