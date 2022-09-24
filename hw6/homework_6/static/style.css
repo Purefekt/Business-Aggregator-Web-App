@@ -276,12 +276,12 @@ tr td:first-child:before {
     position: relative;
     top: 162px;
     background-color: white;
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+        sans-serif;
 }
 
 .p_business_details_title {
     position: relative;
-    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
-        sans-serif;
     font-weight: 600;
     font-size: 20px;
     margin-top: 0px;
@@ -305,7 +305,7 @@ tr td:first-child:before {
     top: 57px;
     left: 14px;
     border: solid 1px black;
-    /* border: solid 1px white; */
+    border: solid 1px white;
 }
 
 .div_business_details_category {
@@ -315,7 +315,7 @@ tr td:first-child:before {
     top: -6px;
     left: 401px;
     border: solid 1px black;
-    /* border: solid 1px white; */
+    border: solid 1px white;
 }
 
 .div_business_details_address {
@@ -325,7 +325,7 @@ tr td:first-child:before {
     top: 3px;
     left: 14px;
     border: solid 1px black;
-    /* border: solid 1px white; */
+    border: solid 1px white;
 }
 
 .div_business_details_phone_number {
@@ -335,7 +335,7 @@ tr td:first-child:before {
     top: -60px;
     left: 401px;
     border: solid 1px black;
-    /* border: solid 1px white; */
+    border: solid 1px white;
 }
 
 .div_business_details_transactions_supported {
@@ -345,7 +345,7 @@ tr td:first-child:before {
     top: -51px;
     left: 14px;
     border: solid 1px black;
-    /* border: solid 1px white; */
+    border: solid 1px white;
 }
 
 .div_business_details_price {
@@ -355,7 +355,7 @@ tr td:first-child:before {
     top: -114px;
     left: 401px;
     border: solid 1px black;
-    /* border: solid 1px white; */
+    border: solid 1px white;
 }
 
 .div_business_details_more_info {
@@ -365,14 +365,12 @@ tr td:first-child:before {
     top: -105px;
     left: 14px;
     border: solid 1px black;
-    /* border: solid 1px white; */
+    border: solid 1px white;
 }
 
 /* text */
 .p_business_details_status {
     position: relative;
-    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
-        sans-serif;
     font-weight: 600;
     font-size: 20px;
     margin-top: 0px;
@@ -383,23 +381,24 @@ tr td:first-child:before {
 
 .open_now_closed_box {
     position: relative;
-    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
-        sans-serif;
-    font-weight: 300;
-    width: 80px;
-    height: 25px;
-    border: solid 1px black;
-    text-align: center;
-    vertical-align: middle;
+    width: 85px;
+    height: 28px;
+    border: solid 1px #008001;
     top: -4px;
     left: 1px;
-    font-size: 15px;
+    background-color: #008001;
+    border-radius: 10px;
+}
+.open_now_closed_box p {
+    position: relative;
+    font-weight: 300;
+    font-size: 14px;
+    top: -9px;
+    left: -1px;
 }
 
 .p_business_details_category {
     position: relative;
-    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
-        sans-serif;
     font-weight: 600;
     font-size: 20px;
     margin-top: 0px;
@@ -407,11 +406,16 @@ tr td:first-child:before {
     top: -5px;
     left: -146px;
 }
+.p_business_details_category_sub {
+    position: relative;
+    font-weight: 300;
+    font-size: 14px;
+    top: -14px;
+    left: -111px;
+}
 
 .p_business_details_address {
     position: relative;
-    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
-        sans-serif;
     font-weight: 600;
     font-size: 20px;
     margin-top: 0px;
@@ -419,11 +423,16 @@ tr td:first-child:before {
     top: -5px;
     left: -150px;
 }
+.p_business_details_address_sub {
+    position: relative;
+    font-weight: 300;
+    font-size: 14px;
+    top: -14px;
+    left: -83px;
+}
 
 .p_business_details_phone_number {
     position: relative;
-    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
-        sans-serif;
     font-weight: 600;
     font-size: 20px;
     margin-top: 0px;
@@ -431,11 +440,16 @@ tr td:first-child:before {
     top: -5px;
     left: -120px;
 }
+.p_business_details_phone_number_sub {
+    position: relative;
+    font-weight: 300;
+    font-size: 14px;
+    top: -14px;
+    left: -143px;
+}
 
 .p_business_details_transactions_supported {
     position: relative;
-    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
-        sans-serif;
     font-weight: 600;
     font-size: 20px;
     margin-top: 0px;
@@ -443,11 +457,16 @@ tr td:first-child:before {
     top: -5px;
     left: -82px;
 }
+.p_business_details_transactions_supported_sub {
+    position: relative;
+    font-weight: 300;
+    font-size: 14px;
+    top: -14px;
+    left: -164px;
+}
 
 .p_business_details_price {
     position: relative;
-    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
-        sans-serif;
     font-weight: 600;
     font-size: 20px;
     margin-top: 0px;
@@ -455,11 +474,16 @@ tr td:first-child:before {
     top: -5px;
     left: -165px;
 }
+.p_business_details_price_sub {
+    position: relative;
+    font-weight: 300;
+    font-size: 14px;
+    top: -14px;
+    left: -175px;
+}
 
 .p_business_details_more_info {
     position: relative;
-    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
-        sans-serif;
     font-weight: 600;
     font-size: 20px;
     margin-top: 0px;
@@ -467,13 +491,18 @@ tr td:first-child:before {
     top: -5px;
     left: -145px;
 }
+.a_business_details_more_info_sub {
+    position: relative;
+    font-weight: 300;
+    font-size: 14px;
+    top: -5px;
+    left: -174px;
+}
 
 /* photos */
 
 .div_photo_1 {
     position: relative;
-    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
-        sans-serif;
     font-weight: 300;
     border: solid 0.5px #e6e6e6;
     width: 243px;
@@ -484,8 +513,6 @@ tr td:first-child:before {
 
 .div_photo_2 {
     position: relative;
-    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
-        sans-serif;
     font-weight: 300;
     border: solid 0.5px #e6e6e6;
     width: 243px;
@@ -496,8 +523,6 @@ tr td:first-child:before {
 
 .div_photo_3 {
     position: relative;
-    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
-        sans-serif;
     font-weight: 300;
     border: solid 0.5px #e6e6e6;
     width: 243px;
