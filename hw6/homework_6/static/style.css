@@ -530,3 +530,12 @@ tr td:first-child:before {
     top: -811px;
     left: 526px;
 }
+
+.div_photo_1 img,
+.div_photo_2 img,
+.div_photo_3 img {
+    height: 319px;
+    width: 243px;
+    object-fit: contain;
+    object-position: top;
+}
