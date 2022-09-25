@@ -222,8 +222,8 @@ Placeholder text color to black
 
 /* TABLE OF OUTPUT */
 .div_table {
-    display: block;
-    /* display: none; */
+    /* display: block; */
+    display: none;
     width: 1000px;
     position: relative;
     top: 129px;
@@ -262,6 +262,10 @@ td {
 tr td:first-child:before {
     counter-increment: Serial;
     content: counter(Serial);
+}
+
+.result_id:hover {
+    cursor: pointer;
 }
 
 /* ###################################################### */
@@ -538,4 +542,13 @@ tr td:first-child:before {
     width: 243px;
     object-fit: contain;
     object-position: top;
+}
+
+.div_photo_1 p,
+.div_photo_2 p,
+.div_photo_3 p {
+    position: relative;
+    font-weight: 300;
+    font-size: 14px;
+    top: -6px;
 }

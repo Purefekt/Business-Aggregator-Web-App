@@ -6,10 +6,10 @@ import requests
 # id = "cy2ZD0b6bJKmbSuExnPN_A"
 
 # bestia id, as in the pdf
-# id = "fEY0zHaDMfIW3-N__joDKQ"
+id = "fEY0zHaDMfIW3-N__joDKQ"
 
 # detroit pizza depot. has more than one transactions and no price
-id = "TcbgGfKA5p1615ty_QYyFg"
+# id = "TcbgGfKA5p1615ty_QYyFg"
 
 #  pacific blue veer
 # id = "NsyNqmhJyJM12T60UkhVCg"

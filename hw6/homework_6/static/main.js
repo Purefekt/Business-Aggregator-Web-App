@@ -100,7 +100,9 @@ function build_table(data) {
             "'/></td>" +
             "<td><div id='result_id' value='" +
             name +
-            "'>" +
+            "' title='" +
+            id +
+            "' class='result_id'>" +
             name +
             "</div></td>" +
             "<td>" +
@@ -112,6 +114,21 @@ function build_table(data) {
         // add this data as the next child of the parent element, which is the table here
         table.appendChild(new_element);
     }
+    // BUILDING THE TABLE AND OUTPUTTING IT HAS ENDED
+
+    // Clicking the name of the results will send the YELP id to the function get_business_details which will send the id back to flask using AJAX
+    var click_results = document.querySelectorAll("#result_id");
+
+    for (var i = 0; i < click_results.length; i++) {
+        click_results[i].addEventListener("click", function (e) {
+            return get_business_details(e.currentTarget.getAttribute("title"));
+        });
+    }
+}
+
+function get_business_details(e) {
+    console.log(e);
+    // AJAX
 }
 
 // to sort the table according to headers. Inspirationg from w3schools https://www.w3schools.com/howto/howto_js_sort_table.asp
