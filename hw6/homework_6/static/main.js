@@ -147,6 +147,7 @@ function get_business_details(id) {
 }
 
 function build_business_details(response) {
+    // get the api data and store it in vars
     var business_data = JSON.parse(response);
 
     var name = business_data["name"];
@@ -174,36 +175,134 @@ function build_business_details(response) {
     console.log(photo3);
 
     // get the html element to build -> business_details and reset it
-    var div_business_details = document.getElementById("business_details");
-    div_business_details.innerHTML = "";
+    var div_business_details_container = document.getElementById(
+        "business_details_container"
+    );
+    div_business_details_container.innerHTML = "";
 
     // only showing the elements which exists. if any var above is null, then wont add it
     var business_details_title =
         "<p class='p_business_details_title'>" +
         name +
-        "Bestia</p><hr class='hr_business_details_title_seperator_line' />";
+        "</p><hr class='hr_business_details_title_seperator_line' />";
 
     if (status == null) {
-        var div_business_details_status = "";
+        var div_business_details_status =
+            "<div class='div_business_details_status'></div>";
     } else {
         if (status == true) {
             var div_business_details_status =
-                "<div class='div_business_details_status'><p class='p_business_details_status'>" +
-                status +
-                "</p>" +
-                "<div class='open_now_closed_box_OPEN'><p>Open Now</p></div></div>";
+                "<div class='div_business_details_status'><p class='p_business_details_status'>Status</p><div class='open_now_closed_box_OPEN'><p>Open Now</p></div></div>";
         } else {
             var div_business_details_status =
-                "<div class='div_business_details_status'><p class='p_business_details_status'>" +
-                status +
-                "</p>" +
-                "<div class='open_now_closed_box_CLOSED'><p>Closed</p></div></div>";
+                "<div class='div_business_details_status'><p class='p_business_details_status'></p><div class='open_now_closed_box_CLOSED'><p>Closed</p></div></div>";
         }
     }
 
     if (category == null) {
+        var div_business_details_category =
+            "<div class='div_business_details_category'></div>";
     } else {
+        var div_business_details_category =
+            "<div class='div_business_details_category'><p class='p_business_details_category'>Category</p><p class='p_business_details_category_sub'>" +
+            category +
+            "</p></div>";
     }
+
+    if (address == null) {
+        var div_business_details_address =
+            "<div class='div_business_details_address'></div>";
+    } else {
+        var div_business_details_address =
+            "<div class='div_business_details_address'><p class='p_business_details_address'>Address</p><p class='p_business_details_address_sub'>" +
+            address +
+            "</p></div>";
+    }
+
+    if (phone_number == null) {
+        var div_business_details_phone_number =
+            "<div class='div_business_details_phone_number'></div>";
+    } else {
+        var div_business_details_phone_number =
+            "<div class='div_business_details_phone_number'><p class='p_business_details_phone_number'>Phone Number</p><p class='p_business_details_phone_number_sub'>" +
+            phone_number +
+            "</p></div>";
+    }
+
+    if (transactions_supported == null) {
+        var div_business_details_transactions_supported =
+            "<div class='div_business_details_transactions_supported'></div>";
+    } else {
+        var div_business_details_transactions_supported =
+            "<div class='div_business_details_transactions_supported'><p class='p_business_details_transactions_supported'>Transactions Supported</p><p class='p_business_details_transactions_supported_sub'>" +
+            transactions_supported +
+            "</p></div>";
+    }
+
+    if (price == null) {
+        var div_business_details_price =
+            "<div class='div_business_details_price'></div>";
+    } else {
+        var div_business_details_price =
+            "<div class='div_business_details_price'><p class='p_business_details_price'>Price</p><p class='p_business_details_price_sub'>" +
+            price +
+            "</p></div>";
+    }
+
+    if (more_info == null) {
+        var div_business_details_more_info =
+            "<div class='div_business_details_more_info'></div>";
+    } else {
+        var div_business_details_more_info =
+            "                <div class='div_business_details_more_info'><p class='p_business_details_more_info'>More info</p><a class='a_business_details_more_info_sub' href='" +
+            more_info +
+            "' target='_blank'>Yelp</a></div>";
+    }
+
+    if (photo1 == null) {
+        var div_photo_1 = "<div class='div_photo_1'></div>";
+    } else {
+        var div_photo_1 =
+            "<div class='div_photo_1'><img src='" +
+            photo1 +
+            "'/><p>Photo 1</p></div>";
+    }
+
+    if (photo2 == null) {
+        var div_photo_2 = "<div class='div_photo_2'></div>";
+    } else {
+        var div_photo_2 =
+            "<div class='div_photo_2'><img src='" +
+            photo2 +
+            "'/><p>Photo 2</p></div>";
+    }
+
+    if (photo3 == null) {
+        var div_photo_3 = "<div class='div_photo_3'></div>";
+    } else {
+        var div_photo_3 =
+            "<div class='div_photo_3'><img src='" +
+            photo3 +
+            "'/><p>Photo 3</p></div>";
+    }
+
+    // build it
+    var new_element = document.createElement("div");
+    new_element.setAttribute("class", "business_details");
+    new_element.innerHTML =
+        business_details_title +
+        div_business_details_status +
+        div_business_details_category +
+        div_business_details_address +
+        div_business_details_phone_number +
+        div_business_details_transactions_supported +
+        div_business_details_price +
+        div_business_details_more_info +
+        div_photo_1 +
+        div_photo_2 +
+        div_photo_3;
+
+    div_business_details_container.append(new_element);
 }
 
 // to sort the table according to headers. Inspirationg from w3schools https://www.w3schools.com/howto/howto_js_sort_table.asp

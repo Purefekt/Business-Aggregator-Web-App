@@ -101,6 +101,8 @@ def get_business_details():
         for i in range(len(data['categories'])):
             category = category + data['categories'][i]['title'] + ' | '
         category = category[:-3]
+    if category == "":
+        category = None
 
     if 'location' in data:
         if 'display_address' in data['location']:
@@ -108,6 +110,8 @@ def get_business_details():
             for s in data['location']['display_address']:
                 address = address + s + ' '
             address = address[:-1]
+    if address == "":
+        address = None
 
     if 'display_phone' in data:
         phone_number = data['display_phone']
@@ -117,6 +121,8 @@ def get_business_details():
         for s in data['transactions']:
             transactions_supported = transactions_supported + s.title() + ' | '
         transactions_supported = transactions_supported[:-3]
+    if transactions_supported == "":
+        transactions_supported = None
 
     if 'price' in data:
         price = data['price']
@@ -125,7 +131,6 @@ def get_business_details():
         more_info = data['url']
 
     if 'photos' in data:
-        photos = data['photos']
         num_photos = len(data['photos'])
         if num_photos == 1:
             photo1 = data['photos'][0]

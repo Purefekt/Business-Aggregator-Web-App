@@ -426,7 +426,7 @@ tr td:first-child:before {
     font-weight: 300;
     font-size: 14px;
     top: -14px;
-    left: -111px;
+    text-align: left;
 }
 
 .p_business_details_address {
@@ -443,7 +443,7 @@ tr td:first-child:before {
     font-weight: 300;
     font-size: 14px;
     top: -14px;
-    left: -83px;
+    text-align: left;
 }
 
 .p_business_details_phone_number {
@@ -460,7 +460,7 @@ tr td:first-child:before {
     font-weight: 300;
     font-size: 14px;
     top: -14px;
-    left: -143px;
+    text-align: left;
 }
 
 .p_business_details_transactions_supported {
@@ -477,7 +477,7 @@ tr td:first-child:before {
     font-weight: 300;
     font-size: 14px;
     top: -14px;
-    left: -164px;
+    text-align: left;
 }
 
 .p_business_details_price {
@@ -494,7 +494,7 @@ tr td:first-child:before {
     font-weight: 300;
     font-size: 14px;
     top: -14px;
-    left: -175px;
+    text-align: left;
 }
 
 .p_business_details_more_info {
