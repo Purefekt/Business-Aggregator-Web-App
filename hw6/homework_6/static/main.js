@@ -126,9 +126,25 @@ function build_table(data) {
     }
 }
 
-function get_business_details(e) {
-    console.log(e);
+function get_business_details(id) {
     // AJAX
+    var request = new XMLHttpRequest();
+
+    // Send data to flask
+    api_string = "/get_business_details?id=" + id;
+    request.open("GET", api_string);
+    request.send();
+
+    // get data from flask as a JSON object
+    request.onreadystatechange = function () {
+        if (request.readyState == 4 && request.status == 200) {
+            this.response = request.responseText;
+            console.log(this.response);
+            // put building js func here
+        }
+    };
+
+    return true;
 }
 
 // to sort the table according to headers. Inspirationg from w3schools https://www.w3schools.com/howto/howto_js_sort_table.asp

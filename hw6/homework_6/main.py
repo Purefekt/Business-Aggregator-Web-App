@@ -1,3 +1,4 @@
+from audioop import add
 from flask import Flask, request, jsonify
 import requests
 import ipinfo
@@ -71,9 +72,64 @@ def search_yelp():
 
         table_data["data"].append({"id":id, "name":name,"image_url":image_url, "rating":rating, "distance":distance})
     
-    print(table_data)
+    # print(table_data)
 
     return jsonify(table_data)
+
+
+@app.route('/get_business_details')
+def get_business_details():
+    data = request.args
+    id = data.get('id')
+
+    # get data from API
+    response = requests.get(f"https://api.yelp.com/v3/businesses/{id}", headers=headers)
+    data = response.json()
+
+    status, category, address, phone_number, transactions_supported, price, more_info, photos = None,None,None,None,None,None,None,None
+    # check status
+    if 'is_closed' in data:
+        if data['is_closed'] == False:
+            status = True
+        else:
+            status = False
+
+    if 'categories' in data:
+        category = ""
+        for i in range(len(data['categories'])):
+            category = category + data['categories'][i]['title'] + ' | '
+        category = category[:-3]
+
+    if 'location' in data:
+        if 'display_address' in data['location']:
+            address = ""
+            for s in data['location']['display_address']:
+                address = address + s + ' '
+            address = address[:-1]
+
+    if 'display_phone' in data:
+        phone_number = data['display_phone']
+
+    if 'transactions' in data:
+        transactions_supported = ""
+        for s in data['transactions']:
+            transactions_supported = transactions_supported + s.title() + ' | '
+        transactions_supported = transactions_supported[:-3]
+
+    if 'price' in data:
+        price = data['price']
+
+    if 'url' in data:
+        more_info = data['url']
+
+    if 'photos' in data:
+        photos = data['photos']
+    
+    business_details = {"status":status, "category":category, "address":address, "phone_number":phone_number, "transactions_supported":transactions_supported, "price":price, "more_info":more_info, "photos":photos}
+
+    print(business_details)
+
+    return jsonify(business_details)
 
 if __name__ == '__main__':
     app.run(host='127.0.0.1', port=5000, debug=True)
