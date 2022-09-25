@@ -59,6 +59,12 @@ async function search_yelp(initial_form) {
 function search_box_input(data) {
     var div_no_result = document.getElementById("no_result");
     var div_table = document.getElementById("div_table");
+    var div_business_details_container = document.getElementById(
+        "business_details_container"
+    );
+
+    // hide the business_details_container
+    div_business_details_container.style.display = "none";
 
     var response = JSON.parse(data);
 
@@ -162,22 +168,12 @@ function build_business_details(response) {
     var photo2 = business_data["photo2"];
     var photo3 = business_data["photo3"];
 
-    console.log(name);
-    console.log(status);
-    console.log(category);
-    console.log(address);
-    console.log(phone_number);
-    console.log(transactions_supported);
-    console.log(price);
-    console.log(more_info);
-    console.log(photo1);
-    console.log(photo2);
-    console.log(photo3);
-
     // get the html element to build -> business_details and reset it
     var div_business_details_container = document.getElementById(
         "business_details_container"
     );
+    // display to block to show this div (this was done since it was set to none in search_yelp function)
+    div_business_details_container.style.display = "block";
     div_business_details_container.innerHTML = "";
 
     // only showing the elements which exists. if any var above is null, then wont add it

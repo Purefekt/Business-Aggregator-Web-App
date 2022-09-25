@@ -6,11 +6,11 @@ body {
 
 .container {
     width: 1000px;
-    height: 4000px;
+    min-height: fit-content;
     margin: auto;
+    overflow: visible;
     text-align: center;
-    overflow: hidden;
-    border: dashed 1px;
+    /* border: dashed 1px; */
 }
 
 .search_box {
@@ -230,6 +230,7 @@ Placeholder text color to black
     background-color: white;
     font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
         sans-serif;
+    margin-bottom: 10px;
 }
 
 table,
@@ -266,12 +267,12 @@ tr td:first-child:before {
 
 .result_id:hover {
     cursor: pointer;
+    color: #9d9b9b;
 }
 
 /* ###################################################### */
 
 /* business details */
-
 .business_details {
     width: 790px;
     height: 756px;
