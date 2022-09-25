@@ -86,8 +86,10 @@ def get_business_details():
     response = requests.get(f"https://api.yelp.com/v3/businesses/{id}", headers=headers)
     data = response.json()
 
-    status, category, address, phone_number, transactions_supported, price, more_info, photos = None,None,None,None,None,None,None,None
-    # check status
+    status, category, address, phone_number, transactions_supported, price, more_info, photo1, photo2, photo3 = None,None,None,None,None,None,None,None,None,None
+    
+    name = data['name']
+
     if 'is_closed' in data:
         if data['is_closed'] == False:
             status = True
@@ -124,10 +126,18 @@ def get_business_details():
 
     if 'photos' in data:
         photos = data['photos']
+        num_photos = len(data['photos'])
+        if num_photos == 1:
+            photo1 = data['photos'][0]
+        elif num_photos == 2:
+            photo1, photo2 = data['photos'][0], data['photos'][1]
+        elif num_photos > 2:
+            photo1, photo2, photo3 = data['photos'][0], data['photos'][1], data['photos'][2]
     
-    business_details = {"status":status, "category":category, "address":address, "phone_number":phone_number, "transactions_supported":transactions_supported, "price":price, "more_info":more_info, "photos":photos}
+    
+    business_details = {"name":name, "status":status, "category":category, "address":address, "phone_number":phone_number, "transactions_supported":transactions_supported, "price":price, "more_info":more_info, "photo1":photo1, "photo2":photo2, "photo3":photo3}
 
-    print(business_details)
+    # print(business_details)
 
     return jsonify(business_details)
 

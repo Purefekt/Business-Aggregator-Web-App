@@ -139,12 +139,71 @@ function get_business_details(id) {
     request.onreadystatechange = function () {
         if (request.readyState == 4 && request.status == 200) {
             this.response = request.responseText;
-            console.log(this.response);
-            // put building js func here
+            build_business_details(this.response);
         }
     };
 
     return true;
+}
+
+function build_business_details(response) {
+    var business_data = JSON.parse(response);
+
+    var name = business_data["name"];
+    var status = business_data["status"];
+    var category = business_data["category"];
+    var address = business_data["address"];
+    var phone_number = business_data["phone_number"];
+    var transactions_supported = business_data["transactions_supported"];
+    var price = business_data["price"];
+    var more_info = business_data["more_info"];
+    var photo1 = business_data["photo1"];
+    var photo2 = business_data["photo2"];
+    var photo3 = business_data["photo3"];
+
+    console.log(name);
+    console.log(status);
+    console.log(category);
+    console.log(address);
+    console.log(phone_number);
+    console.log(transactions_supported);
+    console.log(price);
+    console.log(more_info);
+    console.log(photo1);
+    console.log(photo2);
+    console.log(photo3);
+
+    // get the html element to build -> business_details and reset it
+    var div_business_details = document.getElementById("business_details");
+    div_business_details.innerHTML = "";
+
+    // only showing the elements which exists. if any var above is null, then wont add it
+    var business_details_title =
+        "<p class='p_business_details_title'>" +
+        name +
+        "Bestia</p><hr class='hr_business_details_title_seperator_line' />";
+
+    if (status == null) {
+        var div_business_details_status = "";
+    } else {
+        if (status == true) {
+            var div_business_details_status =
+                "<div class='div_business_details_status'><p class='p_business_details_status'>" +
+                status +
+                "</p>" +
+                "<div class='open_now_closed_box_OPEN'><p>Open Now</p></div></div>";
+        } else {
+            var div_business_details_status =
+                "<div class='div_business_details_status'><p class='p_business_details_status'>" +
+                status +
+                "</p>" +
+                "<div class='open_now_closed_box_CLOSED'><p>Closed</p></div></div>";
+        }
+    }
+
+    if (category == null) {
+    } else {
+    }
 }
 
 // to sort the table according to headers. Inspirationg from w3schools https://www.w3schools.com/howto/howto_js_sort_table.asp
