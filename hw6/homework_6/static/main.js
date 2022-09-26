@@ -168,6 +168,8 @@ function build_business_details(response) {
     var photo2 = business_data["photo2"];
     var photo3 = business_data["photo3"];
 
+    console.log(business_data);
+
     // get the html element to build -> business_details and reset it
     var div_business_details_container = document.getElementById(
         "business_details_container"
@@ -191,7 +193,7 @@ function build_business_details(response) {
                 "<div class='div_business_details_status'><p class='p_business_details_status'>Status</p><div class='open_now_closed_box_OPEN'><p>Open Now</p></div></div>";
         } else {
             var div_business_details_status =
-                "<div class='div_business_details_status'><p class='p_business_details_status'></p><div class='open_now_closed_box_CLOSED'><p>Closed</p></div></div>";
+                "<div class='div_business_details_status'><p class='p_business_details_status'>Status</p><div class='open_now_closed_box_CLOSED'><p>Closed</p></div></div>";
         }
     }
 
