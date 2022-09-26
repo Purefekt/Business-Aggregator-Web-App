@@ -23,6 +23,13 @@ body {
     border: solid 4px #d3d3d3;
 }
 
+input:focus {
+    outline-color: black;
+}
+select:focus {
+    outline-color: black;
+}
+
 .banner {
     position: relative;
     width: 598px;
@@ -195,6 +202,9 @@ Placeholder text color to black
     top: 46px;
     cursor: pointer;
 }
+.input_submit:hover {
+    background-color: #637bae;
+}
 
 .form .input_btn_clear {
     display: block;
@@ -212,6 +222,9 @@ Placeholder text color to black
     left: 156px;
     top: 5px;
     cursor: pointer;
+}
+.input_btn_clear:hover {
+    background-color: #f5c463;
 }
 
 /* NO RESULTS */
