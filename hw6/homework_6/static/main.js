@@ -358,3 +358,17 @@ function sort_table(n) {
         }
     }
 }
+
+// CLEAR BUTTON functionality
+function implement_clear() {
+    // reset the form
+    document.getElementById("form").reset();
+    // set display to none for no records found, table and business details card
+    document.getElementById("no_result").style.display = "none";
+    document.getElementById("div_table").style.display = "none";
+    document.getElementById("business_details_container").style.display =
+        "none";
+
+    // call disable location input func which will check the status of the checkbox and since it is unchecked, set the input location as enabled
+    disable_location_input();
+}
