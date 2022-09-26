@@ -157,6 +157,10 @@ Placeholder text color to black
     border: solid 1px #cecece;
     top: -25px;
 }
+
+.input_location:disabled {
+    background: #e6e6e6;
+}
 /* ###################################################### */
 
 /* Line in form */
@@ -584,4 +588,10 @@ tr td:first-child:before {
     font-weight: 300;
     font-size: 14px;
     top: -6px;
+}
+
+.div_photo_1:hover,
+.div_photo_2:hover,
+.div_photo_3:hover {
+    border: solid 0.5px black;
 }
