@@ -168,8 +168,6 @@ function build_business_details(response) {
     var photo2 = business_data["photo2"];
     var photo3 = business_data["photo3"];
 
-    console.log(business_data);
-
     // get the html element to build -> business_details and reset it
     var div_business_details_container = document.getElementById(
         "business_details_container"

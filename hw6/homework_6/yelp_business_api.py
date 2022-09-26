@@ -1,5 +1,3 @@
-from audioop import add
-from os import stat
 import requests
 
 # test data
@@ -13,7 +11,10 @@ import requests
 # id = "TcbgGfKA5p1615ty_QYyFg"
 
 #  pacific blue
-id = "NsyNqmhJyJM12T60UkhVCg"
+# id = "NsyNqmhJyJM12T60UkhVCg"
+
+# invalid name
+id = "LUFdqNSABD1A2a0gdWApAQ"
 
 API_KEY = "H2ckcPhI3zXZ6rasK0NGHswOf9JCf6YDne7GetsqnPBVnri3uM2-ZsehURtPhvjbfT62o3wqQKlcJ2fsd1bm3pvpkfwkeGiDV34Db6kiV8UQRNSbdjVhF0DVxcgqY3Yx"
 headers = {'Authorization' : f'Bearer {API_KEY}'}
@@ -24,7 +25,9 @@ data = response.json()
 
 
 
-status, category, address, phone_number, transactions_supported, price, more_info, photos = None,None,None,None,None,None,None,None
+name, status, category, address, phone_number, transactions_supported, price, more_info, photos = None,None,None,None,None,None,None,None,None
+
+name = data["name"]
 
 status = data['hours'][0]['is_open_now']
 
@@ -59,6 +62,7 @@ if 'url' in data:
 if 'photos' in data:
     photos = data['photos']
 
+print(f"Name ===> {name}")
 print(f"Status ===> {status}")
 print(f"Category ===> {category}")
 print(f"Address ===> {address}")
