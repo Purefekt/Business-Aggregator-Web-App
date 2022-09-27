@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="author" content="Veer Singh" />
+        <title>HW6 Veer Singh</title>
+        <link rel="stylesheet" href="/static/style.css" />
+
+        <!-- get client ip axios -->
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    </head>
+
+    <body>
+        <div class="container">
+            <!-- Search box -->
+            <div class="search_box">
+                <img class="banner" src="/static/banner.jpeg" />
+                <p class="business_search">Business Search</p>
+                <p class="banner_subtext">
+                    Fill out the form to get businesses near you!
+                </p>
+
+                <form
+                    class="form"
+                    id="form"
+                    action="javascript:void(0)"
+                    method="get"
+                    onsubmit="return search_yelp(this)"
+                >
+                    <label for="input_keyword" class="label_keyword"
+                        >Keyword</label
+                    >
+                    <input
+                        class="input_keyword"
+                        id="input_keyword"
+                        type="text"
+                        required
+                    />
+                    <label for="input_distance" class="label_distance"
+                        >Distance(miles)</label
+                    >
+                    <input
+                        class="input_distance"
+                        id="input_distance"
+                        type="text"
+                        placeholder="10"
+                        value="10"
+                    />
+                    <label for="input_category" class="label_category"
+                        >Category</label
+                    >
+                    <select
+                        class="select_category"
+                        id="select_category"
+                        required
+                    >
+                        <option value="all">Default</option>
+                        <option value="arts">Arts & Entertainment</option>
+                        <option value="health">Health & Medical</option>
+                        <option value="hotelstravel">Hotels & Travel</option>
+                        <option value="food">Food</option>
+                        <option value="professional">
+                            Professional Services
+                        </option>
+                    </select>
+                    <label for="input_location" class="label_location"
+                        >Location</label
+                    >
+                    <input
+                        class="input_location"
+                        id="input_location"
+                        type="text"
+                        required
+                    />
+
+                    <p class="form_line"></p>
+
+                    <label for="input_checkbox" class="label_checkbox"
+                        >Want us to auto-detect your location? Check here</label
+                    >
+                    <input
+                        class="input_checkbox"
+                        id="input_checkbox"
+                        type="checkbox"
+                        onclick="disable_location_input()"
+                    />
+
+                    <input class="input_submit" type="submit" value="SUBMIT" />
+
+                    <input
+                        class="input_btn_clear"
+                        type="button"
+                        value="CLEAR"
+                        onclick="implement_clear()"
+                    />
+                </form>
+            </div>
+
+            <!-- No records found -->
+            <div class="no_result" id="no_result">
+                <p>No record has been found</p>
+            </div>
+
+            <!-- Table of output, max 20 rows -->
+            <div class="div_table" id="div_table">
+                <table id="table">
+                    <!-- HAS BEEN ADDED AS A STRING IN build_table JS FUNC -->
+                    <!-- <tr class="table_header">
+                        <th width="50px" scope="col">No.</th>
+                        <th width="109px" scope="col">Image</th>
+                        <th
+                            width="543px"
+                            onclick="sort_table(2)"
+                            class="pointer"
+                            scope="col"
+                        >
+                            Business Name
+                        </th>
+                        <th
+                            width="149px"
+                            onclick="sort_table(3)"
+                            class="pointer"
+                            scope="col"
+                        >
+                            Rating
+                        </th>
+                        <th width="149px" class="pointer" scope="col">
+                            Distance (miles)
+                        </th>
+                    </tr> -->
+
+                    <!-- Sample row -->
+                    <!-- <tr>
+                        <td></td>
+                        <td>
+                            <img
+                                class="table_business_img"
+                                src="https://s3-media1.fl.yelpcdn.com/bphoto/a4QvOX5HsN779CWJN4Slyw/o.jpg"
+                            />
+                        </td>
+                        <div
+                            id="result_id"
+                            class="result_id"
+                            value="name given by yelp"
+                        >
+                            <td
+                                id="result_id_id"
+                                value="fEY0zHaDMfIW3-N__joDKQ"
+                            >
+                                business name
+                            </td>
+                        </div>
+                        <td>4.5</td>
+                        <td>10.1</td>
+                    </tr> -->
+                    <!-- Sample Ends -->
+                </table>
+            </div>
+
+            <!-- BUSINESS DETAILS DIV -->
+            <div id="business_details_container">
+                <!-- <div class="business_details">
+                    <p class="p_business_details_title">Bestia</p>
+                    <hr class="hr_business_details_title_seperator_line" />
+
+                    <div class="div_business_details_status">
+                        <p class="p_business_details_status">Status</p>
+                        <div class="open_now_closed_box_OPEN">
+                            <p>Open Now</p>
+                        </div>
+                    </div>
+
+                    <div class="div_business_details_category">
+                        <p class="p_business_details_category">Category</p>
+                        <p class="p_business_details_category_sub">
+                            Italian | Cocktail Bars | Pizza
+                        </p>
+                    </div>
+
+                    <div class="div_business_details_address">
+                        <p class="p_business_details_address">Address</p>
+                        <p class="p_business_details_address_sub">
+                            2121 E 7th Pl Los Angeles, CA 90021
+                        </p>
+                    </div>
+
+                    <div class="div_business_details_phone_number">
+                        <p class="p_business_details_phone_number">
+                            Phone Number
+                        </p>
+                        <p class="p_business_details_phone_number_sub">
+                            (213) 514-5724
+                        </p>
+                    </div>
+
+                    <div class="div_business_details_transactions_supported">
+                        <p class="p_business_details_transactions_supported">
+                            Transactions Supported
+                        </p>
+                        <p
+                            class="p_business_details_transactions_supported_sub"
+                        >
+                            Delivery
+                        </p>
+                    </div>
+
+                    <div class="div_business_details_price">
+                        <p class="p_business_details_price">Price</p>
+                        <p class="p_business_details_price_sub">$$$</p>
+                    </div>
+
+                    <div class="div_business_details_more_info">
+                        <p class="p_business_details_more_info">More info</p>
+                        <a
+                            class="a_business_details_more_info_sub"
+                            href="https://www.yelp.com/biz/bestia-los-angeles?adjust_creative=uXRGEQz38hkVivWYuP-pvQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_lookup&utm_source=uXRGEQz38hkVivWYuP-pvQ"
+                            target="_blank"
+                            >Yelp</a
+                        >
+                    </div>
+
+                    <div class="div_photo_1">
+                        <img
+                            src="https://s3-media1.fl.yelpcdn.com/bphoto/QWniJCG7Jk0GXf9u8lNI4g/o.jpg"
+                        />
+                        <p>Photo 1</p>
+                    </div>
+
+                    <div class="div_photo_2">
+                        <img
+                            src="https://s3-media2.fl.yelpcdn.com/bphoto/OiK29eJfT4PyMjCRYlkU8A/o.jpg"
+                        />
+                        <p>Photo 2</p>
+                    </div>
+
+                    <div class="div_photo_3">
+                        <img
+                            src="https://s3-media1.fl.yelpcdn.com/bphoto/HYhd80kUtmc5BS-FeW-ilw/o.jpg"
+                        />
+                        <p>Photo 3</p>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+
+        <script type="text/javascript" src="/static/main.js"></script>
+    </body>
+</html>

@@ -1,0 +1,597 @@
+body {
+    background-color: #e6e6e6;
+    /* counter-reset for automatic numbering of table */
+    counter-reset: Serial;
+}
+
+.container {
+    width: 1000px;
+    min-height: fit-content;
+    margin: auto;
+    overflow: visible;
+    text-align: center;
+    /* border: dashed 1px; */
+}
+
+.search_box {
+    width: 598px;
+    height: 520px;
+    /* border: solid 1px black; */
+    margin-left: 200px;
+    margin-right: 200px;
+    background-color: white;
+    border: solid 4px #d3d3d3;
+}
+
+input:focus {
+    outline-color: black;
+}
+select:focus {
+    outline-color: black;
+}
+
+.banner {
+    position: relative;
+    width: 598px;
+    height: 120px;
+    object-fit: cover;
+    object-position: 0px -207px;
+}
+
+.business_search {
+    color: white;
+    font-size: 26px;
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+        sans-serif;
+    font-weight: 600;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    position: relative;
+    top: -90px;
+    left: -170px;
+}
+
+.banner_subtext {
+    color: white;
+    font-size: 20px;
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+        sans-serif;
+    font-weight: 400;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    position: relative;
+    top: -75px;
+    left: -81px;
+}
+
+/* Astericks after required fiels in form except distance miles and checkbox
+Placeholder text color to black
+*/
+.form label::after {
+    content: " *";
+    color: red;
+    font-size: 14px;
+}
+.form .label_distance::after {
+    content: "";
+}
+::placeholder {
+    color: black;
+    opacity: 1;
+}
+.form .label_checkbox::after {
+    content: "";
+}
+/* ###################################################### */
+
+.form label {
+    display: block;
+    color: #556fa8;
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+        sans-serif;
+    font-size: 17px;
+    font-weight: 350;
+    text-align: left;
+}
+
+/* KEYWORD */
+.form .label_keyword {
+    position: relative;
+    left: 45px;
+    top: -35px;
+}
+
+.form .input_keyword {
+    position: relative;
+    width: 500px;
+    height: 26px;
+    border: solid 1px #cecece;
+    top: -27px;
+}
+/* ###################################################### */
+
+/* DISTANCE */
+.form .label_distance {
+    position: relative;
+    left: 45px;
+    top: -10px;
+}
+
+.form .input_distance {
+    position: relative;
+    width: 149px;
+    height: 26px;
+    border: solid 1px #cecece;
+    left: -176px;
+    top: -2px;
+}
+/* ###################################################### */
+
+/* CATEGORY */
+.form .label_category {
+    position: relative;
+    right: -300px;
+    top: -59px;
+}
+
+.form .select_category {
+    position: relative;
+    width: 254px;
+    height: 30px;
+    border: solid 1px #cecece;
+    top: -51.5px;
+    right: -127px;
+}
+
+/* LOCATION */
+.form .label_location {
+    position: relative;
+    top: -32px;
+    left: 45px;
+}
+
+.form .input_location {
+    position: relative;
+    width: 500px;
+    height: 26px;
+    border: solid 1px #cecece;
+    top: -25px;
+}
+
+.input_location:disabled {
+    background: #e6e6e6;
+}
+/* ###################################################### */
+
+/* Line in form */
+.form .form_line {
+    position: relative;
+    width: 502px;
+    height: 0px;
+    border: solid 1px #556fa8;
+    left: 47px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+/* ###################################################### */
+
+/* CHECKBOX */
+.form .label_checkbox {
+    display: inline;
+    position: relative;
+    font-size: 21px;
+    left: -24px;
+    top: 19px;
+}
+.form .input_checkbox {
+    position: relative;
+    left: -28px;
+    top: 19px;
+}
+
+.form .input_submit {
+    display: block;
+    position: relative;
+    width: 108px;
+    height: 41px;
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+        sans-serif;
+    font-weight: 200;
+    color: white;
+    background-color: #556fa8;
+    font-size: 15px;
+    box-shadow: 0px 3px 1px #3b4d74;
+    border-color: #556fa8;
+    left: 46px;
+    top: 46px;
+    cursor: pointer;
+}
+.input_submit:hover {
+    background-color: #637bae;
+}
+
+.form .input_btn_clear {
+    display: block;
+    position: relative;
+    top: 100px;
+    width: 108px;
+    height: 41px;
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+        sans-serif;
+    font-weight: 200;
+    color: white;
+    background-color: #f5b941;
+    font-size: 15px;
+    box-shadow: 0px 3px 1px #eb8933;
+    left: 156px;
+    top: 5px;
+    cursor: pointer;
+}
+.input_btn_clear:hover {
+    background-color: #f5c463;
+}
+
+/* NO RESULTS */
+.no_result {
+    display: none;
+    position: relative;
+    width: 1000px;
+    background-color: white;
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+        sans-serif;
+    font-weight: 300;
+    top: 16px;
+    font-size: 20px;
+}
+/* ###################################################### */
+
+/* TABLE OF OUTPUT */
+.div_table {
+    /* display: block; */
+    display: none;
+    width: 1000px;
+    position: relative;
+    top: 129px;
+    background-color: white;
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+        sans-serif;
+    margin-bottom: 10px;
+}
+
+table,
+td {
+    border: 1px solid #e6e6e6;
+    border-collapse: collapse;
+    height: 112px;
+    font-weight: 200;
+}
+
+.div_table table .table_header th {
+    background-color: #4f6fad;
+    height: 39px;
+    font-weight: 600;
+    border: 1px solid #e6e6e6;
+    border-collapse: collapse;
+}
+
+.table_business_img {
+    position: relative;
+    width: 100px;
+    height: 100px;
+}
+
+.div_table table .table_header th.pointer {
+    cursor: pointer;
+}
+
+/* for automatic numbering */
+tr td:first-child:before {
+    counter-increment: Serial;
+    content: counter(Serial);
+}
+
+.result_id:hover {
+    cursor: pointer;
+    color: #9d9b9b;
+}
+
+/* ###################################################### */
+
+/* business details */
+.business_details {
+    width: 790px;
+    height: 756px;
+    margin-left: 104px;
+    margin-right: 104px;
+    position: relative;
+    top: 162px;
+    background-color: white;
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+        sans-serif;
+}
+
+.p_business_details_title {
+    position: relative;
+    font-weight: 600;
+    font-size: 20px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    top: 25px;
+}
+
+.hr_business_details_title_seperator_line {
+    width: 754px;
+    background-color: #e6e6e6;
+    color: #e6e6e6;
+    border-width: 0.5px;
+    position: relative;
+    top: 25px;
+}
+
+.div_business_details_status {
+    position: relative;
+    width: 370px;
+    height: 60px;
+    top: 57px;
+    left: 14px;
+    border: solid 1px black;
+    border: solid 1px white;
+}
+
+.div_business_details_category {
+    position: relative;
+    width: 370px;
+    height: 60px;
+    top: -6px;
+    left: 401px;
+    border: solid 1px black;
+    border: solid 1px white;
+}
+
+.div_business_details_address {
+    position: relative;
+    width: 370px;
+    height: 60px;
+    top: 3px;
+    left: 14px;
+    border: solid 1px black;
+    border: solid 1px white;
+}
+
+.div_business_details_phone_number {
+    position: relative;
+    width: 370px;
+    height: 60px;
+    top: -60px;
+    left: 401px;
+    border: solid 1px black;
+    border: solid 1px white;
+}
+
+.div_business_details_transactions_supported {
+    position: relative;
+    width: 370px;
+    height: 60px;
+    top: -51px;
+    left: 14px;
+    border: solid 1px black;
+    border: solid 1px white;
+}
+
+.div_business_details_price {
+    position: relative;
+    width: 370px;
+    height: 60px;
+    top: -114px;
+    left: 401px;
+    border: solid 1px black;
+    border: solid 1px white;
+}
+
+.div_business_details_more_info {
+    position: relative;
+    width: 370px;
+    height: 60px;
+    top: -105px;
+    left: 14px;
+    border: solid 1px black;
+    border: solid 1px white;
+}
+
+/* text */
+.p_business_details_status {
+    position: relative;
+    font-weight: 600;
+    font-size: 20px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    top: -5px;
+    left: -159px;
+}
+
+.open_now_closed_box_OPEN {
+    position: relative;
+    width: 85px;
+    height: 28px;
+    border: solid 1px #008001;
+    top: -4px;
+    left: 1px;
+    background-color: #008001;
+    border-radius: 10px;
+}
+.open_now_closed_box_CLOSED {
+    position: relative;
+    width: 85px;
+    height: 28px;
+    border: solid 1px #eb3324;
+    top: -4px;
+    left: 1px;
+    background-color: #eb3324;
+    border-radius: 10px;
+}
+.open_now_closed_box_OPEN p,
+.open_now_closed_box_CLOSED p {
+    position: relative;
+    font-weight: 300;
+    font-size: 14px;
+    top: -9px;
+    left: -1px;
+}
+
+.p_business_details_category {
+    position: relative;
+    font-weight: 600;
+    font-size: 20px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    top: -5px;
+    left: -146px;
+}
+.p_business_details_category_sub {
+    position: relative;
+    font-weight: 300;
+    font-size: 14px;
+    top: -14px;
+    text-align: left;
+}
+
+.p_business_details_address {
+    position: relative;
+    font-weight: 600;
+    font-size: 20px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    top: -5px;
+    left: -150px;
+}
+.p_business_details_address_sub {
+    position: relative;
+    font-weight: 300;
+    font-size: 14px;
+    top: -14px;
+    text-align: left;
+}
+
+.p_business_details_phone_number {
+    position: relative;
+    font-weight: 600;
+    font-size: 20px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    top: -5px;
+    left: -120px;
+}
+.p_business_details_phone_number_sub {
+    position: relative;
+    font-weight: 300;
+    font-size: 14px;
+    top: -14px;
+    text-align: left;
+}
+
+.p_business_details_transactions_supported {
+    position: relative;
+    font-weight: 600;
+    font-size: 20px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    top: -5px;
+    left: -82px;
+}
+.p_business_details_transactions_supported_sub {
+    position: relative;
+    font-weight: 300;
+    font-size: 14px;
+    top: -14px;
+    text-align: left;
+}
+
+.p_business_details_price {
+    position: relative;
+    font-weight: 600;
+    font-size: 20px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    top: -5px;
+    left: -165px;
+}
+.p_business_details_price_sub {
+    position: relative;
+    font-weight: 300;
+    font-size: 14px;
+    top: -14px;
+    text-align: left;
+}
+
+.p_business_details_more_info {
+    position: relative;
+    font-weight: 600;
+    font-size: 20px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    top: -5px;
+    left: -145px;
+}
+.a_business_details_more_info_sub {
+    position: relative;
+    font-weight: 300;
+    font-size: 14px;
+    top: -5px;
+    left: -174px;
+}
+
+/* photos */
+
+.div_photo_1 {
+    position: relative;
+    font-weight: 300;
+    border: solid 0.5px #e6e6e6;
+    width: 243px;
+    height: 354px;
+    top: -101px;
+    left: 20px;
+}
+
+.div_photo_2 {
+    position: relative;
+    font-weight: 300;
+    border: solid 0.5px #e6e6e6;
+    width: 243px;
+    height: 354px;
+    top: -456px;
+    left: 273px;
+}
+
+.div_photo_3 {
+    position: relative;
+    font-weight: 300;
+    border: solid 0.5px #e6e6e6;
+    width: 243px;
+    height: 354px;
+    top: -811px;
+    left: 526px;
+}
+
+.div_photo_1 img,
+.div_photo_2 img,
+.div_photo_3 img {
+    height: 319px;
+    width: 243px;
+    object-fit: contain;
+    object-position: top;
+}
+
+.div_photo_1 p,
+.div_photo_2 p,
+.div_photo_3 p {
+    position: relative;
+    font-weight: 300;
+    font-size: 14px;
+    top: -6px;
+}
+
+.div_photo_1:hover,
+.div_photo_2:hover,
+.div_photo_3:hover {
+    border: solid 0.5px black;
+}

@@ -120,10 +120,6 @@ function build_table(data) {
         // add this data as the next child of the parent element, which is the table here
         table.appendChild(new_element);
     }
-
-    // JUMP TO THE TABLE
-    window.location.href = "#div_table";
-
     // BUILDING THE TABLE AND OUTPUTTING IT HAS ENDED
 
     // Clicking the name of the results will send the YELP id to the function get_business_details which will send the id back to flask using AJAX
@@ -289,7 +285,6 @@ function build_business_details(response) {
     // build it
     var new_element = document.createElement("div");
     new_element.setAttribute("class", "business_details");
-    new_element.setAttribute("id", "business_details");
     new_element.innerHTML =
         business_details_title +
         div_business_details_status +
@@ -304,9 +299,6 @@ function build_business_details(response) {
         div_photo_3;
 
     div_business_details_container.append(new_element);
-
-    // JUMP TO THE BUSINESS DETAILS CARD
-    window.location.href = "#business_details";
 }
 
 // to sort the table according to headers. Inspirationg from w3schools https://www.w3schools.com/howto/howto_js_sort_table.asp

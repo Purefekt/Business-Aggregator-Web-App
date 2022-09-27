@@ -14,7 +14,10 @@ import requests
 # id = "NsyNqmhJyJM12T60UkhVCg"
 
 # invalid name
-id = "LUFdqNSABD1A2a0gdWApAQ"
+# id = "LUFdqNSABD1A2a0gdWApAQ"
+
+# invalid hours
+id = "AbAvH27zl_uVOM1CPeIlkQ"
 
 API_KEY = "H2ckcPhI3zXZ6rasK0NGHswOf9JCf6YDne7GetsqnPBVnri3uM2-ZsehURtPhvjbfT62o3wqQKlcJ2fsd1bm3pvpkfwkeGiDV34Db6kiV8UQRNSbdjVhF0DVxcgqY3Yx"
 headers = {'Authorization' : f'Bearer {API_KEY}'}
@@ -23,13 +26,14 @@ headers = {'Authorization' : f'Bearer {API_KEY}'}
 response = requests.get(f"https://api.yelp.com/v3/businesses/{id}", headers=headers)
 data = response.json()
 
-
-
 name, status, category, address, phone_number, transactions_supported, price, more_info, photos = None,None,None,None,None,None,None,None,None
 
 name = data["name"]
 
-status = data['hours'][0]['is_open_now']
+if 'hours' in data:
+    if len(data['hours']) > 0:
+        if 'is_open_now' in data['hours'][0]:
+            status = data['hours'][0]['is_open_now']
 
 if 'categories' in data:
     category = ""
