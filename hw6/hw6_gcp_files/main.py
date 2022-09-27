@@ -90,7 +90,10 @@ def get_business_details():
     
     name = data['name']
 
-    status = data['hours'][0]['is_open_now']
+    if 'hours' in data:
+        if len(data['hours']) > 0:
+            if 'is_open_now' in data['hours'][0]:
+                status = data['hours'][0]['is_open_now']
 
     if 'categories' in data:
         category = ""
