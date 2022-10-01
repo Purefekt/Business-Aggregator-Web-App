@@ -19,7 +19,11 @@ def index():
 def search_yelp():
     data = request.args
     form_keyword = data.get('form_keyword')
-    form_distance = int(float(data.get('form_distance')) * 1609.344) #miles to meters
+    # if the form data was removed and nothing was entered, let it be 10 miles or 16093 meters
+    if data.get('form_distance') == '':
+        form_distance = 16093
+    else:
+        form_distance = int(float(data.get('form_distance')) * 1609.344) #miles to meters
     form_category = data.get('form_category')
     form_location = data.get('form_location')
 
