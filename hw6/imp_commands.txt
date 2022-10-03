@@ -7,3 +7,9 @@ activate venv >> source env/bin/activate
 install all packages >> pip install -r requirements.txt
 
 deactivate >> deactivate
+
+
+# DEPLOYING ON GCP
+
+cd to folder containing all files
+>>> gcloud app deploy

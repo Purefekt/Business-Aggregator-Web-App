@@ -117,13 +117,23 @@ Placeholder text color to black
     top: -10px;
 }
 
-.form .input_distance {
+.input_distance {
     position: relative;
     width: 149px;
     height: 26px;
     border: solid 1px #cecece;
     left: -176px;
     top: -2px;
+}
+.input_distance::-webkit-outer-spin-button,
+.input_distance::-webkit-inner-spin-button {
+    /* hides the arrow key on input number field on Chrome, Safari, Edge, Opera */
+    -webkit-appearance: none;
+    margin: 0;
+}
+.input_distance[type="number"] {
+    /* hides the arrow key on input number field on Firefox */
+    -moz-appearance: textfield;
 }
 /* ###################################################### */
 
