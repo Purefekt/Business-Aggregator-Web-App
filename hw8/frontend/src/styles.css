@@ -1,1 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
+
+/* add background image to body */
+body {
+  /* background-image: url("assets/images/city.jpg"); */
+  background-image: linear-gradient(
+      rgba(255, 255, 255, 0.5),
+      rgba(157, 160, 182, 0.5)
+    ),
+    url("assets/images/city.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: bottom;
+}

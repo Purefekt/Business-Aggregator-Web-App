@@ -1,0 +1,10 @@
+.navbar .container-fluid .collapse .navbar-nav a {
+  border-radius: 25px;
+  background: #73ad21;
+  border-color: black;
+  border-width: 2px;
+  padding: 20px;
+  width: 200px;
+  height: 150px;
+  text-align: center;
+}

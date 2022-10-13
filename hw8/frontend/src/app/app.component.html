@@ -1,24 +1,33 @@
-<h1>Angular Router App</h1>
-<!-- This nav gives you links to click, which tells the router which route to use (defined in the routes constant in  AppRoutingModule) -->
-<nav>
-  <ul>
-    <li>
-      <a
-        routerLink="/search"
-        routerLinkActive="active"
-        ariaCurrentWhenActive="page"
-        >First Component</a
-      >
-    </li>
-    <li>
-      <a
-        routerLink="/bookings"
-        routerLinkActive="active"
-        ariaCurrentWhenActive="page"
-        >Second Component</a
-      >
-    </li>
-  </ul>
+<nav class="navbar navbar-expand navbar-light">
+  <div class="container-fluid">
+    <div
+      class="collapse navbar-collapse justify-content-end"
+      id="navbarSupportedContent"
+    >
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a
+            class="nav-link active"
+            aria-current="page"
+            routerLink="/search"
+            routerLinkActive="active"
+            ariaCurrentWhenActive="page"
+            >Search</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link active"
+            aria-current="page"
+            routerLink="/bookings"
+            routerLinkActive="active"
+            ariaCurrentWhenActive="page"
+            >My Bookings</a
+          >
+        </li>
+      </ul>
+    </div>
+  </div>
 </nav>
 
 <!-- The routed views render in the <router-outlet>-->
