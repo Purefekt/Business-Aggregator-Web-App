@@ -1,4 +1,4 @@
-.navbar .container-fluid .collapse .navbar-nav a {
+/* .navbar .container-fluid .collapse .navbar-nav a {
   border-radius: 25px;
   background: #73ad21;
   border-color: black;
@@ -7,4 +7,19 @@
   width: 200px;
   height: 150px;
   text-align: center;
+} */
+
+.navbar .container-fluid .collapse .navbar-nav .nav-item .border {
+  --bs-border-opacity: 0;
+}
+
+.navbar .container-fluid .collapse .navbar-nav .nav-item .border:hover {
+  --bs-border-opacity: 1;
+}
+
+/* keep black color for hover or when the link is inactive */
+.navbar {
+  --bs-navbar-color: #000000;
+  --bs-navbar-hover-color: #000000;
+  --bs-navbar-disabled-color: #000000;
 }
