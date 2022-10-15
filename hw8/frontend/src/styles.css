@@ -12,3 +12,9 @@ body {
   background-attachment: fixed;
   background-position: bottom;
 }
+
+/* Border appears on the navbar links when that route is active */
+.active {
+  border-radius: 15px;
+  border: solid 2px black;
+}
