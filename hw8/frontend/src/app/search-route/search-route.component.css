@@ -11,3 +11,15 @@
   content: " *";
   color: red;
 }
+
+/* Hide up and down arrow keys of the input number box */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  /* Chrome, Safari, Edge, Opera */
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"] {
+  /* Firefox */
+  -moz-appearance: textfield;
+}
