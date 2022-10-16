@@ -6,6 +6,7 @@
   min-width: 360px;
 }
 
+/* put red asteriks next to required fields */
 .form-group.required .control-label:after {
   content: " *";
   color: red;
