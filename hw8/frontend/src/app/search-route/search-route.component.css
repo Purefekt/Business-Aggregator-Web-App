@@ -1,0 +1,12 @@
+.search_form_container {
+  background-color: white;
+  border: solid 0.5px grey;
+  border-radius: 1rem;
+  max-width: 700px;
+  min-width: 360px;
+}
+
+.form-group.required .control-label:after {
+  content: " *";
+  color: red;
+}
