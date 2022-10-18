@@ -1,7 +1,6 @@
 // as mentioned by yelp-fusion api package
 "use strict";
 
-const { response } = require("express");
 const express = require("express");
 const app = express();
 const port = 3000;
@@ -62,7 +61,6 @@ app.get("/search", async (req, res) => {
 
     // need upto 10 results
     const max_results = Math.min(10, Object.keys(yelp_data_table).length);
-
     // create the JSON object
     const data_table = [];
     for (let i = 0; i < max_results; i++) {
@@ -78,7 +76,7 @@ app.get("/search", async (req, res) => {
         data_table.push(data_table_entry);
     }
 
-    // This will send the final json data to the server response
+    // Send final JSON as output
     res.send(JSON.stringify(data_table));
 });
 
