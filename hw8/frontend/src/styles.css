@@ -4,7 +4,7 @@
 body {
   background-image: linear-gradient(
       rgba(255, 255, 255, 0.5),
-      rgba(157, 160, 182, 0.5)
+      rgba(198, 205, 255, 0.5)
     ),
     url("assets/images/city.jpg");
   background-repeat: no-repeat;

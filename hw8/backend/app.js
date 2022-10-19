@@ -14,11 +14,21 @@ const client = yelp.client(`${YELP_API_KEY}`);
 // Google geocoding API
 const GOOGLE_API_KEY = "AIzaSyCJn6gE_Bu1c1hZ1CF7PDtijhqhKVpx33c";
 
+// For CORS issue
+app.use(function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
+    res.header(
+        "Access-Control-Allow-Headers",
+        "Origin, X-Requested-With, Content-Type, Accept"
+    );
+    next();
+});
+
 app.get("/", (req, res) => {
     res.send("Veer's express server");
 });
 
-// http://127.0.0.1:3000/search?form_keyword=Pizza&form_distance=16093&form_category=food&form_location=USC
+// http://127.0.0.1:3000/search?form_keyword=pizza&form_distance=10&form_category=all&form_location=USC
 // http://127.0.0.1:3000/search?form_keyword=Skydiving&form_distance=16093&form_category=hotelstravel&form_location=USC
 app.get("/search", async (req, res) => {
     console.log("/search running");
