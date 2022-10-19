@@ -1,0 +1,52 @@
+<table class="table table-striped data_table_container mx-auto mt-5">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Image</th>
+      <th scope="col">Business Name</th>
+      <th scope="col">Rating</th>
+      <th scope="col">Distance (miles)</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <div *ngFor="let result of results_table_data">
+      <tr>
+        <th scope="row">{{ result.index }}</th>
+        <td>
+          <img class="img-fluid" src="{{ result.image_url }}" />
+        </td>
+        <td>{{ result.name }}</td>
+        <td>{{ result.rating }}</td>
+        <td>{{ result.distance }}</td>
+      </tr>
+    </div>
+  </tbody>
+
+  <!-- <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>
+        <img
+          class="img-fluid"
+          src="https://s3-media2.fl.yelpcdn.com/bphoto/uPUePX2lRk6fkAObl37X9w/o.jpg"
+        />
+      </td>
+      <td>DeSano Pizza Bakery</td>
+      <td>4.5</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th scope="row">1</th>
+      <td>
+        <img
+          class="img-fluid"
+          src="https://s3-media2.fl.yelpcdn.com/bphoto/uPUePX2lRk6fkAObl37X9w/o.jpg"
+        />
+      </td>
+      <td>DeSano Pizza Bakery</td>
+      <td>4.5</td>
+      <td>5</td>
+    </tr>
+  </tbody> -->
+</table>

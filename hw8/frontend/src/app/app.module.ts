@@ -7,9 +7,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SearchRouteComponent } from './search-route/search-route.component';
 import { BookingsRouteComponent } from './bookings-route/bookings-route.component';
+import { ResultsTableComponent } from './results-table/results-table.component';
 
 @NgModule({
-  declarations: [AppComponent, SearchRouteComponent, BookingsRouteComponent],
+  declarations: [AppComponent, SearchRouteComponent, BookingsRouteComponent, ResultsTableComponent],
   imports: [BrowserModule, HttpClientModule, AppRoutingModule, FormsModule],
   providers: [],
   bootstrap: [AppComponent],

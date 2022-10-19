@@ -26,7 +26,10 @@ export class SearchRouteComponent implements OnInit {
     this.api
       .search(form_keyword, form_distance, form_category, form_location)
       .subscribe((data) => {
-        console.log(data);
+        // add the data to this.data to pass to the results-table component
+        for (var i = 0; i < Object.keys(data).length; i++) {
+          this.data.push(Object.values(data)[i]);
+        }
       });
   }
 }
