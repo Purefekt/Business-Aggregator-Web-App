@@ -17,7 +17,7 @@ export class SearchRouteComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  search(
+  async search(
     form_keyword: string,
     form_distance: string,
     form_category: string,
@@ -28,8 +28,10 @@ export class SearchRouteComponent implements OnInit {
       'check_auto_detect'
     ) as HTMLInputElement;
     if (check_auto_detect.checked) {
-      // IP ADDRESS WILL COME HERE
-      form_location = '1' + 'USC';
+      const t = fetch('https://api.ipify.org/').then((r) => r.text());
+      const ip_add = await t;
+
+      form_location = '1' + ip_add;
     } else {
       form_location = '0' + form_location;
     }

@@ -6,13 +6,14 @@ const app = express();
 const port = 3000;
 const axios = require("axios").default;
 const yelp = require("yelp-fusion");
+const ipInfo = require("ipinfo-express");
 
-// Yelp API
+// API KEYS
 const YELP_API_KEY =
     "H2ckcPhI3zXZ6rasK0NGHswOf9JCf6YDne7GetsqnPBVnri3uM2-ZsehURtPhvjbfT62o3wqQKlcJ2fsd1bm3pvpkfwkeGiDV34Db6kiV8UQRNSbdjVhF0DVxcgqY3Yx";
 const client = yelp.client(`${YELP_API_KEY}`);
-// Google geocoding API
 const GOOGLE_API_KEY = "AIzaSyCJn6gE_Bu1c1hZ1CF7PDtijhqhKVpx33c";
+const IPINFO_TOKEN = "9b48ddcd3c58b2";
 
 // For CORS issue
 app.use(function (req, res, next) {
@@ -40,6 +41,7 @@ app.get("/search", async (req, res) => {
     var form_location;
     var lat;
     var lng;
+    var ip_add;
 
     // convert miles distance into INT meters and if no distance was entered, set it to 10 miles (16093m)
     if (form_distance == "") {
@@ -53,7 +55,7 @@ app.get("/search", async (req, res) => {
     if (flag == "0") {
         form_location = form_location_with_flag.substring(1);
 
-        // RUN GOOGLE GEOCODING API
+        // get lat lng from google geocoding api
         var google_data = await axios
             .get(
                 `https://maps.googleapis.com/maps/api/geocode/json?address=${form_location}&key=${GOOGLE_API_KEY}`
@@ -64,9 +66,17 @@ app.get("/search", async (req, res) => {
             res.send(JSON.stringify([]));
             return;
         }
-        var lat = google_data["results"][0]["geometry"]["location"]["lat"];
-        var lng = google_data["results"][0]["geometry"]["location"]["lng"];
+        lat = google_data["results"][0]["geometry"]["location"]["lat"];
+        lng = google_data["results"][0]["geometry"]["location"]["lng"];
     } else if (flag == "1") {
+        // get lat lng from ipinfo api
+        ip_add = form_location_with_flag.substring(1);
+        var ipinfo_data = await axios
+            .get(`http://ipinfo.io/104.32.182.218?token=9b48ddcd3c58b2`)
+            .then((response) => response.data);
+        var lat_and_lng = ipinfo_data.loc;
+        lat = lat_and_lng.split(",")[0];
+        lng = lat_and_lng.split(",")[1];
     }
 
     console.log(`Keyword => ${form_keyword}`);
