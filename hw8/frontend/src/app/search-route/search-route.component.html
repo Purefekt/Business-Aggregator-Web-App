@@ -1,6 +1,6 @@
 <div class="container-fluid mx-5-5 search_form_container">
   <div class="container m">
-    <form class="mt-5">
+    <form class="mt-5" ngNativeValidate>
       <h4 class="text-center">Business search</h4>
 
       <div class="form-group mt-3 required">
@@ -82,6 +82,22 @@
                 </li>
               </ul>
             </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="form-group required">
+            <small>
+              <label class="control-label" for="dropdown_category"
+                >Category</label
+              >
+            </small>
+            <select class="form-select mt-1">
+              <option selected>Open this select menu</option>
+              <option value="1">One</option>
+              <option value="2">Two</option>
+              <option value="3">Three</option>
+            </select>
           </div>
         </div>
       </div>
