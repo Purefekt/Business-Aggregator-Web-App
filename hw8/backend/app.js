@@ -34,25 +34,48 @@ app.get("/search", async (req, res) => {
     console.log("/search running");
 
     const form_keyword = req.query.form_keyword;
-    const form_distance = req.query.form_distance;
+    var form_distance_miles = req.query.form_distance;
+    var form_distance_meters;
     const form_category = req.query.form_category;
-    const form_location = req.query.form_location;
+    var form_location_with_flag = req.query.form_location;
+
+    // convert miles distance into INT meters and if no distance was entered, set it to 10 miles (16093m)
+    if (form_distance_miles == "") {
+        form_distance_meters = 16093;
+    } else {
+        form_distance_meters = parseInt(form_distance_miles * 1609.344);
+    }
+    const form_distance = form_distance_meters;
+
+    // get ip flag from form_location_with_flag. If it is 0, then use google geocoding API to get lat lng. If it is 1 then get the lat lng from ipinfo API
+    const flag = form_location_with_flag.substring(0, 1);
+    if (flag == "0") {
+        const form_location = form_location_with_flag.substring(1);
+
+        // RUN GOOGLE GEOCODING API
+        var google_data = await axios
+            .get(
+                `https://maps.googleapis.com/maps/api/geocode/json?address=${form_location}&key=${GOOGLE_API_KEY}`
+            )
+            .then((response) => response.data);
+        // handle error when geocoding API returns no results. Return empty json
+        if (google_data.status == "ZERO_RESULTS") {
+            res.send(JSON.stringify([]));
+            return;
+        }
+        var lat = google_data["results"][0]["geometry"]["location"]["lat"];
+        var lng = google_data["results"][0]["geometry"]["location"]["lng"];
+    } else if (flag == "1") {
+    }
+
     console.log(form_keyword);
     console.log(form_distance);
     console.log(form_category);
-    console.log(form_location);
+    console.log(form_location_with_flag);
 
-    // get lat and lng from google geocoding API
-    var google_data = await axios
-        .get(
-            `https://maps.googleapis.com/maps/api/geocode/json?address=${form_location}&key=${GOOGLE_API_KEY}`
-        )
-        .then((response) => response.data);
-    const lat = google_data["results"][0]["geometry"]["location"]["lat"];
-    const lng = google_data["results"][0]["geometry"]["location"]["lng"];
     console.log(lat, lng);
 
-    // get data from yelp API
+    // RUN YELP FUSION API
     var yelp_data_table = await client
         .search({
             term: form_keyword,
@@ -82,7 +105,6 @@ app.get("/search", async (req, res) => {
         data_table_entry.distance = Math.round(
             yelp_data_table[i]["distance"] / 1609.344
         );
-
         data_table.push(data_table_entry);
     }
 

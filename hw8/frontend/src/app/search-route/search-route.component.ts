@@ -23,6 +23,17 @@ export class SearchRouteComponent implements OnInit {
     form_category: string,
     form_location: string
   ) {
+    // if auto detect loc checkbox is checked, get the ip address of the client
+    var check_auto_detect = document.getElementById(
+      'check_auto_detect'
+    ) as HTMLInputElement;
+    if (check_auto_detect.checked) {
+      // IP ADDRESS WILL COME HERE
+      form_location = '1' + 'USC';
+    } else {
+      form_location = '0' + form_location;
+    }
+
     this.api
       .search(form_keyword, form_distance, form_category, form_location)
       .subscribe((data) => {
@@ -31,5 +42,22 @@ export class SearchRouteComponent implements OnInit {
           this.data.push(Object.values(data)[i]);
         }
       });
+  }
+
+  // disable the location input box if auto detect checkbox is on
+  disable_location_input() {
+    var check_auto_detect = document.getElementById(
+      'check_auto_detect'
+    ) as HTMLInputElement;
+    var input_location = document.getElementById(
+      'input_location'
+    ) as HTMLInputElement;
+
+    if (check_auto_detect?.checked) {
+      input_location.value = '';
+      input_location.disabled = true;
+    } else {
+      input_location.disabled = false;
+    }
   }
 }
