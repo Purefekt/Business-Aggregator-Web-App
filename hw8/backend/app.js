@@ -34,23 +34,24 @@ app.get("/search", async (req, res) => {
     console.log("/search running");
 
     const form_keyword = req.query.form_keyword;
-    var form_distance_miles = req.query.form_distance;
-    var form_distance_meters;
+    var form_distance = req.query.form_distance;
     const form_category = req.query.form_category;
     var form_location_with_flag = req.query.form_location;
+    var form_location;
+    var lat;
+    var lng;
 
     // convert miles distance into INT meters and if no distance was entered, set it to 10 miles (16093m)
-    if (form_distance_miles == "") {
-        form_distance_meters = 16093;
+    if (form_distance == "") {
+        form_distance = 16093;
     } else {
-        form_distance_meters = parseInt(form_distance_miles * 1609.344);
+        form_distance = parseInt(form_distance * 1609.344);
     }
-    const form_distance = form_distance_meters;
 
     // get ip flag from form_location_with_flag. If it is 0, then use google geocoding API to get lat lng. If it is 1 then get the lat lng from ipinfo API
     const flag = form_location_with_flag.substring(0, 1);
     if (flag == "0") {
-        const form_location = form_location_with_flag.substring(1);
+        form_location = form_location_with_flag.substring(1);
 
         // RUN GOOGLE GEOCODING API
         var google_data = await axios
@@ -68,12 +69,12 @@ app.get("/search", async (req, res) => {
     } else if (flag == "1") {
     }
 
-    console.log(form_keyword);
-    console.log(form_distance);
-    console.log(form_category);
-    console.log(form_location_with_flag);
-
-    console.log(lat, lng);
+    console.log(`Keyword => ${form_keyword}`);
+    console.log(`Distance in meters =>${form_distance}`);
+    console.log(`Category => ${form_category}`);
+    console.log(`Location with Flag => ${form_location_with_flag}`);
+    console.log(`Latitude => ${lat}`);
+    console.log(`Longitude => ${lng}`);
 
     // RUN YELP FUSION API
     var yelp_data_table = await client
