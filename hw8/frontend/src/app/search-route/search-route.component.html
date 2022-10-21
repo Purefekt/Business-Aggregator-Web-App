@@ -163,4 +163,10 @@
 </div>
 
 <!-- Results Table goes here -->
-<app-results-table [results_table_data]="data"></app-results-table>
+
+<div *ngIf="no_yelp_data; else display_results_table">
+  <p>no records found</p>
+</div>
+<ng-template #display_results_table
+  ><app-results-table [results_table_data]="data"></app-results-table
+></ng-template>

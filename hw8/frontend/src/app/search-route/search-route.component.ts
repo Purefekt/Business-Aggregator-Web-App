@@ -21,6 +21,8 @@ export class SearchRouteComponent implements OnInit {
   input_location = '';
   data: Array<any> = [];
 
+  no_yelp_data: boolean = true;
+
   constructor(private api: ApiService) {}
 
   ngOnInit(): void {}
@@ -31,6 +33,9 @@ export class SearchRouteComponent implements OnInit {
     form_category: string,
     form_location: string
   ) {
+    // reset data on every call of search
+    this.data = [];
+
     // if auto detect loc checkbox is checked, get the ip address of the client
     var check_auto_detect = document.getElementById(
       'check_auto_detect'
@@ -50,6 +55,15 @@ export class SearchRouteComponent implements OnInit {
         // add the data to this.data to pass to the results-table component
         for (var i = 0; i < Object.keys(data).length; i++) {
           this.data.push(Object.values(data)[i]);
+        }
+
+        // change the no_yelp_data flag based on if data came or not
+        if (Object.keys(this.data).length === 0) {
+          console.log('no data found');
+          this.no_yelp_data = true;
+        } else {
+          this.no_yelp_data = false;
+          console.log('data found');
         }
       });
   }
