@@ -59,11 +59,9 @@ export class SearchRouteComponent implements OnInit {
 
         // change the no_yelp_data flag based on if data came or not
         if (Object.keys(this.data).length === 0) {
-          console.log('no data found');
           this.no_yelp_data = true;
         } else {
           this.no_yelp_data = false;
-          console.log('data found');
         }
       });
   }
