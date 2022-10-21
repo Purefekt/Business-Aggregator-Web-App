@@ -53,30 +53,35 @@ app.get("/search", async (req, res) => {
     // get ip flag from form_location_with_flag. If it is 0, then use google geocoding API to get lat lng. If it is 1 then get the lat lng from ipinfo API
     const flag = form_location_with_flag.substring(0, 1);
     if (flag == "0") {
-        form_location = form_location_with_flag.substring(1);
-
         // get lat lng from google geocoding api
-        var google_data = await axios
-            .get(
-                `https://maps.googleapis.com/maps/api/geocode/json?address=${form_location}&key=${GOOGLE_API_KEY}`
-            )
-            .then((response) => response.data);
-        // handle error when geocoding API returns no results. Return empty json
-        if (google_data.status == "ZERO_RESULTS") {
+        form_location = form_location_with_flag.substring(1);
+        try {
+            var google_data = await axios
+                .get(
+                    `https://maps.googleapis.com/maps/api/geocode/json?address=${form_location}&key=${GOOGLE_API_KEY}`
+                )
+                .then((response) => response.data);
+            lat = google_data["results"][0]["geometry"]["location"]["lat"];
+            lng = google_data["results"][0]["geometry"]["location"]["lng"];
+        } catch (error) {
             res.send(JSON.stringify([]));
             return;
         }
-        lat = google_data["results"][0]["geometry"]["location"]["lat"];
-        lng = google_data["results"][0]["geometry"]["location"]["lng"];
     } else if (flag == "1") {
         // get lat lng from ipinfo api
         ip_add = form_location_with_flag.substring(1);
-        var ipinfo_data = await axios
-            .get(`http://ipinfo.io/104.32.182.218?token=9b48ddcd3c58b2`)
-            .then((response) => response.data);
-        var lat_and_lng = ipinfo_data.loc;
-        lat = lat_and_lng.split(",")[0];
-        lng = lat_and_lng.split(",")[1];
+        try {
+            var ipinfo_data = await axios
+                .get(`http://ipinfo.io/${ip_add}?token=9b48ddcd3c58b2`)
+                .then((response) => response.data);
+            var lat_and_lng = ipinfo_data.loc;
+            console.log(lat_and_lng);
+            lat = lat_and_lng.split(",")[0];
+            lng = lat_and_lng.split(",")[1];
+        } catch (error) {
+            res.send(JSON.stringify([]));
+            return;
+        }
     }
 
     console.log(`Keyword => ${form_keyword}`);

@@ -9,7 +9,15 @@ import { ApiService } from 'src/app/api.service';
 export class SearchRouteComponent implements OnInit {
   input_keyword = '';
   input_distance = '';
-  input_category = '';
+  input_category = [
+    { name: 'Default', value: 'all' },
+    { name: 'Arts & Entertainment', value: 'arts' },
+    { name: 'Health & Medical', value: 'health' },
+    { name: 'Hotels & Travel', value: 'hotelstravel' },
+    { name: 'Food', value: 'food' },
+    { name: 'Professional Services', value: 'professional' },
+  ];
+  input_category_selected_val: string = 'all';
   input_location = '';
   data: Array<any> = [];
 

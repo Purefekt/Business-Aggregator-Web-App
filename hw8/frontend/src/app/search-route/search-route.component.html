@@ -7,7 +7,7 @@
         search(
           form_keyword.value,
           form_distance.value,
-          'all',
+          form_category.value,
           form_location.value
         )
       "
@@ -49,7 +49,8 @@
             />
           </div>
         </div>
-        <div class="col">
+        <!-- DROPDOWN -->
+        <!-- <div class="col">
           <div class="form-group required">
             <small>
               <label class="control-label" for="dropdown_category"
@@ -94,7 +95,7 @@
               </ul>
             </div>
           </div>
-        </div>
+        </div> -->
 
         <div class="col">
           <div class="form-group required">
@@ -103,11 +104,18 @@
                 >Category</label
               >
             </small>
-            <select class="form-select mt-1">
-              <option selected>Open this select menu</option>
-              <option value="1">One</option>
-              <option value="2">Two</option>
-              <option value="3">Three</option>
+            <select
+              class="form-select mt-1 btn-outline-secondary"
+              #form_category
+              [(ngModel)]="input_category_selected_val"
+              [ngModelOptions]="{ standalone: true }"
+            >
+              <option
+                *ngFor="let category of input_category"
+                value="{{ category.value }}"
+              >
+                {{ category.name }}
+              </option>
             </select>
           </div>
         </div>
