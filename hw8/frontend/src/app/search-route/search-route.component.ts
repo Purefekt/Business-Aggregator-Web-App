@@ -17,7 +17,12 @@ export class SearchRouteComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  async search() {
+  async search(
+    form_keyword: string,
+    form_distance: string,
+    form_category: string,
+    form_location: string
+  ) {
     // if auto detect loc checkbox is checked, get the ip address of the client
     var check_auto_detect = document.getElementById(
       'check_auto_detect'
@@ -26,21 +31,13 @@ export class SearchRouteComponent implements OnInit {
       const t = fetch('https://api.ipify.org/').then((r) => r.text());
       const ip_add = await t;
 
-      this.input_location = '1' + ip_add;
+      form_location = '1' + ip_add;
     } else {
-      this.input_location = '0' + this.input_location;
+      form_location = '0' + form_location;
     }
-    // save input_location in a new var since keeping the value will display it in the location text box
-    var form_location = this.input_location;
-    this.input_location = '';
 
     this.api
-      .search(
-        this.input_keyword,
-        this.input_distance,
-        this.input_category,
-        form_location
-      )
+      .search(form_keyword, form_distance, form_category, form_location)
       .subscribe((data) => {
         // add the data to this.data to pass to the results-table component
         for (var i = 0; i < Object.keys(data).length; i++) {

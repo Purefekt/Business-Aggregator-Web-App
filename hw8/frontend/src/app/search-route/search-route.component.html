@@ -1,6 +1,17 @@
 <div class="container-fluid mx-5-5 search_form_container">
   <div class="container m">
-    <form class="mt-5" ngNativeValidate (ngSubmit)="search()">
+    <form
+      class="mt-5"
+      ngNativeValidate
+      (ngSubmit)="
+        search(
+          form_keyword.value,
+          form_distance.value,
+          'all',
+          form_location.value
+        )
+      "
+    >
       <h4 class="text-center">Business search</h4>
 
       <div class="form-group mt-3 required">
@@ -12,6 +23,7 @@
           class="form-control mt-1"
           id="input_keyword"
           required
+          #form_keyword
           [(ngModel)]="input_keyword"
           [ngModelOptions]="{ standalone: true }"
         />
@@ -31,6 +43,7 @@
               min="0.00000000001"
               max="24.84"
               step="0.00000000001"
+              #form_distance
               [(ngModel)]="input_distance"
               [ngModelOptions]="{ standalone: true }"
             />
@@ -109,6 +122,7 @@
           class="form-control mt-1"
           id="input_location"
           required
+          #form_location
           [(ngModel)]="input_location"
           [ngModelOptions]="{ standalone: true }"
         />
