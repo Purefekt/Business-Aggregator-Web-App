@@ -40,7 +40,7 @@ export class SearchRouteComponent implements OnInit {
   input_keyword_search_control = new FormControl();
   autocompleted_keywords: any;
   isLoading = false;
-  minLengthTerm = 3;
+  minLengthTerm = 1;
 
   onSelected() {
     this.input_keyword = this.input_keyword;
