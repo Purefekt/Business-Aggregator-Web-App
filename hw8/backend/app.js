@@ -129,6 +129,7 @@ app.get("/search", async (req, res) => {
     res.send(JSON.stringify(data_table));
 });
 
+// http://127.0.0.1:3000/autocomplete?initial_text=del
 app.get("/autocomplete", async (req, res) => {
     console.log("/autocomplete running");
 

@@ -12,12 +12,7 @@ import {
   distinctUntilChanged,
   filter,
 } from 'rxjs/operators';
-const YELP_API_KEY =
-  'H2ckcPhI3zXZ6rasK0NGHswOf9JCf6YDne7GetsqnPBVnri3uM2-ZsehURtPhvjbfT62o3wqQKlcJ2fsd1bm3pvpkfwkeGiDV34Db6kiV8UQRNSbdjVhF0DVxcgqY3Yx';
-const headers = new HttpHeaders()
-  .set('Authorization', `Bearer ${YELP_API_KEY}`)
-  .set('Access-Control-Allow-Origin', '*');
-// // // // // // // // //
+// // // // // // // // // For auto complete
 
 @Component({
   selector: 'app-search-route',
@@ -41,25 +36,25 @@ export class SearchRouteComponent implements OnInit {
 
   no_yelp_data: boolean = true;
 
-  // for auto complete
+  // For auto complete
   input_keyword_search_control = new FormControl();
   autocompleted_keywords: any;
   isLoading = false;
   minLengthTerm = 3;
 
   onSelected() {
-    console.log(this.input_keyword);
     this.input_keyword = this.input_keyword;
   }
 
   displayWith(value: any) {
     return value?.text;
   }
+  // // // // // // // // // For auto complete
 
   constructor(private api: ApiService, private http: HttpClient) {}
-  // without auto complete -> constructor(private api: ApiService) {}
 
   ngOnInit(): void {
+    // Everything inside is for autocomplete
     this.input_keyword_search_control.valueChanges
       .pipe(
         filter((res) => {
@@ -73,13 +68,7 @@ export class SearchRouteComponent implements OnInit {
         }),
         switchMap((value) =>
           this.http
-            .get(
-              'https://corsanywhere.herokuapp.com/https://api.yelp.com/v3/autocomplete?text=' +
-                value,
-              {
-                headers,
-              }
-            )
+            .get('http://127.0.0.1:3000/autocomplete?initial_text=' + value)
             .pipe(
               finalize(() => {
                 this.isLoading = false;
@@ -88,23 +77,7 @@ export class SearchRouteComponent implements OnInit {
         )
       )
       .subscribe((data: any) => {
-        if (data['terms'].length == 0 && data['categories'].length == 0) {
-          this.autocompleted_keywords = [];
-        } else {
-          if (data['terms'].length > 0) {
-            for (let i = 0; i < data['terms'].length; i++) {
-              this.autocompleted_keywords.push(data['terms'][i]);
-            }
-          }
-          if (data['categories'].length > 0) {
-            for (let i = 0; i < data['categories'].length; i++) {
-              this.autocompleted_keywords.push({
-                text: data['categories'][i]['title'],
-              });
-            }
-          }
-        }
-        console.log(this.autocompleted_keywords);
+        this.autocompleted_keywords = data;
       });
   }
 
