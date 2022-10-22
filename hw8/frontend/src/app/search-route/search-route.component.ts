@@ -52,16 +52,16 @@ export class SearchRouteComponent implements OnInit {
     this.api
       .search(form_keyword, form_distance, form_category, form_location)
       .subscribe((data) => {
-        // add the data to this.data to pass to the results-table component
-        for (var i = 0; i < Object.keys(data).length; i++) {
-          this.data.push(Object.values(data)[i]);
-        }
-
-        // change the no_yelp_data flag based on if data came or not
-        if (Object.keys(this.data).length === 0) {
+        // reset this for every next submit
+        this.no_yelp_data = true;
+        if (Object.keys(data).length == 0) {
           this.no_yelp_data = true;
         } else {
           this.no_yelp_data = false;
+          // add the data to this.data to pass to the results-table component
+          for (var i = 0; i < Object.keys(data).length; i++) {
+            this.data.push(Object.values(data)[i]);
+          }
         }
       });
   }

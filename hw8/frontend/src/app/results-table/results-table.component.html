@@ -1,4 +1,7 @@
-<table class="table table-striped data_table_container mx-auto mt-5">
+<table
+  *ngIf="yelp_data_exists"
+  class="table table-striped data_table_container mx-auto mt-5"
+>
   <thead>
     <tr>
       <th scope="col">#</th>
