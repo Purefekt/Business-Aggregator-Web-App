@@ -1,6 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/api.service';
 
+// For auto complete
+import { FormControl } from '@angular/forms';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {
+  debounceTime,
+  tap,
+  switchMap,
+  finalize,
+  distinctUntilChanged,
+  filter,
+} from 'rxjs/operators';
+const YELP_API_KEY =
+  'H2ckcPhI3zXZ6rasK0NGHswOf9JCf6YDne7GetsqnPBVnri3uM2-ZsehURtPhvjbfT62o3wqQKlcJ2fsd1bm3pvpkfwkeGiDV34Db6kiV8UQRNSbdjVhF0DVxcgqY3Yx';
+const headers = new HttpHeaders()
+  .set('Authorization', `Bearer ${YELP_API_KEY}`)
+  .set('Access-Control-Allow-Origin', '*');
+// // // // // // // // //
+
 @Component({
   selector: 'app-search-route',
   templateUrl: './search-route.component.html',
@@ -23,9 +41,77 @@ export class SearchRouteComponent implements OnInit {
 
   no_yelp_data: boolean = true;
 
-  constructor(private api: ApiService) {}
+  // for auto complete
+  input_keyword_search_control = new FormControl();
+  autocompleted_keywords: any;
+  isLoading = false;
+  minLengthTerm = 3;
 
-  ngOnInit(): void {}
+  onSelected() {
+    console.log(this.input_keyword);
+    this.input_keyword = this.input_keyword;
+  }
+
+  displayWith(value: any) {
+    return value?.text;
+  }
+
+  constructor(private api: ApiService, private http: HttpClient) {}
+  // without auto complete -> constructor(private api: ApiService) {}
+
+  ngOnInit(): void {
+    // const headers = {
+    //   Authorization: `Bearer ${YELP_API_KEY}`,
+    //   'Access-Control-Allow-Origin': '*',
+    // };
+
+    this.input_keyword_search_control.valueChanges
+      .pipe(
+        filter((res) => {
+          return res !== null && res.length >= this.minLengthTerm;
+        }),
+        distinctUntilChanged(),
+        debounceTime(1000),
+        tap(() => {
+          this.autocompleted_keywords = [];
+          this.isLoading = true;
+        }),
+        switchMap((value) =>
+          this.http
+            .get(
+              'https://corsanywhere.herokuapp.com/https://api.yelp.com/v3/autocomplete?text=' +
+                value,
+              {
+                headers,
+              }
+            )
+            .pipe(
+              finalize(() => {
+                this.isLoading = false;
+              })
+            )
+        )
+      )
+      .subscribe((data: any) => {
+        if (data['terms'].length == 0 && data['categories'].length == 0) {
+          this.autocompleted_keywords = [];
+        } else {
+          if (data['terms'].length > 0) {
+            for (let i = 0; i < data['terms'].length; i++) {
+              this.autocompleted_keywords.push(data['terms'][i]);
+            }
+          }
+          if (data['categories'].length > 0) {
+            for (let i = 0; i < data['categories'].length; i++) {
+              this.autocompleted_keywords.push({
+                text: data['categories'][i]['title'],
+              });
+            }
+          }
+        }
+        console.log(this.autocompleted_keywords);
+      });
+  }
 
   async search(
     form_keyword: string,

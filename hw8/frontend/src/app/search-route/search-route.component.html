@@ -14,7 +14,7 @@
     >
       <h4 class="text-center">Business search</h4>
 
-      <div class="form-group mt-3 required">
+      <mat-form-field class="example-full-width form-group mt-3 required">
         <small>
           <label class="control-label" for="input_keyword">Keyword</label>
         </small>
@@ -25,9 +25,28 @@
           required
           #form_keyword
           [(ngModel)]="input_keyword"
-          [ngModelOptions]="{ standalone: true }"
+          matInput
+          [matAutocomplete]="auto"
+          [formControl]="input_keyword_search_control"
         />
-      </div>
+        <mat-autocomplete
+          [panelWidth]="300"
+          #auto="matAutocomplete"
+          (optionSelected)="onSelected()"
+          [displayWith]="displayWith"
+          ><mat-option *ngIf="isLoading" class="is-loading"
+            >PUT SPINNER HERE</mat-option
+          >
+          <ng-container *ngIf="!isLoading">
+            <mat-option
+              *ngFor="let keyword of autocompleted_keywords"
+              [value]="keyword"
+            >
+              <span>{{ keyword.text }}</span>
+            </mat-option>
+          </ng-container>
+        </mat-autocomplete>
+      </mat-form-field>
 
       <div class="row mt-3">
         <div class="col">
