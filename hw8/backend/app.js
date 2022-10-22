@@ -7,6 +7,7 @@ const port = 3000;
 const axios = require("axios").default;
 const yelp = require("yelp-fusion");
 const ipInfo = require("ipinfo-express");
+const { response } = require("express");
 
 // API KEYS
 const YELP_API_KEY =
@@ -72,7 +73,7 @@ app.get("/search", async (req, res) => {
         ip_add = form_location_with_flag.substring(1);
         try {
             var ipinfo_data = await axios
-                .get(`http://ipinfo.io/${ip_add}?token=9b48ddcd3c58b2`)
+                .get(`http://ipinfo.io/${ip_add}?token=${IPINFO_TOKEN}`)
                 .then((response) => response.data);
             var lat_and_lng = ipinfo_data.loc;
             console.log(lat_and_lng);
@@ -126,6 +127,52 @@ app.get("/search", async (req, res) => {
 
     // Send final JSON as output
     res.send(JSON.stringify(data_table));
+});
+
+app.get("/autocomplete", async (req, res) => {
+    console.log("/autocomplete running");
+
+    const initial_text = req.query.initial_text;
+    var autocomplete_data_formatted = [];
+    try {
+        var autocomplete_data = await axios
+            .get("https://api.yelp.com/v3/autocomplete?text=" + initial_text, {
+                headers: {
+                    Authorization: `Bearer ${YELP_API_KEY}`,
+                },
+            })
+            .then((response) => response.data);
+        // format the data and send to frontend
+        if (
+            autocomplete_data["terms"].length == 0 &&
+            autocomplete_data["categories"].length == 0
+        ) {
+            autocomplete_data_formatted = [];
+        } else {
+            if (autocomplete_data["categories"].length > 0) {
+                for (
+                    let i = 0;
+                    i < autocomplete_data["categories"].length;
+                    i++
+                ) {
+                    autocomplete_data_formatted.push({
+                        text: autocomplete_data["categories"][i]["title"],
+                    });
+                }
+            }
+            if (autocomplete_data["terms"].length > 0) {
+                for (let i = 0; i < autocomplete_data["terms"].length; i++) {
+                    autocomplete_data_formatted.push(
+                        autocomplete_data["terms"][i]
+                    );
+                }
+            }
+        }
+        res.send(JSON.stringify(autocomplete_data_formatted));
+    } catch (error) {
+        res.send(JSON.stringify([]));
+        return;
+    }
 });
 
 app.listen(port, () => {

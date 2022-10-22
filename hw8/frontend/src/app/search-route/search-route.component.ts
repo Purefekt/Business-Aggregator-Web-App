@@ -60,11 +60,6 @@ export class SearchRouteComponent implements OnInit {
   // without auto complete -> constructor(private api: ApiService) {}
 
   ngOnInit(): void {
-    // const headers = {
-    //   Authorization: `Bearer ${YELP_API_KEY}`,
-    //   'Access-Control-Allow-Origin': '*',
-    // };
-
     this.input_keyword_search_control.valueChanges
       .pipe(
         filter((res) => {

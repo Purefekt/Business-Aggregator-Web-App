@@ -30,12 +30,16 @@
           [formControl]="input_keyword_search_control"
         />
         <mat-autocomplete
-          [panelWidth]="300"
           #auto="matAutocomplete"
           (optionSelected)="onSelected()"
           [displayWith]="displayWith"
           ><mat-option *ngIf="isLoading" class="is-loading"
-            >PUT SPINNER HERE</mat-option
+            ><div
+              class="spinner-border spinner-border-sm float-start"
+              role="status"
+            >
+              <span class="visually-hidden">Loading...</span>
+            </div></mat-option
           >
           <ng-container *ngIf="!isLoading">
             <mat-option
