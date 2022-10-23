@@ -9,6 +9,9 @@ export class ResultsTableComponent implements OnInit {
   @Input() results_table_data: any;
   yelp_data_exists: boolean = true;
 
+  // Business details tab card data
+  name: string = 'Cafe Dulce';
+
   constructor() {}
 
   ngOnInit(): void {}

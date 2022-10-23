@@ -1,4 +1,4 @@
-/* style the search form container as in spec */
+/* style the table */
 .data_table_container {
   background-color: white;
   border-radius: 1rem;
@@ -16,4 +16,13 @@ th {
 
 td {
   font-size: 14px;
+}
+
+/* style the material tab */
+.business_details_tab_card {
+  background-color: white;
+  border-radius: 1rem;
+  max-width: 800px;
+  min-width: 360px;
+  padding: 0px;
 }

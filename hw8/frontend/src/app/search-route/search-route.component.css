@@ -38,7 +38,7 @@ input[type="number"] {
   text-align: left;
 }
 
-/* move the down carrot to right middle end */
+/* move the down carrot to right middle end for DROPDOWN */
 .dropdown-toggle::after {
   vertical-align: middle !important;
   float: right !important;

@@ -18,5 +18,45 @@ body {
   border: solid 2px black;
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+/* style the angular material tab */
+.mat-tab-group.mat-background-primary > .mat-tab-header,
+.mat-tab-group.mat-background-primary > .mat-tab-link-container,
+.mat-tab-group.mat-background-primary > .mat-tab-header-pagination,
+.mat-tab-nav-bar.mat-background-primary > .mat-tab-header,
+.mat-tab-nav-bar.mat-background-primary > .mat-tab-link-container,
+.mat-tab-nav-bar.mat-background-primary > .mat-tab-header-pagination {
+  background-color: rgba(250, 216, 81, 0.885);
+}
+
+.mat-tab-group.mat-background-primary > .mat-tab-header .mat-tab-label,
+.mat-tab-group.mat-background-primary > .mat-tab-link-container .mat-tab-link,
+.mat-tab-nav-bar.mat-background-primary > .mat-tab-header .mat-tab-label,
+.mat-tab-nav-bar.mat-background-primary
+  > .mat-tab-link-container
+  .mat-tab-link {
+  color: gray;
+}
+
+.mat-tab-group.mat-primary.mat-background-primary
+  > .mat-tab-header
+  .mat-ink-bar,
+.mat-tab-group.mat-primary.mat-background-primary
+  > .mat-tab-link-container
+  .mat-ink-bar,
+.mat-tab-nav-bar.mat-primary.mat-background-primary
+  > .mat-tab-header
+  .mat-ink-bar,
+.mat-tab-nav-bar.mat-primary.mat-background-primary
+  > .mat-tab-link-container
+  .mat-ink-bar {
+  background-color: #3f51b5;
+}
