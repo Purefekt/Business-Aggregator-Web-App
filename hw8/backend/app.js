@@ -6,8 +6,6 @@ const app = express();
 const port = 3000;
 const axios = require("axios").default;
 const yelp = require("yelp-fusion");
-const ipInfo = require("ipinfo-express");
-const { response } = require("express");
 
 // API KEYS
 const YELP_API_KEY =

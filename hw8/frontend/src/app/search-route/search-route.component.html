@@ -184,9 +184,6 @@
   </div>
 </div>
 
-<!-- remove this -->
-<app-results-table [results_table_data]="data"></app-results-table>
-
 <!-- Results Table goes here -->
 <div *ngIf="!first_search_performed; else other_content"></div>
 <ng-template #other_content>
