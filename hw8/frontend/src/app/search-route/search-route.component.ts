@@ -42,11 +42,9 @@ export class SearchRouteComponent implements OnInit {
   autocompleted_keywords: any;
   isLoading = false;
   minLengthTerm = 1;
-
   onSelected() {
     this.input_keyword = this.input_keyword;
   }
-
   displayWith(value: any) {
     return value?.text;
   }

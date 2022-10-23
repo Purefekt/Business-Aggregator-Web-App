@@ -1,59 +1,58 @@
-<!-- PUT IF CONDITION -->
+<div *ngIf="business_clicked; else show_table">
+  <div class="container-fluid mx-5-5 business_details_tab_card mt-5">
+    <div class="mx-2 pt-3" style="cursor: pointer" (click)="go_back_to_table()">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="16"
+        height="16"
+        fill="currentColor"
+        class="bi bi-arrow-left"
+        viewBox="0 0 16 16"
+      >
+        <path
+          fill-rule="evenodd"
+          d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"
+        ></path>
+      </svg>
+    </div>
 
-<!-- TABLE -->
-<table
-  *ngIf="yelp_data_exists"
-  class="table table-striped data_table_container mx-auto mt-5"
->
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Image</th>
-      <th scope="col">Business Name</th>
-      <th scope="col">Rating</th>
-      <th scope="col">Distance (miles)</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr
-      *ngFor="let result of results_table_data"
-      style="cursor: pointer"
-      (click)="test_fun(result.id)"
-    >
-      <th scope="row">{{ result.index }}</th>
-      <td>
-        <img class="img-fluid" src="{{ result.image_url }}" />
-      </td>
-      <td>{{ result.name }}</td>
-      <td>{{ result.rating }}</td>
-      <td>{{ result.distance }}</td>
-    </tr>
-  </tbody>
-</table>
+    <h4 class="text-center">{{ name }}</h4>
+    <mat-tab-group mat-align-tabs="center" backgroundColor="primary">
+      <mat-tab label="Business Details">Business details</mat-tab>
+      <mat-tab label="Map location">Map location</mat-tab>
+      <mat-tab label="Reviews">Reviews</mat-tab>
+    </mat-tab-group>
+  </div>
+</div>
 
 <!-- BUSINESS DETAILS TAB CARD -->
-<div class="container-fluid mx-5-5 business_details_tab_card mt-5">
-  <div class="mx-2 pt-3">
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="16"
-      height="16"
-      fill="currentColor"
-      class="bi bi-arrow-left"
-      viewBox="0 0 16 16"
-    >
-      <path
-        fill-rule="evenodd"
-        d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"
-      ></path>
-    </svg>
-  </div>
+<ng-template #show_table>
+  <!-- TABLE -->
+  <table class="table table-striped data_table_container mx-auto mt-5">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Image</th>
+        <th scope="col">Business Name</th>
+        <th scope="col">Rating</th>
+        <th scope="col">Distance (miles)</th>
+      </tr>
+    </thead>
 
-  <h4 class="text-center">{{ name }}</h4>
-  <mat-tab-group mat-align-tabs="center" backgroundColor="primary">
-    <mat-tab label="Business Details">Business details</mat-tab>
-    <mat-tab label="Map location">Map location</mat-tab>
-    <mat-tab label="Reviews">Reviews</mat-tab>
-  </mat-tab-group>
-</div>
+    <tbody>
+      <tr
+        *ngFor="let result of results_table_data"
+        style="cursor: pointer"
+        (click)="get_business_details(result.id)"
+      >
+        <th scope="row">{{ result.index }}</th>
+        <td>
+          <img class="img-fluid" src="{{ result.image_url }}" />
+        </td>
+        <td>{{ result.name }}</td>
+        <td>{{ result.rating }}</td>
+        <td>{{ result.distance }}</td>
+      </tr>
+    </tbody>
+  </table>
+</ng-template>
