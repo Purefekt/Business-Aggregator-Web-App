@@ -70,7 +70,6 @@ app.get("/search", async (req, res) => {
                 .get(`http://ipinfo.io/${ip_add}?token=${IPINFO_TOKEN}`)
                 .then((response) => response.data);
             var lat_and_lng = ipinfo_data.loc;
-            console.log(lat_and_lng);
             lat = lat_and_lng.split(",")[0];
             lng = lat_and_lng.split(",")[1];
         } catch (error) {
@@ -97,7 +96,6 @@ app.get("/search", async (req, res) => {
 
         // need upto 10 results
         const max_results = Math.min(10, Object.keys(yelp_data_table).length);
-        console.log(max_results);
         // create the JSON object
         const data_table = [];
         for (let i = 0; i < max_results; i++) {
