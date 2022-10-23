@@ -10,9 +10,13 @@ export class ResultsTableComponent implements OnInit {
   yelp_data_exists: boolean = true;
 
   // Business details tab card data
-  name: string = 'Cafe Dulce';
+  name: string = '';
 
   constructor() {}
 
   ngOnInit(): void {}
+
+  test_fun(value: any) {
+    console.log(value);
+  }
 }

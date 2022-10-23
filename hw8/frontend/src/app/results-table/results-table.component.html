@@ -16,7 +16,11 @@
   </thead>
 
   <tbody>
-    <tr *ngFor="let result of results_table_data">
+    <tr
+      *ngFor="let result of results_table_data"
+      style="cursor: pointer"
+      (click)="test_fun(result.id)"
+    >
       <th scope="row">{{ result.index }}</th>
       <td>
         <img class="img-fluid" src="{{ result.image_url }}" />

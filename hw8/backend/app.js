@@ -28,8 +28,7 @@ app.get("/", (req, res) => {
     res.send("Veer's express server");
 });
 
-// http://127.0.0.1:3000/search?form_keyword=pizza&form_distance=10&form_category=all&form_location=USC
-// http://127.0.0.1:3000/search?form_keyword=Skydiving&form_distance=16093&form_category=hotelstravel&form_location=USC
+// http://127.0.0.1:3000/search?form_keyword=pizza&form_distance=10&form_category=all&form_location=0USC
 app.get("/search", async (req, res) => {
     console.log("/search running");
 
@@ -113,6 +112,7 @@ app.get("/search", async (req, res) => {
     const data_table = [];
     for (let i = 0; i < max_results; i++) {
         var data_table_entry = new Object();
+        data_table_entry.id = yelp_data_table[i]["id"];
         data_table_entry.index = i + 1;
         data_table_entry.image_url = yelp_data_table[i]["image_url"];
         data_table_entry.name = yelp_data_table[i]["name"];
