@@ -174,6 +174,29 @@ app.get("/autocomplete", async (req, res) => {
     }
 });
 
+// http://127.0.0.1:3000/get_business_details?id=T1RfgUMYKW3HD55SEJILbQ
+app.get("/get_business_details", async (req, res) => {
+    console.log("/get_business_details");
+
+    const id = req.query.id;
+
+    var business_details = await client
+        .business(id)
+        .then((response) => {
+            return response.jsonBody;
+        })
+        .catch((e) => {
+            console.log(e);
+        });
+
+    var business_details_formatted = {};
+
+    // HANDLE BUSINESS MIGRATION
+
+    console.log(business_details);
+    res.send(JSON.stringify(business_details));
+});
+
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`);
 });
