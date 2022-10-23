@@ -1,17 +1,12 @@
-// as mentioned by yelp-fusion api package
-"use strict";
-
 const { response } = require("express");
 const express = require("express");
 const app = express();
 const port = 3000;
 const axios = require("axios").default;
-const yelp = require("yelp-fusion");
 
 // API KEYS
 const YELP_API_KEY =
     "H2ckcPhI3zXZ6rasK0NGHswOf9JCf6YDne7GetsqnPBVnri3uM2-ZsehURtPhvjbfT62o3wqQKlcJ2fsd1bm3pvpkfwkeGiDV34Db6kiV8UQRNSbdjVhF0DVxcgqY3Yx";
-const client = yelp.client(`${YELP_API_KEY}`);
 const headers = { Authorization: `Bearer ${YELP_API_KEY}` };
 const GOOGLE_API_KEY = "AIzaSyCJn6gE_Bu1c1hZ1CF7PDtijhqhKVpx33c";
 const IPINFO_TOKEN = "9b48ddcd3c58b2";
@@ -91,42 +86,38 @@ app.get("/search", async (req, res) => {
     console.log(`Latitude => ${lat}`);
     console.log(`Longitude => ${lng}`);
 
-    // RUN YELP FUSION API
-    var yelp_data_table = await client
-        .search({
-            term: form_keyword,
-            radius: form_distance,
-            categories: form_category,
-            latitude: lat,
-            longitude: lng,
-        })
-        .then((response) => {
-            return response.jsonBody.businesses;
-        })
-        .catch((e) => {
-            console.log(e);
-            res.send("Error");
-        });
+    // RUN YELP API
+    try {
+        var yelp_data_table = await axios
+            .get(
+                `https://api.yelp.com/v3/businesses/search?term=${form_keyword}&latitude=${lat}&longitude=${lng}&categories=${form_category}&radius=${form_distance}`,
+                { headers: headers }
+            )
+            .then((response) => response.data.businesses);
 
-    // need upto 10 results
-    const max_results = Math.min(10, Object.keys(yelp_data_table).length);
-    // create the JSON object
-    const data_table = [];
-    for (let i = 0; i < max_results; i++) {
-        var data_table_entry = new Object();
-        data_table_entry.id = yelp_data_table[i]["id"];
-        data_table_entry.index = i + 1;
-        data_table_entry.image_url = yelp_data_table[i]["image_url"];
-        data_table_entry.name = yelp_data_table[i]["name"];
-        data_table_entry.rating = yelp_data_table[i]["rating"];
-        data_table_entry.distance = Math.round(
-            yelp_data_table[i]["distance"] / 1609.344
-        );
-        data_table.push(data_table_entry);
+        // need upto 10 results
+        const max_results = Math.min(10, Object.keys(yelp_data_table).length);
+        console.log(max_results);
+        // create the JSON object
+        const data_table = [];
+        for (let i = 0; i < max_results; i++) {
+            var data_table_entry = new Object();
+            data_table_entry.id = yelp_data_table[i]["id"];
+            data_table_entry.index = i + 1;
+            data_table_entry.image_url = yelp_data_table[i]["image_url"];
+            data_table_entry.name = yelp_data_table[i]["name"];
+            data_table_entry.rating = yelp_data_table[i]["rating"];
+            data_table_entry.distance = Math.round(
+                yelp_data_table[i]["distance"] / 1609.344
+            );
+            data_table.push(data_table_entry);
+        }
+
+        res.send(JSON.stringify(data_table));
+    } catch (error) {
+        res.send(JSON.stringify([]));
+        return;
     }
-
-    // Send final JSON as output
-    res.send(JSON.stringify(data_table));
 });
 
 // http://127.0.0.1:3000/autocomplete?initial_text=del
@@ -138,9 +129,7 @@ app.get("/autocomplete", async (req, res) => {
     try {
         var autocomplete_data = await axios
             .get("https://api.yelp.com/v3/autocomplete?text=" + initial_text, {
-                headers: {
-                    Authorization: `Bearer ${YELP_API_KEY}`,
-                },
+                headers: headers,
             })
             .then((response) => response.data);
         // format the data and send to frontend
