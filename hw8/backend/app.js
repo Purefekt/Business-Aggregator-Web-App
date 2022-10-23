@@ -1,6 +1,7 @@
 // as mentioned by yelp-fusion api package
 "use strict";
 
+const { response } = require("express");
 const express = require("express");
 const app = express();
 const port = 3000;
@@ -11,6 +12,7 @@ const yelp = require("yelp-fusion");
 const YELP_API_KEY =
     "H2ckcPhI3zXZ6rasK0NGHswOf9JCf6YDne7GetsqnPBVnri3uM2-ZsehURtPhvjbfT62o3wqQKlcJ2fsd1bm3pvpkfwkeGiDV34Db6kiV8UQRNSbdjVhF0DVxcgqY3Yx";
 const client = yelp.client(`${YELP_API_KEY}`);
+const headers = { Authorization: `Bearer ${YELP_API_KEY}` };
 const GOOGLE_API_KEY = "AIzaSyCJn6gE_Bu1c1hZ1CF7PDtijhqhKVpx33c";
 const IPINFO_TOKEN = "9b48ddcd3c58b2";
 
@@ -193,116 +195,120 @@ app.get("/get_business_details", async (req, res) => {
     var url = null;
 
     // RUN YELP API
-    var business_details = await client
-        .business(id)
-        .then((response) => {
-            return response.jsonBody;
-        })
-        .catch((e) => {
-            console.log(e);
-        });
+    try {
+        var business_details = await axios
+            .get(`https://api.yelp.com/v3/businesses/${id}`, {
+                headers: headers,
+            })
+            .then((response) => response.data);
 
-    // error check for all fields
-    if ("categories" in business_details) {
-        categories = "";
-        for (let i = 0; i < business_details["categories"].length; i++) {
-            categories =
-                categories + business_details["categories"][i]["title"] + " | ";
+        // error check for all fields
+        if ("categories" in business_details) {
+            categories = "";
+            for (let i = 0; i < business_details["categories"].length; i++) {
+                categories =
+                    categories +
+                    business_details["categories"][i]["title"] +
+                    " | ";
+            }
+            categories = categories.substring(0, categories.length - 3);
         }
-        categories = categories.substring(0, categories.length - 3);
-    }
-    if (categories == "") categories = null;
+        if (categories == "") categories = null;
 
-    if ("coordinates" in business_details) {
-        if ("latitude" in business_details["coordinates"]) {
-            lat = business_details["coordinates"]["latitude"];
-            if (lat == "") lat = null;
-        }
-        if ("longitude" in business_details["coordinates"]) {
-            lng = business_details["coordinates"]["longitude"];
-            if (lng == "") lng = null;
-        }
-    }
-
-    if ("display_phone" in business_details) {
-        phone = business_details["display_phone"];
-        if (phone == "") phone = null;
-    }
-
-    if ("hours" in business_details) {
-        if (business_details["hours"].length > 0) {
-            if ("is_open_now" in business_details["hours"][0]) {
-                status = business_details["hours"][0]["is_open_now"];
+        if ("coordinates" in business_details) {
+            if ("latitude" in business_details["coordinates"]) {
+                lat = business_details["coordinates"]["latitude"];
+                if (lat == "") lat = null;
+            }
+            if ("longitude" in business_details["coordinates"]) {
+                lng = business_details["coordinates"]["longitude"];
+                if (lng == "") lng = null;
             }
         }
-    }
 
-    if ("location" in business_details) {
-        if ("display_address" in business_details["location"]) {
-            location = "";
-            for (
-                let i = 0;
-                i < business_details["location"]["display_address"].length;
-                i++
-            ) {
-                location =
-                    location +
-                    business_details["location"]["display_address"][i] +
-                    " ";
+        if ("display_phone" in business_details) {
+            phone = business_details["display_phone"];
+            if (phone == "") phone = null;
+        }
+
+        if ("hours" in business_details) {
+            if (business_details["hours"].length > 0) {
+                if ("is_open_now" in business_details["hours"][0]) {
+                    status = business_details["hours"][0]["is_open_now"];
+                }
             }
-            location = location.substring(0, location.length - 1);
-            if (location == "") location = null;
         }
-    }
 
-    name = business_details["name"];
-
-    if ("photos" in business_details) {
-        const num_photos = business_details["photos"].length;
-        if (num_photos == 1) photo1 = business_details["photos"][0];
-        else if (num_photos == 2) {
-            photo1 = business_details["photos"][0];
-            photo2 = business_details["photos"][1];
-        } else if (num_photos == 3) {
-            photo1 = business_details["photos"][0];
-            photo2 = business_details["photos"][1];
-            photo3 = business_details["photos"][2];
+        if ("location" in business_details) {
+            if ("display_address" in business_details["location"]) {
+                location = "";
+                for (
+                    let i = 0;
+                    i < business_details["location"]["display_address"].length;
+                    i++
+                ) {
+                    location =
+                        location +
+                        business_details["location"]["display_address"][i] +
+                        " ";
+                }
+                location = location.substring(0, location.length - 1);
+                if (location == "") location = null;
+            }
         }
+
+        name = business_details["name"];
+
+        if ("photos" in business_details) {
+            const num_photos = business_details["photos"].length;
+            if (num_photos == 1) photo1 = business_details["photos"][0];
+            else if (num_photos == 2) {
+                photo1 = business_details["photos"][0];
+                photo2 = business_details["photos"][1];
+            } else if (num_photos == 3) {
+                photo1 = business_details["photos"][0];
+                photo2 = business_details["photos"][1];
+                photo3 = business_details["photos"][2];
+            }
+        }
+
+        if ("price" in business_details) price = business_details["price"];
+
+        if ("url" in business_details) url = business_details["url"];
+
+        console.log(categories);
+        console.log(lat);
+        console.log(lng);
+        console.log(phone);
+        console.log(status);
+        console.log(location);
+        console.log(name);
+        console.log(photo1);
+        console.log(photo2);
+        console.log(photo3);
+        console.log(price);
+        console.log(url);
+
+        // add data to the final object
+        var business_details_formatted = {};
+        business_details_formatted.categories = categories;
+        business_details_formatted.lat = lat;
+        business_details_formatted.lng = lng;
+        business_details_formatted.phone = phone;
+        business_details_formatted.status = status;
+        business_details_formatted.location = location;
+        business_details_formatted.name = name;
+        business_details_formatted.photo1 = photo1;
+        business_details_formatted.photo2 = photo2;
+        business_details_formatted.photo3 = photo3;
+        business_details_formatted.price = price;
+        business_details_formatted.url = url;
+
+        res.send(JSON.stringify(business_details_formatted));
+    } catch (error) {
+        res.send(JSON.stringify([]));
+        return;
     }
-
-    if ("price" in business_details) price = business_details["price"];
-
-    if ("url" in business_details) url = business_details["url"];
-
-    console.log(categories);
-    console.log(lat);
-    console.log(lng);
-    console.log(phone);
-    console.log(status);
-    console.log(location);
-    console.log(name);
-    console.log(photo1);
-    console.log(photo2);
-    console.log(photo3);
-    console.log(price);
-    console.log(url);
-
-    // add data to the final object
-    var business_details_formatted = {};
-    business_details_formatted.categories = categories;
-    business_details_formatted.lat = lat;
-    business_details_formatted.lng = lng;
-    business_details_formatted.phone = phone;
-    business_details_formatted.status = status;
-    business_details_formatted.location = location;
-    business_details_formatted.name = name;
-    business_details_formatted.photo1 = photo1;
-    business_details_formatted.photo2 = photo2;
-    business_details_formatted.photo3 = photo3;
-    business_details_formatted.price = price;
-    business_details_formatted.url = url;
-
-    res.send(JSON.stringify(business_details_formatted));
 });
 
 app.listen(port, () => {
