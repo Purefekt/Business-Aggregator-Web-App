@@ -34,7 +34,8 @@ export class SearchRouteComponent implements OnInit {
   input_location = '';
   data: Array<any> = [];
 
-  no_yelp_data: boolean = true;
+  no_yelp_data: any;
+  first_search_performed: boolean = false;
 
   // For auto complete
   input_keyword_search_control = new FormControl();
@@ -87,8 +88,8 @@ export class SearchRouteComponent implements OnInit {
     form_category: string,
     form_location: string
   ) {
-    // reset data on every call of search
-    this.data = [];
+    this.data = []; // reset data on every call of search
+    this.first_search_performed = true; // set to true on the very FIRST search
 
     // if auto detect loc checkbox is checked, get the ip address of the client
     var check_auto_detect = document.getElementById(
@@ -107,7 +108,6 @@ export class SearchRouteComponent implements OnInit {
       .search(form_keyword, form_distance, form_category, form_location)
       .subscribe((data) => {
         // reset this for every next submit
-        this.no_yelp_data = true;
         if (Object.keys(data).length == 0) {
           this.no_yelp_data = true;
         } else {
@@ -119,7 +119,6 @@ export class SearchRouteComponent implements OnInit {
           }
         }
       });
-    console.log(this.data);
   }
 
   // disable the location input box if auto detect checkbox is on

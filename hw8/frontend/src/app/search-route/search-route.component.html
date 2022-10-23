@@ -185,10 +185,23 @@
 </div>
 
 <!-- Results Table goes here -->
-
-<div *ngIf="no_yelp_data; else display_results_table">
-  <p>no records found</p>
-</div>
-<ng-template #display_results_table
-  ><app-results-table [results_table_data]="data"></app-results-table
-></ng-template>
+<div *ngIf="!first_search_performed; else other_content"></div>
+<ng-template #other_content>
+  <div *ngIf="no_yelp_data; else display_results_table">
+    <h4
+      class="text-center mt-5 mx-auto"
+      style="
+        color: red;
+        background-color: white;
+        width: 350px;
+        border-radius: 1rem;
+        text-align: center;
+      "
+    >
+      No results available
+    </h4>
+  </div>
+  <ng-template #display_results_table
+    ><app-results-table [results_table_data]="data"></app-results-table
+  ></ng-template>
+</ng-template>
