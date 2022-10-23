@@ -113,11 +113,13 @@ export class SearchRouteComponent implements OnInit {
         } else {
           this.no_yelp_data = false;
           // add the data to this.data to pass to the results-table component
+          this.data = []; // reset data to avoid errors on pressing submit twice too quickly
           for (var i = 0; i < Object.keys(data).length; i++) {
             this.data.push(Object.values(data)[i]);
           }
         }
       });
+    console.log(this.data);
   }
 
   // disable the location input box if auto detect checkbox is on
