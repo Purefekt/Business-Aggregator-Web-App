@@ -26,22 +26,30 @@
         <h4 class="text-center">{{ name }}</h4>
         <mat-tab-group mat-align-tabs="center" backgroundColor="primary">
           <mat-tab label="Business Details">Business details</mat-tab>
-          <mat-tab label="Map location">Map location</mat-tab>
+          <!-- MAPS TAB -->
+          <mat-tab label="Map location">
+            <google-map [options]="mapOptions">
+              <map-marker [position]="marker.position"></map-marker>
+            </google-map>
+          </mat-tab>
+          <!-- REVIEWS TAB -->
           <mat-tab label="Reviews">
-            <table class="table table-striped">
-              <tbody>
-                <tr *ngFor="let review of review_list">
-                  <div>
-                    <p class="text-break">
-                      <b>{{ review.user_name }}</b>
-                    </p>
-                    <p class="text-break">{{ review.rating }}</p>
-                    <p class="text-break">{{ review.review_text }}</p>
-                    <p class="text-break">{{ review.review_time }}</p>
-                  </div>
-                </tr>
-              </tbody>
-            </table>
+            <div class="container-fluid" style="padding: 0px">
+              <table class="table table-striped" style="margin-bottom: 0px">
+                <tbody>
+                  <tr *ngFor="let review of review_list">
+                    <div>
+                      <p class="text-break">
+                        <b>{{ review.user_name }}</b>
+                      </p>
+                      <p class="text-break">{{ review.rating }}</p>
+                      <p class="text-break">{{ review.review_text }}</p>
+                      <p class="text-break">{{ review.review_time }}</p>
+                    </div>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </mat-tab>
         </mat-tab-group>
       </div>

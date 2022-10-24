@@ -17,6 +17,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTabsModule } from '@angular/material/tabs';
 
+import { GoogleMapsModule } from '@angular/google-maps';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,6 +38,7 @@ import { MatTabsModule } from '@angular/material/tabs';
     MatButtonModule,
     MatAutocompleteModule,
     MatTabsModule,
+    GoogleMapsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

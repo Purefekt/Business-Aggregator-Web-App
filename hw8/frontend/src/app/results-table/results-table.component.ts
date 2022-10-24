@@ -17,6 +17,15 @@ export class ResultsTableComponent implements OnInit {
 
   review_list: any;
 
+  // Set to random lat lng, will change in the api call
+  mapOptions: google.maps.MapOptions = {
+    center: { lat: 40.70274718768062, lng: -73.99343490196397 },
+    zoom: 14,
+  };
+  marker = {
+    position: { lat: 40.70274718768062, lng: -73.99343490196397 },
+  };
+
   constructor(private api: ApiService) {}
 
   // This is to avoid being stuck on the business tab card screen when on it and submitting a new query. This will set business_clicked to false whenever the parent component sends it new data.
@@ -35,6 +44,15 @@ export class ResultsTableComponent implements OnInit {
       console.log(Object.values(data));
       this.name = Object.values(data)[6];
       this.review_list = Object.values(data)[12];
+
+      var lat = Object.values(data)[1];
+      var lng = Object.values(data)[2];
+      this.mapOptions = {
+        center: { lat: lat, lng: lng },
+        zoom: 14,
+      };
+      this.marker = { position: { lat: lat, lng: lng } };
+
       this.load_completed_card = true; // at the very bottom
     });
   }
