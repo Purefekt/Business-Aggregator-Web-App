@@ -25,16 +25,40 @@
 
         <h4 class="text-center">{{ name }}</h4>
         <mat-tab-group mat-align-tabs="center" backgroundColor="primary">
-          <mat-tab label="Business Details">Business details</mat-tab>
+          <!-- BUSINESS DETAILS TAB -->
+          <mat-tab label="Business Details">
+            <div class="row container">
+              <div class="col-md-6 col-sm-12">
+                <div class="row">
+                  <div class="col-md-12 col-sm-6">
+                    <h3>GeeksForGeeks is awesome!</h3>
+                  </div>
+                  <div class="col-md-12 col-sm-6">
+                    <h3>GeeksForGeeks is actually for geeks!</h3>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 col-sm-12">
+                <h3>I will switch to row as the screen goes smaller!</h3>
+              </div>
+            </div>
+          </mat-tab>
           <!-- MAPS TAB -->
-          <mat-tab label="Map location">
-            <google-map [options]="mapOptions">
+          <mat-tab label="Map location" class="mb-5">
+            <google-map width="100%" [options]="mapOptions">
               <map-marker [position]="marker.position"></map-marker>
             </google-map>
           </mat-tab>
           <!-- REVIEWS TAB -->
           <mat-tab label="Reviews">
-            <div class="container-fluid" style="padding: 0px">
+            <div
+              class="container-fluid"
+              style="
+                padding-left: 0px;
+                padding-right: 0px;
+                padding-bottom: 12px;
+              "
+            >
               <table class="table table-striped" style="margin-bottom: 0px">
                 <tbody>
                   <tr *ngFor="let review of review_list">
@@ -53,6 +77,7 @@
           </mat-tab>
         </mat-tab-group>
       </div>
+      <br />
     </div>
   </div>
 </div>
@@ -87,5 +112,6 @@
         </tr>
       </tbody>
     </table>
+    <br />
   </div>
 </ng-template>

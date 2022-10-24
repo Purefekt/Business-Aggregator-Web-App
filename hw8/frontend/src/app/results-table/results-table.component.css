@@ -24,5 +24,11 @@ td {
   border-radius: 1rem;
   max-width: 800px;
   min-width: 360px;
-  padding: 0px;
+  padding-left: 0px;
+  padding-right: 0px;
+  padding-bottom: 12px;
+}
+
+:ng-deep .map-container {
+  width: 100% !important;
 }
