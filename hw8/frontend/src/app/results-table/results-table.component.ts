@@ -15,9 +15,7 @@ export class ResultsTableComponent implements OnInit {
   business_clicked: boolean = false; // business hasnt been clicked when the table appears
   name: any = null;
 
-  review1: any = null;
-  review2: any = null;
-  review3: any = null;
+  review_list: any;
 
   constructor(private api: ApiService) {}
 
@@ -36,6 +34,7 @@ export class ResultsTableComponent implements OnInit {
     this.api.get_business_details(id).subscribe((data) => {
       console.log(Object.values(data));
       this.name = Object.values(data)[6];
+      this.review_list = Object.values(data)[12];
       this.load_completed_card = true; // at the very bottom
     });
   }

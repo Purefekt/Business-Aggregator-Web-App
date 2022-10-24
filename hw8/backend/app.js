@@ -180,6 +180,7 @@ app.get("/get_business_details", async (req, res) => {
     var photo3 = null;
     var price = null;
     var url = null;
+    var review_list = null;
     var review1 = null;
     var review2 = null;
     var review3 = null;
@@ -272,7 +273,7 @@ app.get("/get_business_details", async (req, res) => {
 
         if ("url" in business_details) url = business_details["url"];
 
-        if (reviews["total"] == 1)
+        if (reviews["total"] == 1) {
             review1 = {
                 user_name: reviews["reviews"][0]["user"]["name"],
                 rating: reviews["reviews"][0]["rating"] + "/5",
@@ -280,6 +281,10 @@ app.get("/get_business_details", async (req, res) => {
                 review_time:
                     reviews["reviews"][0]["time_created"].split(" ")[0],
             };
+            review_list = [];
+            review_list.push(review1);
+        }
+
         if (reviews["total"] == 2) {
             review1 = {
                 user_name: reviews["reviews"][0]["user"]["name"],
@@ -295,6 +300,9 @@ app.get("/get_business_details", async (req, res) => {
                 review_time:
                     reviews["reviews"][1]["time_created"].split(" ")[0],
             };
+            review_list = [];
+            review_list.push(review1);
+            review_list.push(review2);
         }
         if (reviews["total"] > 2) {
             review1 = {
@@ -318,6 +326,10 @@ app.get("/get_business_details", async (req, res) => {
                 review_time:
                     reviews["reviews"][2]["time_created"].split(" ")[0],
             };
+            review_list = [];
+            review_list.push(review1);
+            review_list.push(review2);
+            review_list.push(review3);
         }
 
         console.log(categories);
@@ -332,9 +344,10 @@ app.get("/get_business_details", async (req, res) => {
         console.log(photo3);
         console.log(price);
         console.log(url);
-        console.log(review1);
-        console.log(review2);
-        console.log(review3);
+        console.log(review_list);
+        // console.log(review1);
+        // console.log(review2);
+        // console.log(review3);
 
         // add data to the final object
         var business_details_formatted = {};
@@ -350,9 +363,7 @@ app.get("/get_business_details", async (req, res) => {
         business_details_formatted.photo3 = photo3;
         business_details_formatted.price = price;
         business_details_formatted.url = url;
-        business_details_formatted.review1 = review1;
-        business_details_formatted.review2 = review2;
-        business_details_formatted.review3 = review3;
+        business_details_formatted.review_list = review_list;
 
         res.send(JSON.stringify(business_details_formatted));
     } catch (error) {
