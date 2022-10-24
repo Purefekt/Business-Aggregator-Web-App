@@ -272,9 +272,6 @@ app.get("/get_business_details", async (req, res) => {
 
         if ("url" in business_details) url = business_details["url"];
 
-        // console.log(reviews);
-        console.log(reviews["reviews"][2]["user"]["name"]);
-
         if (reviews["total"] == 1)
             review1 = {
                 user_name: reviews["reviews"][0]["user"]["name"],

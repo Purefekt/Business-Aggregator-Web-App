@@ -202,6 +202,9 @@
     </h4>
   </div>
   <ng-template #display_results_table
-    ><app-results-table [results_table_data]="data"></app-results-table
+    ><app-results-table
+      [results_table_data]="data"
+      [load_completed_table]="load_completed"
+    ></app-results-table
   ></ng-template>
 </ng-template>

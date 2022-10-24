@@ -50,6 +50,8 @@ export class SearchRouteComponent implements OnInit {
   }
   // // // // // // // // // For auto complete
 
+  load_completed: boolean = false; //to display table when all data has arrived
+
   constructor(private api: ApiService, private http: HttpClient) {}
 
   ngOnInit(): void {
@@ -88,6 +90,7 @@ export class SearchRouteComponent implements OnInit {
   ) {
     this.data = []; // reset data on every call of search
     this.first_search_performed = true; // set to true on the very FIRST search
+    this.load_completed = false;
 
     // if auto detect loc checkbox is checked, get the ip address of the client
     var check_auto_detect = document.getElementById(
@@ -115,6 +118,7 @@ export class SearchRouteComponent implements OnInit {
           for (var i = 0; i < Object.keys(data).length; i++) {
             this.data.push(Object.values(data)[i]);
           }
+          this.load_completed = true;
         }
       });
   }

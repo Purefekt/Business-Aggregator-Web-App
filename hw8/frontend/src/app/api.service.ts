@@ -24,4 +24,9 @@ export class ApiService {
       form_location;
     return this.http.get(url);
   }
+
+  get_business_details(id: string) {
+    let url = 'http://127.0.0.1:3000/get_business_details?id=' + id;
+    return this.http.get(url);
+  }
 }
