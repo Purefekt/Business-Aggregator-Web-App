@@ -14,6 +14,15 @@ export class ResultsTableComponent implements OnInit {
   // Business details tab card data
   business_clicked: boolean = false; // business hasnt been clicked when the table appears
   name: any = null;
+  address: any = null;
+  categories: any = null;
+  phone: any = null;
+  price: any = null;
+  status: any = null;
+  url: any = null;
+  photo1: any = null;
+  photo2: any = null;
+  photo3: any = null;
 
   review_list: any;
 
@@ -43,6 +52,16 @@ export class ResultsTableComponent implements OnInit {
     this.api.get_business_details(id).subscribe((data) => {
       console.log(Object.values(data));
       this.name = Object.values(data)[6];
+      this.address = Object.values(data)[5];
+      this.categories = Object.values(data)[0];
+      this.phone = Object.values(data)[3];
+      this.price = Object.values(data)[10];
+      this.status = Object.values(data)[4];
+      this.url = Object.values(data)[11];
+      this.photo1 = Object.values(data)[7];
+      this.photo2 = Object.values(data)[8];
+      this.photo3 = Object.values(data)[9];
+
       this.review_list = Object.values(data)[12];
 
       var lat = Object.values(data)[1];
@@ -61,5 +80,14 @@ export class ResultsTableComponent implements OnInit {
     this.business_clicked = false; // go back and render the table
     this.load_completed_card = false;
     this.name = null;
+    this.address = null;
+    this.categories = null;
+    this.phone = null;
+    this.price = null;
+    this.status = null;
+    this.url = null;
+    this.photo1 = null;
+    this.photo2 = null;
+    this.photo3 = null;
   }
 }
