@@ -180,11 +180,20 @@ app.get("/get_business_details", async (req, res) => {
     var photo3 = null;
     var price = null;
     var url = null;
+    var review1 = null;
+    var review2 = null;
+    var review3 = null;
 
-    // RUN YELP API
     try {
+        // RUN YELP API BUSINESS DETAILS
         var business_details = await axios
             .get(`https://api.yelp.com/v3/businesses/${id}`, {
+                headers: headers,
+            })
+            .then((response) => response.data);
+        // RUN YELP API REVIEWS
+        var reviews = await axios
+            .get(`https://api.yelp.com/v3/businesses/${id}/reviews`, {
                 headers: headers,
             })
             .then((response) => response.data);
@@ -263,6 +272,57 @@ app.get("/get_business_details", async (req, res) => {
 
         if ("url" in business_details) url = business_details["url"];
 
+        // console.log(reviews);
+        console.log(reviews["reviews"][2]["user"]["name"]);
+
+        if (reviews["total"] == 1)
+            review1 = {
+                user_name: reviews["reviews"][0]["user"]["name"],
+                rating: reviews["reviews"][0]["rating"] + "/5",
+                review_text: reviews["reviews"][0]["text"],
+                review_time:
+                    reviews["reviews"][0]["time_created"].split(" ")[0],
+            };
+        if (reviews["total"] == 2) {
+            review1 = {
+                user_name: reviews["reviews"][0]["user"]["name"],
+                rating: reviews["reviews"][0]["rating"] + "/5",
+                review_text: reviews["reviews"][0]["text"],
+                review_time:
+                    reviews["reviews"][0]["time_created"].split(" ")[0],
+            };
+            review2 = {
+                user_name: reviews["reviews"][1]["user"]["name"],
+                rating: reviews["reviews"][1]["rating"] + "/5",
+                review_text: reviews["reviews"][1]["text"],
+                review_time:
+                    reviews["reviews"][1]["time_created"].split(" ")[0],
+            };
+        }
+        if (reviews["total"] > 2) {
+            review1 = {
+                user_name: reviews["reviews"][0]["user"]["name"],
+                rating: reviews["reviews"][0]["rating"] + "/5",
+                review_text: reviews["reviews"][0]["text"],
+                review_time:
+                    reviews["reviews"][0]["time_created"].split(" ")[0],
+            };
+            review2 = {
+                user_name: reviews["reviews"][1]["user"]["name"],
+                rating: reviews["reviews"][1]["rating"] + "/5",
+                review_text: reviews["reviews"][1]["text"],
+                review_time:
+                    reviews["reviews"][1]["time_created"].split(" ")[0],
+            };
+            review3 = {
+                user_name: reviews["reviews"][2]["user"]["name"],
+                rating: reviews["reviews"][2]["rating"] + "/5",
+                review_text: reviews["reviews"][2]["text"],
+                review_time:
+                    reviews["reviews"][2]["time_created"].split(" ")[0],
+            };
+        }
+
         console.log(categories);
         console.log(lat);
         console.log(lng);
@@ -275,6 +335,9 @@ app.get("/get_business_details", async (req, res) => {
         console.log(photo3);
         console.log(price);
         console.log(url);
+        console.log(review1);
+        console.log(review2);
+        console.log(review3);
 
         // add data to the final object
         var business_details_formatted = {};
@@ -290,9 +353,13 @@ app.get("/get_business_details", async (req, res) => {
         business_details_formatted.photo3 = photo3;
         business_details_formatted.price = price;
         business_details_formatted.url = url;
+        business_details_formatted.review1 = review1;
+        business_details_formatted.review2 = review2;
+        business_details_formatted.review3 = review3;
 
         res.send(JSON.stringify(business_details_formatted));
     } catch (error) {
+        console.log(error);
         res.send(JSON.stringify([]));
         return;
     }
