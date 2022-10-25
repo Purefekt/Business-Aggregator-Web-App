@@ -27,6 +27,7 @@ td {
   padding-left: 0px;
   padding-right: 0px;
   padding-bottom: 12px;
+  min-height: 620px;
 }
 
 :ng-deep .map-container {
