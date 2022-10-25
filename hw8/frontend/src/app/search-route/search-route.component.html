@@ -1,78 +1,77 @@
 <div class="container-fluid mx-5-5 search_form_container">
-  <div class="container m">
-    <form
-      class="mt-5"
-      ngNativeValidate
-      (ngSubmit)="
-        search(
-          form_keyword.value,
-          form_distance.value,
-          form_category.value,
-          form_location.value
-        )
-      "
-    >
-      <h4 class="text-center">Business search</h4>
-      <div class="form-group mt-3 required">
-        <small>
-          <label class="control-label" for="input_keyword">Keyword</label>
-        </small>
-        <input
-          type="text"
-          class="form-control mt-1"
-          id="input_keyword"
-          required
-          #form_keyword
-          [(ngModel)]="input_keyword"
-          matInput
-          [matAutocomplete]="auto"
-          [formControl]="input_keyword_search_control"
-        />
-        <mat-autocomplete
-          #auto="matAutocomplete"
-          (optionSelected)="onSelected()"
-          [displayWith]="displayWith"
-          ><mat-option *ngIf="isLoading" class="is-loading"
-            ><div
-              class="spinner-border spinner-border-sm float-start"
-              role="status"
-            >
-              <span class="visually-hidden">Loading...</span>
-            </div></mat-option
+  <form
+    class="mt-5"
+    ngNativeValidate
+    (ngSubmit)="
+      search(
+        form_keyword.value,
+        form_distance.value,
+        form_category.value,
+        form_location.value
+      )
+    "
+  >
+    <h4 class="text-center">Business search</h4>
+    <div class="form-group mt-3 required">
+      <small>
+        <label class="control-label" for="input_keyword">Keyword</label>
+      </small>
+      <input
+        type="text"
+        class="form-control mt-1"
+        id="input_keyword"
+        required
+        #form_keyword
+        [(ngModel)]="input_keyword"
+        matInput
+        [matAutocomplete]="auto"
+        [formControl]="input_keyword_search_control"
+      />
+      <mat-autocomplete
+        #auto="matAutocomplete"
+        (optionSelected)="onSelected()"
+        [displayWith]="displayWith"
+        ><mat-option *ngIf="isLoading" class="is-loading"
+          ><div
+            class="spinner-border spinner-border-sm float-start"
+            role="status"
           >
-          <ng-container *ngIf="!isLoading">
-            <mat-option
-              *ngFor="let keyword of autocompleted_keywords"
-              [value]="keyword"
-            >
-              <span>{{ keyword.text }}</span>
-            </mat-option>
-          </ng-container>
-        </mat-autocomplete>
-      </div>
+            <span class="visually-hidden">Loading...</span>
+          </div></mat-option
+        >
+        <ng-container *ngIf="!isLoading">
+          <mat-option
+            *ngFor="let keyword of autocompleted_keywords"
+            [value]="keyword"
+          >
+            <span>{{ keyword.text }}</span>
+          </mat-option>
+        </ng-container>
+      </mat-autocomplete>
+    </div>
 
-      <div class="row mt-3">
-        <div class="col-md-6 col-sm-12">
-          <div class="form-group">
-            <small>
-              <label for="input_distance">Distance</label>
-            </small>
-            <input
-              type="number"
-              class="form-control mt-1"
-              id="input_distance"
-              placeholder="10"
-              min="0.00000000001"
-              max="24.84"
-              step="0.00000000001"
-              #form_distance
-              [(ngModel)]="input_distance"
-              [ngModelOptions]="{ standalone: true }"
-            />
-          </div>
+    <div class="row mt-3">
+      <div class="col-md-6 col-sm-12">
+        <div class="form-group">
+          <small>
+            <label for="input_distance">Distance</label>
+          </small>
+          <input
+            type="number"
+            class="form-control mt-1"
+            id="input_distance"
+            placeholder="10"
+            min="0.00000000001"
+            max="24.84"
+            step="0.00000000001"
+            #form_distance
+            [(ngModel)]="input_distance"
+            [ngModelOptions]="{ standalone: true }"
+          />
         </div>
-        <!-- DROPDOWN -->
-        <!-- <div class="col">
+      </div>
+      <!-- DROPDOWN -->
+      <!-- <div class="col">
           <div class="form-group required">
             <small>
               <label class="control-label" for="dropdown_category"
@@ -119,69 +118,68 @@
           </div>
         </div> -->
 
-        <div class="col-md-6 col-sm-12">
-          <div class="form-group required">
-            <small>
-              <label class="control-label" for="dropdown_category"
-                >Category</label
-              >
-            </small>
-            <select
-              class="form-select mt-1 btn-outline-secondary"
-              #form_category
-              [(ngModel)]="input_category_selected_val"
-              [ngModelOptions]="{ standalone: true }"
+      <div class="col-md-6 col-sm-12">
+        <div class="form-group required">
+          <small>
+            <label class="control-label" for="dropdown_category"
+              >Category</label
             >
-              <option
-                *ngFor="let category of input_category"
-                value="{{ category.value }}"
-              >
-                {{ category.name }}
-              </option>
-            </select>
-          </div>
-        </div>
-      </div>
-
-      <div class="form-group mt-3 required">
-        <small>
-          <label class="control-label" for="input_location">Location</label>
-        </small>
-        <input
-          type="text"
-          class="form-control mt-1"
-          id="input_location"
-          required
-          #form_location
-          [(ngModel)]="input_location"
-          [ngModelOptions]="{ standalone: true }"
-        />
-      </div>
-
-      <div class="form-check mt-3">
-        <input
-          type="checkbox"
-          class="form-check-input"
-          id="check_auto_detect"
-          (click)="disable_location_input()"
-        />
-        <small>
-          <label class="form-check-label" for="check_auto_detect"
-            >Auto-detect my location</label
+          </small>
+          <select
+            class="form-select mt-1 btn-outline-secondary"
+            #form_category
+            [(ngModel)]="input_category_selected_val"
+            [ngModelOptions]="{ standalone: true }"
           >
-        </small>
+            <option
+              *ngFor="let category of input_category"
+              value="{{ category.value }}"
+            >
+              {{ category.name }}
+            </option>
+          </select>
+        </div>
       </div>
+    </div>
 
-      <div class="row mt-3 mb-5">
-        <div class="col">
-          <button type="submit" class="btn btn-danger float-end">Submit</button>
-        </div>
-        <div class="col">
-          <button type="button" class="btn btn-primary">Clear</button>
-        </div>
+    <div class="form-group mt-3 required">
+      <small>
+        <label class="control-label" for="input_location">Location</label>
+      </small>
+      <input
+        type="text"
+        class="form-control mt-1"
+        id="input_location"
+        required
+        #form_location
+        [(ngModel)]="input_location"
+        [ngModelOptions]="{ standalone: true }"
+      />
+    </div>
+
+    <div class="form-check mt-3">
+      <input
+        type="checkbox"
+        class="form-check-input"
+        id="check_auto_detect"
+        (click)="disable_location_input()"
+      />
+      <small>
+        <label class="form-check-label" for="check_auto_detect"
+          >Auto-detect my location</label
+        >
+      </small>
+    </div>
+
+    <div class="row mt-3 mb-5">
+      <div class="col">
+        <button type="submit" class="btn btn-danger float-end">Submit</button>
       </div>
-    </form>
-  </div>
+      <div class="col">
+        <button type="button" class="btn btn-primary">Clear</button>
+      </div>
+    </div>
+  </form>
 </div>
 
 <!-- Results Table goes here -->
