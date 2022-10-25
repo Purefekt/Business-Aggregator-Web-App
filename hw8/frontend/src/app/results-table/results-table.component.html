@@ -73,7 +73,7 @@
                   <div class="col-md-12 col-sm-6">
                     <div *ngIf="url">
                       <h5>Visit yelp for more</h5>
-                      <a href="{{ url }}">Business link</a>
+                      <a href="{{ url }}" target="_blank">Business link</a>
                     </div>
                   </div>
                 </div>
@@ -133,18 +133,30 @@
 
               <div
                 id="carouselExampleControls"
-                class="carousel slide"
+                class="carousel slide carousel-dark"
                 data-bs-ride="carousel"
               >
                 <div class="carousel-inner">
                   <div class="carousel-item active">
-                    <img src="{{ photo1 }}" />
+                    <img
+                      src="{{ photo1 }}"
+                      class="d-block w-100 mx-auto"
+                      style="max-width: 295px; height: 100%"
+                    />
                   </div>
                   <div class="carousel-item">
-                    <img src="{{ photo2 }}" />
+                    <img
+                      src="{{ photo2 }}"
+                      class="d-block w-100 mx-auto"
+                      style="max-width: 295px; height: 100%"
+                    />
                   </div>
                   <div class="carousel-item">
-                    <img src="{{ photo3 }}" />
+                    <img
+                      src="{{ photo3 }}"
+                      class="d-block w-100 mx-auto"
+                      style="max-width: 295px; height: 100%"
+                    />
                   </div>
                 </div>
                 <button

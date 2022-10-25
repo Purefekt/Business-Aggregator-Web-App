@@ -43,3 +43,18 @@ input[type="number"] {
   vertical-align: middle !important;
   float: right !important;
 }
+
+.business_details_tab_card {
+  background-color: white;
+  border-radius: 1rem;
+  max-width: 800px;
+  min-width: 360px;
+  padding-left: 0px;
+  padding-right: 0px;
+  padding-bottom: 12px;
+  min-height: 620px;
+}
+
+.carousel-inner .active {
+  border: none;
+}
