@@ -25,6 +25,11 @@ export class ApiService {
     return this.http.get(url);
   }
 
+  autocomplete(initial_text: string) {
+    let url = 'http://127.0.0.1:3000/autocomplete?initial_text=' + initial_text;
+    return this.http.get(url);
+  }
+
   get_business_details(id: string) {
     let url = 'http://127.0.0.1:3000/get_business_details?id=' + id;
     return this.http.get(url);

@@ -3,7 +3,6 @@ import { ApiService } from 'src/app/api.service';
 
 // For auto complete
 import { FormControl } from '@angular/forms';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {
   debounceTime,
   tap,
@@ -52,7 +51,7 @@ export class SearchRouteComponent implements OnInit {
 
   load_completed: boolean = false; //to display table when all data has arrived
 
-  constructor(private api: ApiService, private http: HttpClient) {}
+  constructor(private api: ApiService) {}
 
   ngOnInit(): void {
     // Everything inside is for autocomplete
@@ -68,13 +67,11 @@ export class SearchRouteComponent implements OnInit {
           this.isLoading = true;
         }),
         switchMap((value) =>
-          this.http
-            .get('http://127.0.0.1:3000/autocomplete?initial_text=' + value)
-            .pipe(
-              finalize(() => {
-                this.isLoading = false;
-              })
-            )
+          this.api.autocomplete(value).pipe(
+            finalize(() => {
+              this.isLoading = false;
+            })
+          )
         )
       )
       .subscribe((data: any) => {
