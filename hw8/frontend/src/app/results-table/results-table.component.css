@@ -39,3 +39,14 @@ svg {
 .carousel-inner .active {
   border: none;
 }
+
+/* put border around input+button in datepicker */
+.input-group {
+  border: solid 1px #ced4da;
+  border-radius: 0.375rem;
+}
+
+.btn:focus {
+  outline: none;
+  box-shadow: none;
+}

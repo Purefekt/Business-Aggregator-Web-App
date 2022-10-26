@@ -3,6 +3,7 @@ import { ApiService } from '../api.service';
 
 // for modal
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDatepickerConfig } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-results-table',
@@ -43,7 +44,20 @@ export class ResultsTableComponent implements OnInit {
     position: { lat: 40.70274718768062, lng: -73.99343490196397 },
   };
 
-  constructor(private api: ApiService, private modalService: NgbModal) {}
+  constructor(
+    private api: ApiService,
+    private modalService: NgbModal,
+    private config: NgbDatepickerConfig
+  ) {
+    const current = new Date();
+    config.minDate = {
+      year: current.getFullYear(),
+      month: current.getMonth() + 1,
+      day: current.getDate(),
+    };
+    //config.maxDate = { year: 2099, month: 12, day: 31 };
+    config.outsideDays = 'hidden';
+  }
 
   // This is to avoid being stuck on the business tab card screen when on it and submitting a new query. This will set business_clicked to false whenever the parent component sends it new data.
   ngOnChanges() {
