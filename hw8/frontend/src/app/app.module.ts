@@ -18,6 +18,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatTabsModule } from '@angular/material/tabs';
 
 import { GoogleMapsModule } from '@angular/google-maps';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { GoogleMapsModule } from '@angular/google-maps';
     MatAutocompleteModule,
     MatTabsModule,
     GoogleMapsModule,
+    NgbModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

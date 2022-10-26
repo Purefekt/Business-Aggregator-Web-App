@@ -1,6 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ApiService } from '../api.service';
 
+// for modal
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+
 @Component({
   selector: 'app-results-table',
   templateUrl: './results-table.component.html',
@@ -24,8 +27,13 @@ export class ResultsTableComponent implements OnInit {
   photo2: any = null;
   photo3: any = null;
 
+  // Reserve Modal
+  close_result = '';
+
+  // reviews
   review_list: any;
 
+  // Maps
   // Set to random lat lng, will change in the api call
   mapOptions: google.maps.MapOptions = {
     center: { lat: 40.70274718768062, lng: -73.99343490196397 },
@@ -35,7 +43,7 @@ export class ResultsTableComponent implements OnInit {
     position: { lat: 40.70274718768062, lng: -73.99343490196397 },
   };
 
-  constructor(private api: ApiService) {}
+  constructor(private api: ApiService, private modalService: NgbModal) {}
 
   // This is to avoid being stuck on the business tab card screen when on it and submitting a new query. This will set business_clicked to false whenever the parent component sends it new data.
   ngOnChanges() {
@@ -89,5 +97,27 @@ export class ResultsTableComponent implements OnInit {
     this.photo1 = null;
     this.photo2 = null;
     this.photo3 = null;
+  }
+
+  open_modal(content: any) {
+    this.modalService
+      .open(content, { ariaLabelledBy: 'modal-basic-title' })
+      .result.then(
+        (result) => {
+          this.close_result = `Closed with ${result}`;
+        },
+        (reason) => {
+          this.close_result = `Dismissed ${this.get_dismissed_reason(reason)}`;
+        }
+      );
+  }
+  private get_dismissed_reason(reason: any) {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return `with: ${reason}`;
+    }
   }
 }
