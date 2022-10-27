@@ -20,7 +20,7 @@
         <td>{{ reservation.email }}</td>
         <td>
           <svg
-            (click)="(delete_reservation)"
+            (click)="delete_reservation(reservation.key)"
             style="cursor: pointer"
             xmlns="http://www.w3.org/2000/svg"
             width="16"
