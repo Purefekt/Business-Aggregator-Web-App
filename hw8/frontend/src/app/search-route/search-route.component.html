@@ -223,7 +223,7 @@
   </div>
   <div class="modal-body">
     <h5 class="text-center">Business Name</h5>
-    <form>
+    <form class="needs-validation">
       <div class="mb-3">
         <small
           ><label for="exampleInputEmail1" class="form-label"
@@ -242,6 +242,7 @@
             placeholder="mm/dd/yyyy"
             name="dp"
             ngbDatepicker
+            [(ngModel)]="calendar_date_input"
             #dp="ngbDatepicker"
             style="border: 0px; cursor: auto"
             readonly
@@ -249,6 +250,7 @@
           <button
             class="btn bi bi-calendar"
             (click)="dp.toggle()"
+            (click)="print_calendar_date_input()"
             type="button"
             style="cursor: auto"
           >
