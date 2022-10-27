@@ -217,59 +217,106 @@
 <!-- DELETE -->
 <!-- DELETE -->
 
-<!-- <div class="container-fluid mx-5-5 business_details_tab_card mt-5">
-  <div class="mx-2 pt-3" style="cursor: pointer"></div>
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Reservation form</h4>
+  </div>
+  <div class="modal-body">
+    <h5 class="text-center">Business Name</h5>
+    <form>
+      <div class="mb-3">
+        <small
+          ><label for="exampleInputEmail1" class="form-label"
+            >Email address</label
+          ></small
+        >
+        <input type="email" class="form-control" id="exampleInputEmail1" />
+      </div>
 
-  <h4 class="text-center">TEST</h4>
-  <mat-tab-group mat-align-tabs="center" backgroundColor="primary">
-    <mat-tab label="Business Details">
-      <div class="row container text-center mt-5">
-        <div class="col-md-6 col-sm-12">
-          <div class="row">
-            <div class="col-md-12 col-sm-6">
-              <h5>Address</h5>
-              <p>address</p>
-            </div>
-            <div class="col-md-12 col-sm-6">
-              <h5>Phone</h5>
-              <p>phone</p>
-            </div>
-            <div class="col-md-12 col-sm-6">
-              <h5>Status</h5>
-              <p style="color: green">Open Now</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-6 col-sm-12">
-          <div class="row">
-            <div class="col-md-12 col-sm-6">
-              <h5>Category</h5>
-              <p>category</p>
-            </div>
-            <div class="col-md-12 col-sm-6">
-              <h5>Price</h5>
-              <p>price</p>
-            </div>
-            <div class="col-md-12 col-sm-6">
-              <h5>Visit yelp for more</h5>
-              <a href="https://www.google.com">Business link</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-12 col-sm-12 mt-4">
-          <button type="button" class="btn btn-danger">Reserve Now</button>
-        </div>
-        <div class="col-md-12 col-sm-12 mt-3">
-          <p>Share on:</p>
+      <div class="mb-3">
+        <small><label for="dateOfBirth">Date</label></small>
+        <div class="input-group">
+          <input
+            id="dateOfBirth"
+            class="form-control shadow-none"
+            placeholder="mm/dd/yyyy"
+            name="dp"
+            ngbDatepicker
+            #dp="ngbDatepicker"
+            style="border: 0px; cursor: auto"
+            readonly
+          />
+          <button
+            class="btn bi bi-calendar"
+            (click)="dp.toggle()"
+            type="button"
+            style="cursor: auto"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi bi-calendar"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"
+              />
+            </svg>
+          </button>
         </div>
       </div>
-    </mat-tab>
-    <mat-tab label="Map location" class="mb-5"> </mat-tab>
-    <mat-tab label="Reviews"> </mat-tab>
-  </mat-tab-group>
-</div> -->
+
+      <!-- <div class="mb-3">
+        <small><label for="dateOfBirth">Time</label></small>
+        <div class="row container">
+          <div class="col-2">
+            <select class="form-select" aria-label="Default select example">
+              <option selected></option>
+              <option value="1">One</option>
+              <option value="2">Two</option>
+              <option value="3">Three</option>
+            </select>
+          </div>
+          <div class="col-1">:</div>
+          <div class="col-2">
+            <select class="form-select" aria-label="Default select example">
+              <option selected></option>
+              <option value="1">One</option>
+              <option value="2">Two</option>
+              <option value="3">Three</option>
+            </select>
+          </div>
+          <div class="col-7 float-start">hi</div>
+        </div>
+      </div> -->
+      <div class="text-center">
+        <button
+          type="submit"
+          class="btn btn-danger"
+          (click)="modal.close('submit click')"
+        >
+          Submit
+        </button>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-dark"
+      (click)="modal.close('Save click')"
+    >
+      Close
+    </button>
+  </div>
+</ng-template>
+<div class="col-md-12 col-sm-12 mt-4">
+  <button type="button" class="btn btn-danger" (click)="open_modal(content)">
+    Reserve Now
+  </button>
+</div>
 
 <!-- DELETE -->
 <!-- DELETE -->

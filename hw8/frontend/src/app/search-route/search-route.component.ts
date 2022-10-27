@@ -13,6 +13,11 @@ import {
 } from 'rxjs/operators';
 // // // // // // // // // For auto complete
 
+////////////////////////////////////////////////////////////////////////////////////////////
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDatepickerConfig } from '@ng-bootstrap/ng-bootstrap';
+////////////////////////////////////////////////////////////////////////////////////////////
+
 @Component({
   selector: 'app-search-route',
   templateUrl: './search-route.component.html',
@@ -51,7 +56,22 @@ export class SearchRouteComponent implements OnInit {
 
   load_completed: boolean = false; //to display table when all data has arrived
 
-  constructor(private api: ApiService) {}
+  ////////////////////////////////////////////////////////////////////////////////////////////
+  constructor(
+    private api: ApiService,
+    private modalService: NgbModal,
+    private config: NgbDatepickerConfig
+  ) {
+    const current = new Date();
+    config.minDate = {
+      year: current.getFullYear(),
+      month: current.getMonth() + 1,
+      day: current.getDate(),
+    };
+    //config.maxDate = { year: 2099, month: 12, day: 31 };
+    config.outsideDays = 'hidden';
+  }
+  ////////////////////////////////////////////////////////////////////////////////////////////
 
   ngOnInit(): void {
     // Everything inside is for autocomplete
@@ -134,6 +154,30 @@ export class SearchRouteComponent implements OnInit {
       input_location.disabled = true;
     } else {
       input_location.disabled = false;
+    }
+  }
+
+  // Reserve Modal
+  close_result = '';
+  open_modal(content: any) {
+    this.modalService
+      .open(content, { ariaLabelledBy: 'modal-basic-title' })
+      .result.then(
+        (result) => {
+          this.close_result = `Closed with ${result}`;
+        },
+        (reason) => {
+          this.close_result = `Dismissed ${this.get_dismissed_reason(reason)}`;
+        }
+      );
+  }
+  private get_dismissed_reason(reason: any) {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return `with: ${reason}`;
     }
   }
 }
