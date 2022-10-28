@@ -86,18 +86,19 @@ export class ReserveComponent implements OnInit {
   }
 
   form!: FormGroup;
-
+  email_input: any;
   calendar_date_input: any;
-
-  print_calendar_date_input() {
-    console.log(this.calendar_date_input);
-  }
 
   print_errors() {
     console.log('email errors');
     console.log(this.form.get('email')?.errors);
     console.log('date errors');
     console.log(this.form.get('date')?.errors);
+
+    console.log(this.form.get('email')?.touched);
+    console.log(this.form.get('date')?.touched);
+    console.log(this.form.get('email')?.dirty);
+    console.log(this.form.get('date')?.dirty);
   }
 
   open_modal(content: any) {
@@ -114,12 +115,12 @@ export class ReserveComponent implements OnInit {
   }
 
   // validate form on submit
-
   validateAllFormFields(formGroup: FormGroup) {
     Object.keys(formGroup.controls).forEach((field) => {
       const control = formGroup.get(field);
       if (control instanceof FormControl) {
         control.markAsTouched({ onlySelf: true });
+        control.markAsDirty({ onlySelf: true });
       } else if (control instanceof FormGroup) {
         this.validateAllFormFields(control);
       }
@@ -129,8 +130,11 @@ export class ReserveComponent implements OnInit {
     console.log(this.form);
     if (this.form.valid) {
       console.log('form submitted');
+      console.log(this.email_input);
+      console.log(this.calendar_date_input);
     } else {
       this.validateAllFormFields(this.form);
+
       console.log('form not submitted');
     }
   }

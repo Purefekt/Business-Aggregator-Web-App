@@ -3,7 +3,7 @@
   border-radius: 0.375rem;
 }
 
-.btn-check:checked + .btn,
+/* .btn-check:checked + .btn,
 .btn.active,
 .btn.show,
 .btn:first-child:active,
@@ -11,4 +11,8 @@
   color: none;
   background-color: none;
   border-color: none;
-}
+} */
+
+/* .invalid-feedback {
+  display: block;
+} */
