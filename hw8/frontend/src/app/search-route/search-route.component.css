@@ -43,37 +43,3 @@ input[type="number"] {
   vertical-align: middle !important;
   float: right !important;
 }
-
-/* DELETE */
-/* DELETE */
-/* DELETE */
-/* DELETE */
-/* DELETE */
-/* DELETE */
-/* DELETE */
-/* DELETE */
-
-/* put border around input+button in datepicker */
-.input-group {
-  border: solid 1px #ced4da;
-  border-radius: 0.375rem;
-}
-
-.btn-check:checked + .btn,
-.btn.active,
-.btn.show,
-.btn:first-child:active,
-:not(.btn-check) + .btn:active {
-  color: none;
-  background-color: none;
-  border-color: none;
-}
-
-/* DELETE */
-/* DELETE */
-/* DELETE */
-/* DELETE */
-/* DELETE */
-/* DELETE */
-/* DELETE */
-/* DELETE */

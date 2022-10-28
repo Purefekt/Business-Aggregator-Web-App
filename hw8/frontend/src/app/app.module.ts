@@ -19,6 +19,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 
 import { GoogleMapsModule } from '@angular/google-maps';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ReserveComponent } from './reserve/reserve.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     SearchRouteComponent,
     BookingsRouteComponent,
     ResultsTableComponent,
+    ReserveComponent,
   ],
   imports: [
     BrowserModule,
