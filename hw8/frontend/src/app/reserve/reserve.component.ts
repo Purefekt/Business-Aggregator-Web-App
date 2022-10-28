@@ -1,12 +1,6 @@
-import { Component, OnInit, Injectable } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import {
-  NgbDatepickerConfig,
-  NgbDateAdapter,
-  NgbDateStruct,
-  NgbDateParserFormatter,
-} from '@ng-bootstrap/ng-bootstrap';
 
 import {
   FormGroup,
@@ -15,75 +9,16 @@ import {
   FormControl,
 } from '@angular/forms';
 
-// to change date format
-@Injectable()
-export class CustomDateAdapter {
-  fromModel(value: string): NgbDateStruct {
-    if (!value) return null!;
-    let parts = value.split('/');
-    return {
-      year: +parts[0],
-      month: +parts[1],
-      day: +parts[2],
-    } as NgbDateStruct;
-  }
-
-  toModel(date: NgbDateStruct): string {
-    // from internal model -> your mode
-    return date
-      ? date.year +
-          '/' +
-          ('0' + date.month).slice(-2) +
-          '/' +
-          ('0' + date.day).slice(-2)
-      : null!;
-  }
-}
-@Injectable()
-export class CustomDateParserFormatter {
-  parse(value: string): NgbDateStruct {
-    if (!value) return null!;
-    let parts = value.split('/');
-    return {
-      year: +parts[0],
-      month: +parts[1],
-      day: +parts[2],
-    } as NgbDateStruct;
-  }
-  format(date: NgbDateStruct): string {
-    return date
-      ? ('0' + date.month).slice(-2) +
-          '/' +
-          ('0' + date.day).slice(-2) +
-          '/' +
-          date.year
-      : null!;
-  }
-}
-
 @Component({
   selector: 'app-reserve',
   templateUrl: './reserve.component.html',
   styleUrls: ['./reserve.component.css'],
-  providers: [
-    { provide: NgbDateAdapter, useClass: CustomDateAdapter },
-    { provide: NgbDateParserFormatter, useClass: CustomDateParserFormatter },
-  ],
 })
 export class ReserveComponent implements OnInit {
   constructor(
     private modalService: NgbModal,
-    private config: NgbDatepickerConfig,
     private formBuilder: FormBuilder
-  ) {
-    const current = new Date();
-    config.minDate = {
-      year: current.getFullYear(),
-      month: current.getMonth() + 1,
-      day: current.getDate(),
-    };
-    config.outsideDays = 'hidden';
-  }
+  ) {}
 
   form!: FormGroup;
   email_input: any;
@@ -145,6 +80,7 @@ export class ReserveComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // set min date to todays date
     this.min_date = new Date();
     this.min_year = this.min_date.getFullYear();
     this.min_month = this.min_date.getMonth() + 1;
