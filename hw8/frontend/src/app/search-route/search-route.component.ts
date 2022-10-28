@@ -239,4 +239,30 @@ export class SearchRouteComponent implements OnInit {
       input_location.disabled = false;
     }
   }
+
+  // clear button
+  clear_button_func() {
+    this.input_keyword = '';
+    this.input_distance = '';
+    this.input_category = [
+      { name: 'Default', value: 'all' },
+      { name: 'Arts & Entertainment', value: 'arts' },
+      { name: 'Health & Medical', value: 'health' },
+      { name: 'Hotels & Travel', value: 'hotelstravel' },
+      { name: 'Food', value: 'food' },
+      { name: 'Professional Services', value: 'professional' },
+    ];
+    this.input_location = '';
+    var auto_detect_check = document.getElementById(
+      'check_auto_detect'
+    ) as HTMLInputElement;
+    auto_detect_check.checked = false;
+    var input_location = document.getElementById(
+      'input_location'
+    ) as HTMLInputElement;
+    input_location.disabled = false;
+    this.first_search_performed = false;
+    this.no_yelp_data = null;
+    this.load_completed = false;
+  }
 }

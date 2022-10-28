@@ -176,7 +176,13 @@
         <button type="submit" class="btn btn-danger float-end">Submit</button>
       </div>
       <div class="col">
-        <button type="button" class="btn btn-primary">Clear</button>
+        <button
+          type="button"
+          class="btn btn-primary"
+          (click)="clear_button_func()"
+        >
+          Clear
+        </button>
       </div>
     </div>
   </form>
