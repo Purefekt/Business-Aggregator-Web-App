@@ -4,50 +4,69 @@
   </div>
   <div class="modal-body">
     <h5 class="text-center">Business Name</h5>
-    <form class="needs-validation">
-      <div class="mb-3">
-        <small
-          ><label for="exampleInputEmail1" class="form-label"
-            >Email address</label
-          ></small
-        >
-        <input type="email" class="form-control" id="exampleInputEmail1" />
+
+    <form [formGroup]="form" class="needs-validation">
+      <div class="form-group">
+        <div class="mb-3">
+          <small
+            ><label for="email_input" class="form-label"
+              >Email address</label
+            ></small
+          >
+          <input
+            type="email"
+            class="form-control"
+            id="email_input"
+            formControlName="email"
+          />
+        </div>
+        <div class="invalid-feedback">
+          {{ form.get("date")?.hasError("required") ? "Date is required" : "" }}
+        </div>
       </div>
 
-      <div class="mb-3">
-        <small><label for="dateOfBirth">Date</label></small>
-        <div class="input-group">
-          <input
-            id="dateOfBirth"
-            class="form-control shadow-none"
-            placeholder="mm/dd/yyyy"
-            name="dp"
-            ngbDatepicker
-            [(ngModel)]="calendar_date_input"
-            #dp="ngbDatepicker"
-            style="border: 0px; cursor: auto"
-            readonly
-          />
-          <button
-            class="btn bi bi-calendar"
-            (click)="dp.toggle()"
-            (click)="print_calendar_date_input()"
-            type="button"
-            style="cursor: auto"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              fill="currentColor"
-              class="bi bi-calendar"
-              viewBox="0 0 16 16"
+      <div class="form-group">
+        <div class="mb-3">
+          <small><label for="date_input">Date</label></small>
+          <div class="input-group">
+            <input
+              id="date_input"
+              class="form-control shadow-none"
+              placeholder="mm/dd/yyyy"
+              name="dp"
+              ngbDatepicker
+              [(ngModel)]="calendar_date_input"
+              #dp="ngbDatepicker"
+              style="border: 0px; cursor: auto"
+              readonly
+              formControlName="date"
+            />
+            <button
+              class="btn bi bi-calendar"
+              (click)="dp.toggle()"
+              (click)="print_calendar_date_input()"
+              type="button"
+              style="cursor: auto"
             >
-              <path
-                d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"
-              />
-            </svg>
-          </button>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="currentColor"
+                class="bi bi-calendar"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"
+                />
+              </svg>
+            </button>
+          </div>
+          <div class="invalid-feedback">
+            {{
+              form.get("date")?.hasError("required") ? "Date is required" : ""
+            }}
+          </div>
         </div>
       </div>
 
@@ -74,10 +93,12 @@
             <div class="col-7 float-start">hi</div>
           </div>
         </div> -->
+
       <div class="text-center">
         <button
           type="submit"
           class="btn btn-danger"
+          (click)="onSubmit()"
           (click)="modal.close('submit click')"
         >
           Submit
@@ -85,6 +106,7 @@
       </div>
     </form>
   </div>
+
   <div class="modal-footer">
     <button
       type="button"
@@ -92,6 +114,10 @@
       (click)="modal.close('Save click')"
     >
       Close
+    </button>
+
+    <button type="button" class="btn btn-dark" (click)="print_errors()">
+      PRINT ERRORS
     </button>
   </div>
 </ng-template>
