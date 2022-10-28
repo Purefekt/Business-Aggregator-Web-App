@@ -88,6 +88,11 @@ export class ReserveComponent implements OnInit {
   form!: FormGroup;
   email_input: any;
   calendar_date_input: any;
+  min_date: any;
+  min_year: any;
+  min_month: any;
+  min_day: any;
+  min_date_string: any;
 
   print_errors() {
     console.log('email errors');
@@ -140,6 +145,13 @@ export class ReserveComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.min_date = new Date();
+    this.min_year = this.min_date.getFullYear();
+    this.min_month = this.min_date.getMonth() + 1;
+    this.min_day = this.min_date.getDate();
+    this.min_date_string =
+      this.min_year + '-' + this.min_month + '-' + this.min_day;
+
     this.form = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       date: [, [Validators.required]],

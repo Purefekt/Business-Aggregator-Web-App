@@ -49,6 +49,37 @@
       <div class="form-group">
         <div class="mb-3">
           <small><label for="date_input">Date</label></small>
+          <input
+            id="date_input"
+            class="form-control"
+            placeholder="mm/dd/yyyy"
+            type="date"
+            min="{{ min_date_string }}"
+            [(ngModel)]="calendar_date_input"
+            [ngClass]="
+              form.get('date')?.touched &&
+              form.get('date')?.dirty &&
+              form.get('date')?.hasError('required')
+                ? 'is-invalid'
+                : '' ||
+                  ((form.get('date')?.touched || form.get('date')?.dirty) &&
+                    !form.get('date')?.invalid)
+                ? 'is-valid'
+                : ''
+            "
+            formControlName="date"
+          />
+          <div class="invalid-feedback">
+            {{
+              form.get("date")?.hasError("required") ? "Date is required" : ""
+            }}
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="mb-3">
+          <small><label for="date_input">Date</label></small>
           <div class="input-group">
             <input
               id="date_input"
@@ -92,11 +123,11 @@
                 />
               </svg>
             </button>
-          </div>
-          <div class="invalid-feedback">
-            {{
-              form.get("date")?.hasError("required") ? "Date is required" : ""
-            }}
+            <div class="invalid-feedback">
+              {{
+                form.get("date")?.hasError("required") ? "Date is required" : ""
+              }}
+            </div>
           </div>
         </div>
       </div>
