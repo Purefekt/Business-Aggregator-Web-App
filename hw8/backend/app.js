@@ -1,7 +1,7 @@
 const { response } = require("express");
 const express = require("express");
 const app = express();
-const PORT = process.env.PORT || 8080;
+const port = 3000;
 const axios = require("axios").default;
 
 // API KEYS
@@ -373,6 +373,6 @@ app.get("/get_business_details", async (req, res) => {
     }
 });
 
-app.listen(PORT, () => {
-    console.log(`Server listening on port ${PORT}...`);
+app.listen(port, () => {
+    console.log(`Example app listening on port ${port}`);
 });
