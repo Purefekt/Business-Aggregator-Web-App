@@ -3,7 +3,7 @@
     <h4 class="modal-title" id="modal-basic-title">Reservation form</h4>
   </div>
   <div class="modal-body">
-    <h5 class="text-center">Business Name</h5>
+    <h5 class="text-center">{{ business_name }}</h5>
 
     <form [formGroup]="form">
       <div class="form-group">
@@ -77,29 +77,87 @@
         </div>
       </div>
 
-      <!-- <div class="mb-3">
-          <small><label for="dateOfBirth">Time</label></small>
-          <div class="row container">
-            <div class="col-2">
-              <select class="form-select" aria-label="Default select example">
+      <div class="form-group">
+        <div class="mb-3">
+          <small><label>Time</label></small>
+          <div class="row">
+            <div class="col-3">
+              <select
+                class="form-select"
+                aria-label="Default select example"
+                [(ngModel)]="time_hours"
+                [ngClass]="
+                  form.get('time_hours')?.touched &&
+                  form.get('time_hours')?.dirty &&
+                  form.get('time_hours')?.hasError('required')
+                    ? 'is-invalid'
+                    : '' ||
+                      ((form.get('time_hours')?.touched ||
+                        form.get('time_hours')?.dirty) &&
+                        !form.get('time_hours')?.invalid)
+                    ? 'is-valid'
+                    : ''
+                "
+                formControlName="time_hours"
+              >
                 <option selected></option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
               </select>
             </div>
-            <div class="col-1">:</div>
-            <div class="col-2">
-              <select class="form-select" aria-label="Default select example">
+            <div class="col-1 my-auto">:</div>
+            <div class="col-3">
+              <select
+                class="form-select"
+                aria-label="Default select example"
+                [(ngModel)]="time_minutes"
+                [ngClass]="
+                  form.get('time_minutes')?.touched &&
+                  form.get('time_minutes')?.dirty &&
+                  form.get('time_minutes')?.hasError('required')
+                    ? 'is-invalid'
+                    : '' ||
+                      ((form.get('time_minutes')?.touched ||
+                        form.get('time_minutes')?.dirty) &&
+                        !form.get('time_minutes')?.invalid)
+                    ? 'is-valid'
+                    : ''
+                "
+                formControlName="time_minutes"
+              >
                 <option selected></option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
+                <option value="00">00</option>
+                <option value="15">15</option>
+                <option value="30">30</option>
+                <option value="45">45</option>
               </select>
             </div>
-            <div class="col-7 float-start">hi</div>
+            <div class="col-1 my-auto">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="currentColor"
+                class="bi bi-clock"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"
+                />
+                <path
+                  d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z"
+                />
+              </svg>
+            </div>
           </div>
-        </div> -->
+        </div>
+      </div>
 
       <div class="text-center">
         <button type="submit" class="btn btn-danger" (click)="onSubmit()">
@@ -118,13 +176,25 @@
       Close
     </button>
 
-    <button type="button" class="btn btn-dark" (click)="print_errors()">
+    <!-- <button type="button" class="btn btn-dark" (click)="print_errors()">
       PRINT ERRORS
-    </button>
+    </button> -->
   </div>
 </ng-template>
-<div class="col-md-12 col-sm-12 mt-4">
-  <button type="button" class="btn btn-danger" (click)="open_modal(content)">
-    Reserve Now
-  </button>
+
+<div class="col-md-12 col-sm-12 mt-2">
+  <div *ngIf="reservation_exists; else show_reservation_button">
+    <button
+      type="button"
+      class="btn btn-primary"
+      (click)="cancel_reservation()"
+    >
+      Cancel reservation
+    </button>
+  </div>
+  <ng-template #show_reservation_button>
+    <button type="button" class="btn btn-danger" (click)="open_modal(content)">
+      Reserve Now
+    </button>
+  </ng-template>
 </div>

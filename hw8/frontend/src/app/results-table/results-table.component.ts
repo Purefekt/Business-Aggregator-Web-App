@@ -3,7 +3,6 @@ import { ApiService } from '../api.service';
 
 // for modal
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-import { NgbDatepickerConfig } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-results-table',
@@ -27,6 +26,7 @@ export class ResultsTableComponent implements OnInit {
   photo1: any = null;
   photo2: any = null;
   photo3: any = null;
+  business_id: any;
 
   // Reserve Modal
   close_result = '';
@@ -44,20 +44,7 @@ export class ResultsTableComponent implements OnInit {
     position: { lat: 40.70274718768062, lng: -73.99343490196397 },
   };
 
-  constructor(
-    private api: ApiService,
-    private modalService: NgbModal,
-    private config: NgbDatepickerConfig
-  ) {
-    const current = new Date();
-    config.minDate = {
-      year: current.getFullYear(),
-      month: current.getMonth() + 1,
-      day: current.getDate(),
-    };
-    //config.maxDate = { year: 2099, month: 12, day: 31 };
-    config.outsideDays = 'hidden';
-  }
+  constructor(private api: ApiService, private modalService: NgbModal) {}
 
   // This is to avoid being stuck on the business tab card screen when on it and submitting a new query. This will set business_clicked to false whenever the parent component sends it new data.
   ngOnChanges() {
@@ -70,6 +57,9 @@ export class ResultsTableComponent implements OnInit {
   get_business_details(id: any) {
     this.business_clicked = true; // business was clicked from the table.
     console.log(id);
+
+    // send this to the modal for key purposes
+    this.business_id = id;
 
     this.api.get_business_details(id).subscribe((data) => {
       console.log(Object.values(data));
@@ -111,27 +101,5 @@ export class ResultsTableComponent implements OnInit {
     this.photo1 = null;
     this.photo2 = null;
     this.photo3 = null;
-  }
-
-  open_modal(content: any) {
-    this.modalService
-      .open(content, { ariaLabelledBy: 'modal-basic-title' })
-      .result.then(
-        (result) => {
-          this.close_result = `Closed with ${result}`;
-        },
-        (reason) => {
-          this.close_result = `Dismissed ${this.get_dismissed_reason(reason)}`;
-        }
-      );
-  }
-  private get_dismissed_reason(reason: any) {
-    if (reason === ModalDismissReasons.ESC) {
-      return 'by pressing ESC';
-    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-      return 'by clicking on a backdrop';
-    } else {
-      return `with: ${reason}`;
-    }
   }
 }
