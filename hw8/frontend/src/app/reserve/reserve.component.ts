@@ -78,7 +78,6 @@ export class ReserveComponent implements OnInit {
     });
   }
   onSubmit() {
-    console.log(this.form);
     if (this.form.valid) {
       console.log('form submitted');
       console.log(this.email_input);
@@ -112,6 +111,7 @@ export class ReserveComponent implements OnInit {
 
   cancel_reservation() {
     // remove item from localstorage and set reservation_exists to false
+    alert('Reservation cancelled!');
     localStorage.removeItem(this.business_id);
     this.reservation_exists = false;
   }
