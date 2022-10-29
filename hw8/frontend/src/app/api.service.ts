@@ -7,6 +7,8 @@ import { HttpClient } from '@angular/common/http';
 export class ApiService {
   constructor(private http: HttpClient) {}
 
+  API_url = 'https://web-tech-assignment-8-backend.wl.r.appspot.com';
+
   search(
     form_keyword: string,
     form_distance: string,
@@ -14,7 +16,7 @@ export class ApiService {
     form_location: string
   ) {
     let url =
-      'http://127.0.0.1:3000/search?form_keyword=' +
+      `${this.API_url}/search?form_keyword=` +
       form_keyword +
       '&form_distance=' +
       form_distance +
@@ -26,12 +28,12 @@ export class ApiService {
   }
 
   autocomplete(initial_text: string) {
-    let url = 'http://127.0.0.1:3000/autocomplete?initial_text=' + initial_text;
+    let url = `${this.API_url}/autocomplete?initial_text=` + initial_text;
     return this.http.get(url);
   }
 
   get_business_details(id: string) {
-    let url = 'http://127.0.0.1:3000/get_business_details?id=' + id;
+    let url = `${this.API_url}/get_business_details?id=` + id;
     return this.http.get(url);
   }
 }
