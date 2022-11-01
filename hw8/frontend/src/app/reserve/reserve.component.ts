@@ -65,11 +65,6 @@ export class ReserveComponent implements OnInit {
     return !this.form.get(field)!.valid && this.form.get(field)!.touched;
   }
 
-  // clear fields when clicked on close button
-  clear_fields_on_close() {
-    this.form.reset();
-  }
-
   // validate form on submit
   validateAllFormFields(formGroup: FormGroup) {
     Object.keys(formGroup.controls).forEach((field) => {
