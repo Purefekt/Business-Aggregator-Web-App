@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 
 import {
   FormGroup,
@@ -19,6 +19,12 @@ export class ReserveComponent implements OnInit {
     private modalService: NgbModal,
     private formBuilder: FormBuilder
   ) {}
+
+  // ngbModalOptions: NgbModalOptions = {
+  //   backdrop: 'static',
+  //   keyboard: false,
+  // };
+  // modalRef = this.modalService.open(ReserveComponent, this.ngbModalOptions);
 
   // will be an input
   @Input() business_id: any;
@@ -54,7 +60,10 @@ export class ReserveComponent implements OnInit {
 
   open_modal(content: any) {
     this.modalService
-      .open(content, { ariaLabelledBy: 'modal-basic-title' })
+      .open(content, {
+        ariaLabelledBy: 'modal-basic-title',
+        backdrop: 'static',
+      })
       .result.then(
         () => {},
         () => {}

@@ -1,9 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ApiService } from '../api.service';
 
-// for modal
-import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-
 @Component({
   selector: 'app-results-table',
   templateUrl: './results-table.component.html',
@@ -44,7 +41,7 @@ export class ResultsTableComponent implements OnInit {
     position: { lat: 40.70274718768062, lng: -73.99343490196397 },
   };
 
-  constructor(private api: ApiService, private modalService: NgbModal) {}
+  constructor(private api: ApiService) {}
 
   // This is to avoid being stuck on the business tab card screen when on it and submitting a new query. This will set business_clicked to false whenever the parent component sends it new data.
   ngOnChanges() {
