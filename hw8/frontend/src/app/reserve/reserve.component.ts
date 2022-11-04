@@ -127,6 +127,12 @@ export class ReserveComponent implements OnInit {
     this.min_year = this.min_date.getFullYear();
     this.min_month = this.min_date.getMonth() + 1;
     this.min_day = this.min_date.getDate();
+    if (this.min_month < 10) {
+      this.min_month = '0' + this.min_month;
+    }
+    if (this.min_day < 10) {
+      this.min_day = '0' + this.min_day;
+    }
     this.min_date_string =
       this.min_year + '-' + this.min_month + '-' + this.min_day;
 
